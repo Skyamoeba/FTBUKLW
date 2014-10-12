@@ -1,2 +1,165 @@
+You want me here:
 Ver 1.0.0
     -- Released to public
+
+I am currently here:
+Ver: 0.2.5
+	Changes
+		-- Changed how the Updater works.
+		-- Got rid of the Decimal point on Temperature on the Computer display.
+		-- Tidy up of code
+
+	Added
+		-- Added Update Aviliable screen in the top right of the computer's display
+		   this will when a new version display New Version! 0.2.
+		-- Added change log to GitHub.com
+
+	Working On
+		-- I am currently working on a solution to the Decimal point being displayed
+		   on Reactor 1 and Reactor 2 monitors.
+
+	Bugs
+		-- Fixed the ones I caused.
+
+	In a future update
+		-- Add password screen for settings
+		-- Add Backup Settings (This file will hold all settings for FTBUKLW-BR)
+		-- Bring the displays inline so they match the computers slic display
+
+	Deducted functions
+		-- Rebuilt the Updater function (some old functions within were deducted)
+
+	Improvements
+		-- Added an option to switch off Update Check for when HTTP is not enabled on the server
+		   or if you want to decrease the network load of the server.
+		   (FTBUKLW-BR will only download DBRVerU when the server
+		   reboots and will not ask for it again until another reboot)
+
+
+Ver: 0.2.4
+
+	Added
+		-- Default Setting which returns all values to default.
+		-- Auto config update. (checks to see if there are new values added to all .cfg file(s))
+		-- VerInfo to "Computer" Menu
+
+	Bugs
+		-- General bug fixes caused by new feature additions
+
+	Deducted functions
+		-- None to report
+
+	Improvements
+		-- Altered computer display ready for Update function
+
+
+Ver: 0.2.3
+	Added Reactor stats to computer display
+
+	Added Color to computer diplay
+		-- Fix an issue where "F12 : Settings and Refresh Rate" would keep changing color.
+		-- Fix an issue where reactor info on computer display was displaying wrong color. 
+
+
+Ver: 0.2.0 - 0.2.2
+	Changed In computer Display
+	Changed Config files and .cfg files into seperate ones.
+		This should allow this to be more server friendly
+		--BR-VerConfig.cfg deals with version numbers and decides if the configs need updating
+		--BR-ComConfig.cfg deals with the main computer settings
+		--BR-ReactorAConfig.cfg deals with Reactor A configs
+		--BR-ReactorBConfig.cfg deals with Reactor B configs
+
+	Improvments to UI and General bug fixes
+
+	Added loading bar for when either Save or a Load is exercuted.
+
+
+
+Ver: 0.1.9 - 0.1.9-4
+	Added Redstone switch side to reactor settings
+
+	Added Settings functions
+		 -- Added Reactor A Settings menu
+		 -- Added Reactor B Settings menu         
+		 -- Settings Menu function 
+		 -- Save Settings function 
+		 -- Load Settings function 
+
+Ver: 0.1.8
+	
+	Added functions
+		 -- ReactorALogic()
+		 -- ReactorBLogic()
+
+	Changed local variable FuelMon to StatMon
+
+	Improved one reactor compatibility
+
+	Removed unused functions
+		 -- RodLevelReactorA() on reactor 1 monitor
+		 -- RodLevelReactorB() on reactor 2 monitor
+
+	Tided up dispalys for R1 and R2
+	     -- Moved Warnings from 11 to 12
+	     -- Changed how Temp is displayed
+	     -- Changed how Flux is displayed
+	     -- Centered Reactor name for both displays
+	     -- Changed how RF/t is displayed
+
+
+Ver: 0.1.7
+	Bug fixes - General debugging
+
+Ver: 0.1.6
+	Added warning messages to Status Display
+
+Ver: 0.1.5
+	Seperated Control Rod into Reactor 1 + 2
+
+Ver: 0.1.4
+	Added Splash Screen
+
+Ver: 0.1.3
+	Made it so you can idividually switch off the reactors
+
+Ver: 0.1.2
+	Bug Fixes -- Gobal display showing incorrect date
+
+Ver: 0.1.1
+	Added Global Display AKA Fuel Mon or Status Display
+
+Ver: 0.1.0
+	Bug fixes -- Corrected a typo
+
+Ver: 0.0.9
+	Added ReactorBWarn to Reactor B display
+
+Ver: 0.0.8
+	Added ReactorAWarn to Reactor A display
+
+Ver: 0.0.7
+	Bug Fixes -- Displays showing wrong info
+
+Ver: 0.0.6
+	Added Reactor B Display
+	Added ReactorBFunctions()
+
+Ver: 0.0.5
+	Added local values for Reactor 2 Settings
+
+Ver: 0.0.4
+	Added Reactor A Display
+	Added ReactorAFunctions()
+
+Ver: 0.0.3
+	Added local values for Reactor 1 Settings
+
+Ver: 0.0.2
+	Split tasks into functions
+
+Ver: 0.0.1
+	Made compactiable with only one reactor
+
+Ver: 0.0.0
+	First Draft Build (Very Basic functionality)
