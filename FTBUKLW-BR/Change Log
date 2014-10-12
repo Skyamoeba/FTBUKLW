@@ -3,37 +3,55 @@ Ver 1.0.0
     -- Released to public
 
 I am currently here:
+Ver: 0.2.6
+	
+	GitHub Issue #1 Fixes and Enhancement
+
+	Enhancement:
+    	-- Get rid of the delay when you select a item to change.
+    	-- Combine all loading bars to one on boot up.
+    	-- Change current update name to "Fetch Update"
+
+	Bug:
+		-- Some of the Reactor 1 and 2 don't go back to their respected menus instead go to main menu.
+		-- Some of the Reactor 1 and 2 have # in their settings adjustment "are you sure" screen.
+		-- Clear typos in some menus
+
+	Things todo:
+		-- Test program after these have been implemented.
+
+
+
 Ver: 0.2.5
 	Changes
 		-- Changed how the Updater works.
-		-- Got rid of the Decimal point on Temperature on the Computer display.
-		-- Tidy up of code
+        -- Got rid of the Decimal point on Temperature on the Computer display.
+        -- Tidy up of code
+    Added
+        -- Added Update Aviliable screen in the top right of the computer's display
+           this will when a new version display New Version! 0.2.
+        -- Added change log to GitHub.com
 
-	Added
-		-- Added Update Aviliable screen in the top right of the computer's display
-		   this will when a new version display New Version! 0.2.
-		-- Added change log to GitHub.com
+    Working On
+        -- I am currently working on a solution to the Decimal point being displayed
+           on Reactor 1 and Reactor 2 monitors.
+    
+    Bugs
+        -- Fixed the ones I caused.
 
-	Working On
-		-- I am currently working on a solution to the Decimal point being displayed
-		   on Reactor 1 and Reactor 2 monitors.
+    In a future update
+        -- Add password screen for settings
+        -- Add Backup Settings (This file will hold all settings for FTBUKLW-BR)
+        -- Bring the displays inline so they match the computers slic display
 
-	Bugs
-		-- Fixed the ones I caused.
+    Deducted functions
+        -- Rebuilt the Updater function (some old functions within were deducted)
 
-	In a future update
-		-- Add password screen for settings
-		-- Add Backup Settings (This file will hold all settings for FTBUKLW-BR)
-		-- Bring the displays inline so they match the computers slic display
-
-	Deducted functions
-		-- Rebuilt the Updater function (some old functions within were deducted)
-
-	Improvements
-		-- Added an option to switch off Update Check for when HTTP is not enabled on the server
-		   or if you want to decrease the network load of the server.
-		   (FTBUKLW-BR will only download DBRVerU when the server
-		   reboots and will not ask for it again until another reboot)
+    Improvements
+	    --Added an option to switch off Update Check for when HTTP is not enabled on the server
+	      or if you want to decrease the network load of the server.
+          (FTBUKLW-BR will only download DBRVerU when the server
+          reboots and will not ask for it again until another reboot)
 
 
 Ver: 0.2.4
@@ -139,7 +157,7 @@ Ver: 0.0.8
 	Added ReactorAWarn to Reactor A display
 
 Ver: 0.0.7
-	Bug Fixes -- Displays showing wrong info
+	Bug Fixes -- Displays showing worng info
 
 Ver: 0.0.6
 	Added Reactor B Display
