@@ -3,6 +3,38 @@ Ver 1.0.0
     -- Released to public
 
 I am currently here:
+Ver: 0.2.8
+	GitHub: Testing and Development #2
+		 
+		Suggestions Added:
+			
+			-- Make it so the program restarts when you exit the settings menu.
+		
+		Bug(s) Fixed:
+			
+			-- Values do not load for Monitor's or Reactor's from config files.
+			-- Program does not like running with one reactor.
+			-- Computer menu text moves by one to right when selected.
+
+		Grammer Fixes:
+
+			--  Noticed some spelling mistakes in the Ver notes. :)
+
+		Working on:
+			
+			-- Make it so you don't need levers either side of the computer instead use RedNet.
+
+
+Ver: 0.2.7
+	Enhancment
+		-- Altered how reactor 1 info is displayed on Monitor 1
+		-- Altered how reactor 2 info is displayed on Monitor 2
+		-- Solved problem of decimal point being displayed on monitors
+
+	In a future update
+        -- Add password screen for settings
+        -- Bring the displays inline so they match the computers slic display
+
 Ver: 0.2.6
 	
 	GitHub Issue #1 Fixes and Enhancement
