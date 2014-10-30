@@ -3,6 +3,38 @@ Ver 1.0.0
     -- Released to public
 
 I am currently here:
+
+Ver: 0.2.9 (Incomplete Notes for 0.2.9 as still in work in progress)
+	GitHub Issue #3 :
+		
+			-- Waiting fot test results....
+
+  	    Added
+            -- ReactorA GUI to bring inline with Computer display
+            -- ReactorB GUI to bring inline with Computer display
+            -- Password Config
+            -- Ver config updated
+            -- Password Screen for settings (Can be turned On/Off in options)
+            -- If the Update makes changes to the .cfg files then a COM, RTA, RTB, ERR
+               will be displayed along with the new version number.
+      
+
+	    Bugs Fixed
+	        -- Names don't change when changed in options
+	        -- FTBUKLW-BR 1871 Error
+	        -- Computer label not setting
+
+	    Alterations
+            -- Altered where Ver is displayed on Status Monitor
+            -- Program now can't be stopped by ctrl+T
+            -- Got rid of flashing status due to frame rate and cosmetic reasons
+            -- Refining how the update and ver config is delt within program.
+            -- Changed the format of how BR-UPD.upd is read.
+            -- Changed how Status is displayed on staus monitor.
+            -- Changed First startup to take you to the set Reactor 1 Comm port first.
+
+
+
 Ver: 0.2.8
 	GitHub: Testing and Development #2
 		 
@@ -22,6 +54,7 @@ Ver: 0.2.8
 			-- Make it so you don't need levers either side of the computer instead use RedNet.
 
 
+
 Ver: 0.2.7
 	Enhancment
 		-- Altered how reactor 1 info is displayed on Monitor 1
@@ -32,6 +65,8 @@ Ver: 0.2.7
         -- Add password screen for settings
         -- Bring the displays inline so they match the computers slic display
 
+
+
 Ver: 0.2.6
 	
 	GitHub Issue #1 Fixes and Enhancement
@@ -41,7 +76,7 @@ Ver: 0.2.6
     	-- Combine all loading bars to one on boot up.
     	-- Change current update name to "Fetch Update"
 
-	Bug:
+	Bug(s) Fixed:
 		-- Some of the Reactor 1 and 2 don't go back to their respected menus instead go to main menu.
 		-- Some of the Reactor 1 and 2 have # in their settings adjustment "are you sure" screen.
 		-- Clear typos in some menus
@@ -70,7 +105,6 @@ Ver: 0.2.5
 
     In a future update
         -- Add password screen for settings
-        -- Add Backup Settings (This file will hold all settings for FTBUKLW-BR)
         -- Bring the displays inline so they match the computers slic display
 
     Deducted functions
@@ -81,6 +115,7 @@ Ver: 0.2.5
 	      or if you want to decrease the network load of the server.
           (FTBUKLW-BR will only download DBRVerU when the server
           reboots and will not ask for it again until another reboot)
+
 
 
 Ver: 0.2.4
@@ -206,7 +241,7 @@ Ver: 0.0.2
 	Split tasks into functions
 
 Ver: 0.0.1
-	Made compactiable with only one reactor
+	Tidied code ready for next part of project
 
 Ver: 0.0.0
 	First Draft Build (Very Basic functionality)
