@@ -1,15 +1,19 @@
-You want me here:
-Ver 1.0.0
-    -- Released to public
+Ver: 0.3.0-0.0.1
+		Added
+			-- Error Catcher
+					-- Status Monitor now protected (0.3.0-0.0.1)
+					-- #################
+					-- #################
 
-I am currently here:
+			-- Build Version
+					-- Changes will have build number in ( ) to show 
+					   when the bug fix or added item was implemented.
 
-Ver: 0.2.9 (Incomplete Notes for 0.2.9 as still in work in progress)
-	GitHub Issue #3 :
-		
-			-- Waiting fot test results....
 
-  	    Added
+
+
+Ver: 0.2.9 (Tested with CraftOS 1.6)
+	    Added
             -- ReactorA GUI to bring inline with Computer display
             -- ReactorB GUI to bring inline with Computer display
             -- Password Config
@@ -17,12 +21,13 @@ Ver: 0.2.9 (Incomplete Notes for 0.2.9 as still in work in progress)
             -- Password Screen for settings (Can be turned On/Off in options)
             -- If the Update makes changes to the .cfg files then a COM, RTA, RTB, ERR
                will be displayed along with the new version number.
-      
+
 
 	    Bugs Fixed
 	        -- Names don't change when changed in options
 	        -- FTBUKLW-BR 1871 Error
 	        -- Computer label not setting
+	        -- Issue with Update Config warning not displaying when it should
 
 	    Alterations
             -- Altered where Ver is displayed on Status Monitor
@@ -32,6 +37,8 @@ Ver: 0.2.9 (Incomplete Notes for 0.2.9 as still in work in progress)
             -- Changed the format of how BR-UPD.upd is read.
             -- Changed how Status is displayed on staus monitor.
             -- Changed First startup to take you to the set Reactor 1 Comm port first.
+            -- Removed BR-Ver.cfg from program due to it only being used for something
+               that can be stated within the program.
 
 
 
