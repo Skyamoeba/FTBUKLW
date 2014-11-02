@@ -17,7 +17,7 @@ Ver: 0.2.9 (Tested with CraftOS 1.6)
             -- ReactorA GUI to bring inline with Computer display
             -- ReactorB GUI to bring inline with Computer display
             -- Password Config
-            -- Ver config updated
+            -- Ver config updated (Removed)
             -- Password Screen for settings (Can be turned On/Off in options)
             -- If the Update makes changes to the .cfg files then a COM, RTA, RTB, ERR
                will be displayed along with the new version number.
