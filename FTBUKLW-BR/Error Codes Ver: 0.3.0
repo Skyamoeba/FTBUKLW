@@ -1,0 +1,20 @@
+#########################################################################################################################
+## Error Codes for 0.3.0 ##
+###########################
+
+If you have not altered the program in any way then hopefully this should help before you post an issue.
+
+#########################################################################################################################
+##    Error     ##                                       Possible Solution                                             ##
+#########################################################################################################################
+## [MON-S3482E] ## Problem with Status Monitor    (Check that the settings are correct and that the wired modem is on) ##
+## [MON-A4256E] ## Problem with Reactor A Display (Check that the settings are correct and that the wired modem is on) ##
+## [MON-B5235E] ## Problem with Reactor B Display (Check that the settings are correct and that the wired modem is on) ##
+##              ##
+
+
+
+
+
+
+More will be added at in future updates as I implement the Error Catcher. 
