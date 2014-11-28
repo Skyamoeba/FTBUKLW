@@ -2,14 +2,21 @@ Ver: 0.3.6
 		Changed
 			-- Display
 					-- Menus now have a boarder around.
-					-- How Fuel, Waste and Rod depth is displayed on the computer screen
-                           		   has been changed.
-                           		   
+
 			-- Added
 					-- function writeError() to make programin compact
 					-- Backup present indicator.
 					-- Program installed is latest ver if update 
 					    program is selected when current version is installed
+					-- Improved a number of things within the program
+					-- Loading and Saving settings now have Lime for loading and red for saving.
+					-- Moved Refresh rate over by 2 on display
+					-- Put menu options in a table ready for menu update
+					-- Added Expansion settings table so others can use this to add API's / Addons
+            
+            -- Changed
+            		-- How Fuel, Waste and Rod depth is displayed on the computer screen
+                       has been changed.
 
 Ver: 0.3.0- 0.3.5
 		Added
