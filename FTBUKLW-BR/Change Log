@@ -13,6 +13,7 @@ Ver: 0.3.6 Build: 11.14.1.45
 					-- Moved Refresh rate over by 2 on display
 					-- Put menu options in a table ready for menu update
 					-- Added Expansion settings table so others can use this to add API's / Addons
+					-- Build Number
             
             -- Changed
             		-- How Fuel, Waste and Rod depth is displayed on the computer screen
