@@ -1,10 +1,9 @@
-<<<<<<< HEAD
 Ver  : 0.3.6 
 Build: 11.14.1.35 - 11.14.1.46
 
 =======
 Ver: 0.3.6 Build: 11.14.1.45
->>>>>>> origin/master
+
 		Changed
 			-- Display
 					-- Menus now have a boarder around.
@@ -18,25 +17,21 @@ Ver: 0.3.6 Build: 11.14.1.45
 					-- Loading and Saving settings now have Lime for loading and red for saving.
 					-- Moved Refresh rate over by 2 on display
 					-- Put menu options in a table ready for menu update
-<<<<<<< HEAD
 					-- Added Expansion settings table so others can use this to add API's / Addons.
 					-- 
 =======
 					-- Added Expansion settings table so others can use this to add API's / Addons
 					-- Build Number
->>>>>>> origin/master
-            
+
             -- Changed
             		-- How Fuel, Waste and Rod depth is displayed on the computer screen
                        has been changed.
 
-<<<<<<< HEAD
                     -- How text color is handled within the program to allow easy additions
                        by using a modular programming style.
 
 
 =======
->>>>>>> origin/master
 Ver: 0.3.0- 0.3.5
 		Added
 			-- Error Catcher
@@ -51,10 +46,8 @@ Ver: 0.3.0- 0.3.5
 		    		-- Added Backup Settings (0.3.4)
 		    		-- Added Restore Backup  (0.3.4)
 
-<<<<<<< HEAD
 
 =======
->>>>>>> origin/master
 Ver: 0.2.9
 	    Added
             -- ReactorA GUI to bring inline with Computer display
@@ -85,10 +78,8 @@ Ver: 0.2.9
             -- Removed BR-Ver.cfg from program due to it only being used for something
                that can be stated within the program.
 
-<<<<<<< HEAD
 
 =======
->>>>>>> origin/master
 Ver: 0.2.8
 	GitHub: Testing and Development #2
 		 
@@ -107,10 +98,8 @@ Ver: 0.2.8
 			-- Add password screen for settings
 			-- Make it so you don't need levers either side of the computer instead use RedNet.
 
-<<<<<<< HEAD
 
 =======
->>>>>>> origin/master
 Ver: 0.2.7
 	Enhancment
 		-- Altered how reactor 1 info is displayed on Monitor 1
@@ -120,11 +109,8 @@ Ver: 0.2.7
 	In a future update
         -- Add password screen for settings
         -- Bring the displays inline so they match the computers slic display
-<<<<<<< HEAD
 
 =======
->>>>>>> origin/master
-
 Ver: 0.2.6
 	
 	GitHub Issue #1 Fixes and Enhancement
@@ -142,10 +128,7 @@ Ver: 0.2.6
 	Things todo:
 		-- Test program after these have been implemented.
 
-<<<<<<< HEAD
-
 =======
->>>>>>> origin/master
 Ver: 0.2.5
 	Changes
 		-- Changed how the Updater works.
@@ -212,10 +195,7 @@ Ver: 0.2.0 - 0.2.2
 
 	Added loading bar for when either Save or a Load is exercuted.
 
-<<<<<<< HEAD
-
 =======
->>>>>>> origin/master
 Ver: 0.1.9 - 0.1.9-4
 	Added Redstone switch side to reactor settings
 
@@ -315,10 +295,6 @@ Ver: 0.0.2
 
 Ver: 0.0.1
 	Tidied code ready for next part of project
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/master
 
 Ver: 0.0.0
 	First Draft Build (Very Basic functionality)
