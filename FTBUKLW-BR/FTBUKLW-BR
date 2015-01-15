@@ -1,1 +1,3647 @@
---Place Holder
+--#####################
+--## Version History ###################################################################################
+--#####################
+
+--[[
+Ver  : 0.3.6 
+Build: 11.14.1.35 - 11.14.1.46
+
+		Changed
+			-- Display
+					-- Menus now have a boarder around.
+
+			-- Added
+					-- function writeError() to make programin compact
+					-- Backup present indicator.
+					-- Program installed is latest ver if update 
+					    program is selected when current version is installed
+					-- Improved a number of things within the program
+					-- Loading and Saving settings now have Lime for loading and red for saving.
+					-- Moved Refresh rate over by 2 on display
+					-- Put menu options in a table ready for menu update
+					-- Added Expansion settings table so others can use this to add API's / Addons.
+					-- 
+            
+            -- Changed
+            		-- How Fuel, Waste and Rod depth is displayed on the computer screen
+                       has been changed.
+
+                    -- How text color is handled within the program to allow easy additions
+                       by using a modular programming style.
+
+Ver: 0.3.0- 0.3.5
+		Added
+			-- Error Catcher
+					-- Status Monitor now protcted (0.3.1)
+					-- Reactor A Monitor now protected (0.3.2)
+					-- Reactor A Comms now protected (0.3.2)
+					-- Reactor B Monitor now protected (0.3.3)
+					-- Reactor B Comms now protected (0.3.3)
+					-- Notification icon as a "#" on menus (0.3.5)
+
+			-- New Options
+		    		-- Added Backup Settings (0.3.4)
+		    		-- Added Restore Backup  (0.3.4)
+
+Ver: 0.2.9
+	    Added
+            -- ReactorA GUI to bring inline with Computer display
+            -- ReactorB GUI to bring inline with Computer display
+            -- Password Config
+            -- Ver config updated (Removed)
+            -- Password Screen for settings (Can be turned On/Off in options)
+            -- If the Update makes changes to the .cfg files then a COM, RTA, RTB, ERR
+               will be displayed along with the new version number.
+
+		Compactibility Test
+			-- Tested with CraftOS 1.6 and works as expected.
+
+	    Bugs Fixed
+	        -- Names don't change when changed in options
+	        -- FTBUKLW-BR 1871 Error
+	        -- Computer label not setting
+	        -- Issue with Update Config warning not displaying when it should
+
+	    Alterations
+            -- Altered where Ver is displayed on Status Monitor
+            -- Program now can't be stopped by ctrl+T
+            -- Got rid of flashing status due to frame rate and cosmetic reasons
+            -- Refining how the update and ver config is delt within program.
+            -- Changed the format of how BR-UPD.upd is read.
+            -- Changed how Status is displayed on staus monitor.
+            -- Changed First startup to take you to the set Reactor 1 Comm port first.
+            -- Removed BR-Ver.cfg from program due to it only being used for something
+               that can be stated within the program.
+
+Ver: 0.2.8
+	GitHub: Testing and Development #2
+		 
+		Suggestions Added:
+			-- Make it so the program restarts when you exit the settings menu.
+		
+		Bug(s) Fixed:
+			-- Values do not load for Monitor's or Reactor's from config files.
+			-- Program does not like running with one reactor.
+			-- Computer menu text moves by one to right when selected.
+
+		Grammer Fixes:
+			--  Noticed some spelling mistakes in the Ver notes. :)
+
+		Working on:
+			-- Add password screen for settings
+			-- Make it so you don't need levers either side of the computer instead use RedNet.
+
+Ver: 0.2.7
+	Enhancment
+		-- Altered how reactor 1 info is displayed on Monitor 1
+		-- Altered how reactor 2 info is displayed on Monitor 2
+		-- Solved problem of decimal point being displayed on monitors
+
+	In a future update
+        -- Add password screen for settings
+        -- Bring the displays inline so they match the computers slic display
+
+Ver: 0.2.6
+	
+	GitHub Issue #1 Fixes and Enhancement
+
+	Enhancement:
+    	-- Get rid of the delay when you select a item to change.
+    	-- Combine all loading bars to one on boot up.
+    	-- Change current update name to "Fetch Update"
+
+	Bug(s) Fixed:
+		-- Some of the Reactor 1 and 2 don't go back to their respected menus instead go to main menu.
+		-- Some of the Reactor 1 and 2 have # in their settings adjustment "are you sure" screen.
+		-- Clear typos in some menus
+
+	Things todo:
+		-- Test program after these have been implemented.
+
+Ver: 0.2.5
+	Changes
+		-- Changed how the Updater works.
+        -- Got rid of the Decimal point on Temperature on the Computer display.
+        -- Tidy up of code
+    Added
+        -- Added Update Aviliable screen in the top right of the computer's display
+           this will when a new version display New Version! 0.2.
+        -- Added change log to GitHub.com
+
+    Working On
+        -- I am currently working on a solution to the Decimal point being displayed
+           on Reactor 1 and Reactor 2 monitors.
+    
+    Bugs
+        -- Fixed the ones I caused.
+
+    In a future update
+        -- Add password screen for settings
+        -- Bring the displays inline so they match the computers slic display
+
+    Deducted functions
+        -- Rebuilt the Updater function (some old functions within were deducted)
+
+    Improvements
+	    --Added an option to switch off Update Check for when HTTP is not enabled on the server
+	      or if you want to decrease the network load of the server.
+          (FTBUKLW-BR will only download DBRVerU when the server
+          reboots and will not ask for it again until another reboot)
+
+Ver: 0.2.4
+
+	Added
+		-- Default Setting which returns all values to default.
+		-- Auto config update. (checks to see if there are new values added to all .cfg file(s))
+		-- VerInfo to "Computer" Menu
+
+	Bugs
+		-- General bug fixes caused by new feature additions
+
+	Deducted functions
+		-- None to report
+
+	Improvements
+		-- Altered computer display ready for Update function
+
+Ver: 0.2.3
+	Added Reactor stats to computer display
+
+	Added Color to computer diplay
+		-- Fix an issue where "F12 : Settings and Refresh Rate" would keep changing color.
+		-- Fix an issue where reactor info on computer display was displaying wrong color. 
+
+Ver: 0.2.0 - 0.2.2
+	Changed In computer Display
+	Changed Config files and .cfg files into seperate ones.
+		This should allow this to be more server friendly
+		--BR-VerConfig.cfg deals with version numbers and decides if the configs need updating
+		--BR-ComConfig.cfg deals with the main computer settings
+		--BR-ReactorAConfig.cfg deals with Reactor A configs
+		--BR-ReactorBConfig.cfg deals with Reactor B configs
+
+	Improvments to UI and General bug fixes
+
+	Added loading bar for when either Save or a Load is exercuted.
+
+Ver: 0.1.9 - 0.1.9-4
+	Added Redstone switch side to reactor settings
+
+	Added Settings functions
+		 -- Added Reactor A Settings menu
+		 -- Added Reactor B Settings menu         
+		 -- Settings Menu function 
+		 -- Save Settings function 
+		 -- Load Settings function 
+
+Ver: 0.1.8
+	Added functions
+		 -- ReactorALogic()
+		 -- ReactorBLogic()
+
+	Changed local variable FuelMon to StatMon
+
+	Improved one reactor compatibility
+
+	Removed unused functions
+		 -- RodLevelReactorA() on reactor 1 monitor
+		 -- RodLevelReactorB() on reactor 2 monitor
+
+	Tided up dispalys for R1 and R2
+	     -- Moved Warnings from 11 to 12
+	     -- Changed how Temp is displayed
+	     -- Changed how Flux is displayed
+	     -- Centered Reactor name for both displays
+	     -- Changed how RF/t is displayed
+
+Ver: 0.1.7
+	Bug fixes - General debugging
+
+Ver: 0.1.6
+	Added warning messages to Status Display
+
+Ver: 0.1.5
+	Seperated Control Rod into Reactor 1 + 2
+
+Ver: 0.1.4
+	Added Splash Screen
+
+Ver: 0.1.3
+	Made it so you can idividually switch off the reactors
+
+Ver: 0.1.2
+	Bug Fixes -- Gobal display showing incorrect date
+
+Ver: 0.1.1
+	Added Global Display AKA Fuel Mon or Status Display
+
+Ver: 0.1.0
+	Bug fixes -- Corrected a typo
+
+Ver: 0.0.9
+	Added ReactorBWarn to Reactor B display
+
+Ver: 0.0.8
+	Added ReactorAWarn to Reactor A display
+
+Ver: 0.0.7
+	Bug Fixes -- Displays showing worng info
+
+Ver: 0.0.6
+	Added Reactor B Display
+	Added ReactorBFunctions()
+
+Ver: 0.0.5
+	Added local values for Reactor 2 Settings
+
+Ver: 0.0.4
+	Added Reactor A Display
+	Added ReactorAFunctions()
+
+Ver: 0.0.3
+	Added local values for Reactor 1 Settings
+
+Ver: 0.0.2
+	Split tasks into functions
+
+Ver: 0.0.1
+	Tidied code ready for next part of project
+
+Ver: 0.0.0
+	First Draft Build (Very Basic functionality)
+--]]
+
+--#############################
+--## Program Config Defaults ########################################################################
+--#############################
+os.pullEvent = os.pullEventRaw
+
+DefVERU      = {000, "0.0.0", 0, 0, 0, 0}
+			--password, on/off, counter
+DefPasConfig = {"1234", 0, 0}
+--           GenS, TReactor, PerStat, ComLabel, FirstRun, Default ,CheckUpdate, Monitor on
+DefComConfig = {5, 0, "monitor_0", "BR-Reactor", 1, 0, 0, 0}
+--                    PerCOM1, PerM1, RTN1, RAFuel, TempRA, FluxRA, RAWarn, RSRA, monitor on
+DefRAConfig  = {"BigReactors-Reactor_0", "monitor_1", "Reactor 1", 1, 1, 1, 1, "right", 0}
+--                    PerCOM2, PerM2, RTN2, RBFuel, TempRB, FluxRB, RBWarn, RSRB, monitor on
+DefRBConfig  = {"BigReactors-Reactor_1", "monitor_2", "Reactor 2", 1, 1, 1, 1, "left", 0}
+
+DefERConfig  = {0, 0, 0, 0, 0, 0, 0, 0}
+
+
+-- Expandable is for use for other settings, programs or api's which use this program.
+-- Use this to set defaults for your additions.
+ExpandableD  = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+               "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""}
+
+function DefaultSave(table, name)
+            local file = fs.open(name,"w")
+            file.write(textutils.serialize(table))
+            file.close()
+            end
+
+while not fs.exists ("BR-UPD.upd") do
+            DefaultSave(DefVERU, "BR-UPD.upd")
+            end
+
+while not fs.exists ("BR-PAS.cfg") do
+            DefaultSave(DefPasConfig, "BR-PAS.cfg")
+            end
+
+while not fs.exists ("BR-COM.cfg") do
+            DefaultSave(DefComConfig, "BR-COM.cfg")
+            end
+
+while not fs.exists ("BR-RTA.cfg") do
+            DefaultSave(DefRAConfig, "BR-RTA.cfg")
+            end
+
+while not fs.exists ("BR-RTB.cfg") do
+            DefaultSave(DefRBConfig, "BR-RTB.cfg")
+            end
+
+while not fs.exists ("BR-ERR.cfg") do
+            DefaultSave(DefERConfig, "BR-ERR.cfg")
+            end
+            
+while not fs.exists ("BR-EXP.cfg") do
+            DefaultSave(ExpandableD, "BR-EXP.cfg")
+            end
+            
+--#################################################################################################
+
+--#################################################################################################
+--## Load Save Settings ##
+--########################
+
+function Load(name)
+	local file = fs.open(name,"r")
+	local data = file.readAll()
+	file.close()
+	return textutils.unserialize(data)
+end
+
+function Save(table, name )
+	local file = fs.open(name,"w")
+	file.write(textutils.serialize(table))
+	file.close()
+end
+
+function SaveAll()
+	Save(PasConfig, "BR-PAS.cfg")
+	Save(ComConfig, "BR-COM.cfg")
+	Save(ReactorA, "BR-RTA.cfg")
+	Save(ReactorB, "BR-RTB.cfg")
+	Save(EXPAND  , "BR-EXP.cfg")
+end
+
+--##################
+--## Load Configs #################################################################################
+--##################
+PasConfig = Load("BR-PAS.cfg")
+ComConfig = Load("BR-COM.cfg")
+ReactorA  = Load("BR-RTA.cfg")
+ReactorB  = Load("BR-RTB.cfg")
+Error     = Load("BR-ERR.cfg")
+EXPAND    = Load("BR-EXP.cfg")
+
+--##################################################################################################
+if ComConfig[5] == 1 then
+	os.setComputerLabel(ComConfig[4])
+end
+
+--###########################################
+--## Ver Information defined By Programmer #########################################################
+--###########################################
+local VER         = "0.3.6"
+local BIDVER      = "11.14.1.46"
+local NewProgVer  = 036
+local BCKUPVER    = 036
+local NewComVer   = 001
+local NewRTAVer   = 001
+local NewRTBVer   = 001
+local NewERRVer   = 001
+
+--#############################
+--## Dev Inviroment Settings ########################################################################
+--#############################
+local Test        = 0
+local DBLD        = 1
+local COL         = term.isColor()
+--#############################
+--## Internal Prog Shortcuts ########################################################################
+--#############################
+local StatMon  = peripheral.wrap((ComConfig[3]))
+local RACommP  = peripheral.wrap((ReactorA[1]))
+local mon1     = peripheral.wrap((ReactorA[2]))
+local RBCommP  = peripheral.wrap((ReactorB[1]))
+local mon2     = peripheral.wrap((ReactorB[2]))
+--###########################################
+local DBRVerUGet = "pastebin get 6Qmw5YF5 BR-UPD.upd"
+local BRProgFetc = "pastebin get GyF1FJSH FTBUKLW-BR"
+--###########################################
+local nOption   = 1
+local BRUDA     = 0
+local COMUPDATE = 0
+local RTAUPDATE = 0
+local RTBUPDATE = 0
+local ERRUPDATE = 0
+--############################################
+
+
+
+--####################################################################################################
+--## Monitor Colors ## 
+--####################
+
+TXTCOL = {
+          colors.white, colors.orange, colors.magenta  , colors.lightBlue, colors.yellow, colors.lime, 	
+          colors.pink , colors.gray  , colors.lightGray, colors.cyan     , colors.purple, colors.blue, 	
+          colors.brown, colors.green , colors.red      , colors.black
+         }
+--####################################################################################################
+--## Related Functions ##
+--#######################
+
+function COMMONCOL(TEXTCOL)
+	if COL == true then
+	term.setTextColor((TEXTCOL))
+	end
+end
+
+function STATMONCOL(TEXTCOL)
+	if COL == true then
+	StatMon.setTextColor((TEXTCOL))
+    end
+end
+
+function RTRAMONCOL(TEXTCOL)
+	if COL == true then
+	mon1.setTextColor((TEXTCOL))
+
+	end
+end
+
+function RTRBMONCOL(TEXTCOL)
+	if COL == true then
+	mon2.setTextColor((TEXTCOL))
+	end
+end
+
+--#####################################################################################################
+--## Error Writer ##
+--##################
+
+function writeError(X, Y, ErrorNum )
+	COMMONCOL(TXTCOL[15])
+	term.setCursorPos(X, Y)
+	write(ErrorNum)
+	COMMONCOL(TXTCOL[1])
+end
+
+ErrPrint = {"[CO-87494-4]", "[CO-45164-4]", "[CO-48965-1]", "[CO-12554-5]", "[CO-89741-2]", "[CE-08422-8]", "[CO-30733-6]", "[SU-30733-6]"}
+
+--[CO-87494-4] = Problem with Status Monitor
+--[CO-45164-4] = Problem with Reactor A Display
+--[CO-12554-5] = Problem with Reactor B Display
+
+--[CO-48965-1] = Problem with Reactor A Comunication
+--[CO-89741-2] = Problem with Reactor B Comunication
+--[CO-30733-6] = Problem connecting to internet
+
+--[CE-08422-8] = Ooooops Unknown Error Occured
+--[SU-30733-6] = Software Version already upto date
+
+-- SU = Software Update
+-- CO = Communication Error
+-- CE = Other / Unkown Error
+
+--##################
+--## Menu Options ######################################################################################
+--##################
+MISCA = {""}
+
+MTITL = {"Main Menu", 
+         "Reactor 1 Settings", 
+         "Reactor 2 Settings", 
+         "Computer Settings"
+        }
+
+MMSET = {">> Reactor 1 ", "   Reactor 1 ", 
+         ">> Reactor 2 ", "   Reactor 2 ", 
+         ">> Computer  ", "   Computer  ", 
+         ">> Reset Err ", "   Reset Err ", 
+         ">> Exit      ", "   Exit      "
+        }
+
+RASET = {">> Reactor Comm   ", "   Reactor Comm   ", 
+         ">> Reactor Mon    ", "   Reactor Mon    ", 
+         ">> Reactor Name   ", "   Reactor Name   ", 
+         ">> Display Fuel   ", "   Display Fuel   ", 
+         ">> Display Temp   ", "   Display Temp   ", 
+         ">> Display Flux   ", "   Display Flux   ",
+         ">> Display Warn   ", "   Display Warn   ", 
+         ">> Redstone In    ", "   Redstone In    ", 
+         ">> Monitor On/Off ", "   Monitor On/Off ", 
+         ">> Back           ", "   Back           "
+        }
+	
+RBSET = {">> Reactor Comm   ", "   Reactor Comm   ", 
+         ">> Reactor Mon    ", "   Reactor Mon    ", 
+         ">> Reactor Name   ", "   Reactor Name   ", 
+         ">> Display Fuel   ", "   Display Fuel   ", 
+         ">> Display Temp   ", "   Display Temp   ", 
+         ">> Display Flux   ", "   Display Flux   ",
+         ">> Display Warn   ", "   Display Warn   ", 
+         ">> Redstone In    ", "   Redstone In    ", 
+         ">> Monitor On/Off ", "   Monitor On/Off ", 
+         ">> Back           ", "   Back           "
+        }
+
+SETMU = {">> Set Refresh     ", "   Set Refresh     ",
+         ">> 2 Reactors?     ", "   2 Reactors?     ",
+         ">> Status Mon      ", "   Status Mon      ",
+         ">> Com Label       ", "   Com Label       ",
+         ">> Default Set     ", "   Default Set     ",
+         ">> Update Program  ", "   Update Program  ",
+         ">> Auto Check      ", "   Auto Check      ",
+         ">> Ver Info        ", "   Ver Info        ",
+         ">> Monitor On/Off  ", "   Monitor On/Off  ",
+         ">> Backup Settings ", "   Backup Settings ",
+         ">> Restore Backup  ", "   Restore Backup  ",
+         ">> Require Pass    ", "   Require Pass    ",
+         ">> Change Pass     ", "   Change Pass     ",
+         ">> Back            ", "   Back            "
+        }
+
+SWARN = {
+         'Status   : M.O  ', 
+         'Status   : F.E  ',
+         'Status   : L.P.M',
+         'Status   : H.P.M'
+	    }
+
+--######################################################################################################
+emptyflag=0
+offlineflag=0
+flashflag=0
+Bemptyflag=0
+Bofflineflag=0
+Bflashflag=0
+--######################################################################################################
+
+function ProgVerInfo() -- Ver Info and change log
+shell.run ("clear")
+print ("Changelog 1/2") -- 12 lines of printable history
+print ("Showing most recent big changes")
+print ("")
+print ("")
+print ("")
+print ("")
+print ("")
+print ("")
+print ("")
+print ("")
+print ("")
+print ("")
+print ("")
+print ("")
+print ("")
+print ("")
+print ("")
+print ("")
+
+write ("Press any key to continue")
+os.pullEvent("key")
+shell.run ("clear")
+
+print ("Changelog 2/2") -- 12 lines of printable history
+print ("To Report Bugs please use github:")
+print ("")
+print ("https://github.com/UKLoneWolf/FTBUKLW/issues")
+print ("")
+print ("")
+print ("This screens are only a brief history of the")
+print ("recent and past updates for more visit :")
+print ("")
+print ("https://github.com/UKLoneWolf/FTBUKLW/tree")
+print ("/master/FTBUKLW-BR")
+print ("")
+print ("")
+print ("")
+print ("")
+print ("")
+print ("")
+print ("")
+write ("Press any key to continue")
+os.pullEvent("key")
+shell.run ("clear")
+return SettingsMenuBR()
+end
+
+--######################################################################################################
+
+function FTBUKLWSecure()
+
+local Name = ("FTBUKLW-BR")
+Admin = PasConfig[1]
+Exit = "0000"
+Attempts = PasConfig[3]
+term.clear()
+os.pullEvent = os.pullEventRaw
+term.setCursorPos(1,1)
+write (Name)
+term.setCursorPos(1,3)
+write ("Admin Logon: ")write ("")
+
+local Input = read("*")
+if Input == (Admin) then
+SettingsMenuBR()
+elseif Input == (Exit) then
+	os.reboot()
+else
+sleep(1)
+PasConfig[3] = PasConfig[3] +1
+Save(PasConfig, "BR-PAS.cfg")
+end
+FTBUKLWSecure()
+end
+
+--######################################################################################################
+--## Status Display ##
+--####################
+
+function StatusMonitor()
+
+function VerInfo()
+	STATMONCOL(TXTCOL[1])
+	StatMon.setCursorPos(21,1)
+	StatMon.write("Ver:") StatMon.write((VER))
+end
+
+function FuelLevel()
+StatMon.setCursorPos(1,1)
+STATMONCOL(TXTCOL[1])
+StatMon.write('BR Reactor Control')
+
+if ComConfig[2] == 1 then
+STATMONCOL(TXTCOL[5])
+StatMon.setCursorPos(1,2)
+StatMon.write('Tot Fuel :')
+
+StatMon.setCursorPos(12,2)
+STATMONCOL(TXTCOL[5])
+StatMon.write(math.floor((((RACommP.getFuelAmount()+RBCommP.getFuelAmount())/(RACommP.getFuelAmountMax()+RBCommP.getFuelAmountMax()))*100)+0.5)..'%')
+
+STATMONCOL(TXTCOL[4])
+StatMon.setCursorPos(1,3)
+StatMon.write('Tot Waste:')
+
+StatMon.setCursorPos(12,3)
+STATMONCOL(TXTCOL[4])
+StatMon.write(math.floor((((RACommP.getWasteAmount()+RBCommP.getWasteAmount())/(RACommP.getFuelAmountMax()+RBCommP.getFuelAmountMax()))*100)+0.5)..'%')
+else
+STATMONCOL(TXTCOL[5])
+StatMon.setCursorPos(1,2)
+StatMon.write('Tot Fuel :')
+
+StatMon.setCursorPos(12,2)
+STATMONCOL(TXTCOL[5])
+StatMon.write(math.floor((((RACommP.getFuelAmount())/(RACommP.getFuelAmountMax()))*100)+0.5)..'%')
+
+STATMONCOL(TXTCOL[4])
+StatMon.setCursorPos(1,3)
+StatMon.write('Tot Waste:')
+
+StatMon.setCursorPos(12,3)
+STATMONCOL(TXTCOL[4])
+StatMon.write(math.floor((((RACommP.getWasteAmount())/(RACommP.getFuelAmountMax()))*100)+0.5)..'%')
+	end
+end
+if ComConfig[8] == 1 then
+	
+local StatMonCK1, errsd1 = pcall(VerInfo)
+if not StatMonCK1 then
+	ComConfig[8] = 0
+	Error[1] = 1
+	Error[2] = 1
+	Save(ComConfig, "BR-COM.cfg")
+	Save(Error, "BR-ERR.cfg")
+	os.reboot()
+end
+
+local StatMonCK2, errsd2 = pcall(FuelLevel)
+if not StatMonCK2 then
+	ComConfig[8] = 0
+	Error[1] = 1
+	Error[2] = 1
+	Save(ComConfig, "BR-COM.cfg")
+	Save(Error, "BR-ERR.cfg")
+	os.reboot()
+end
+	StatMon.clear()
+	VerInfo()
+	FuelLevel()
+end
+
+end
+
+--######################################################################################################
+--## Reactor A ##
+--###############
+
+function ReactorAFunctions()
+function ReactorAGUIFrame()
+if ReactorA[9] == 1 then
+mon1.clear()
+RTRAMONCOL(TXTCOL[1])
+mon1.setCursorPos(1,2)
+mon1.write("O------------------O--------O")
+mon1.setCursorPos(1,3)
+mon1.write("|                  |        |")
+mon1.setCursorPos(1,4)
+mon1.write("|                  |        |")
+mon1.setCursorPos(1,5)
+mon1.write("|                  |        |")
+mon1.setCursorPos(1,6)
+mon1.write("O------------------O--------O")
+mon1.setCursorPos(1,7)
+mon1.write("|                           |")
+mon1.setCursorPos(1,8)
+mon1.write("|                           |")
+mon1.setCursorPos(1,9)
+mon1.write("|                           |")
+mon1.setCursorPos(1,10)
+mon1.write("|                           |")
+mon1.setCursorPos(1,11)
+mon1.write("O---------------------------O")
+end
+end
+
+
+function ReactorAFuelLevel()
+if ReactorA[9] == 1 then
+mon1.setCursorPos(11,1)
+RTRAMONCOL(TXTCOL[1])
+mon1.write((ReactorA[3]))
+mon1.setCursorPos(3,3)
+RTRAMONCOL(TXTCOL[5])
+mon1.write(math.floor((((RACommP.getFuelAmount())/(RACommP.getFuelAmountMax()))*100)+0.5)..'% Fuel')
+mon1.setCursorPos(3,4)
+RTRAMONCOL(TXTCOL[4])
+mon1.write(math.floor((((RACommP.getWasteAmount())/(RACommP.getFuelAmountMax()))*100)+0.5)..'% Waste')
+mon1.setCursorPos(3,5)
+mon1.setTextColor((TXTCOL[6]))
+mon1.write(''..(100-(RACommP.getControlRodLevel(0)))..'% Rod Depth  ')
+end
+SplashProgSettingsA()
+end
+
+
+function ReactorATemp()
+
+if RACommP.getCasingTemperature()>=650 then
+    	if ReactorA[9] == 1 then
+    	mon1.setCursorPos(3,7)
+    	RTRAMONCOL(TXTCOL[11])
+    	end
+    	COMMONCOL(TXTCOL[11])
+    else if RACommP.getCasingTemperature()>=950 then
+        if ReactorA[9] == 1 then
+        mon1.setCursorPos(3,7)
+        RTRAMONCOL(TXTCOL[15])
+    	end
+        COMMONCOL(TXTCOL[15])
+    else
+		if ReactorA[9] == 1 then
+		mon1.setCursorPos(3,7)
+		RTRAMONCOL(TXTCOL[14])
+	    end
+		COMMONCOL(TXTCOL[14])
+    end
+end
+if ReactorA[9] == 1 then mon1.write('Temp (C) : ') mon1.write(tostring (math.floor(RACommP.getCasingTemperature()))) 
+end
+
+--######################
+--## Computer Display ##################################################################################
+--######################
+
+term.setCursorPos(3,12)
+write("                      ")
+term.setCursorPos(3,12)
+term.write('Temp (C) : ') term.write(tostring (math.floor(RACommP.getCasingTemperature())))
+end
+
+
+function ReactorAFlux()
+if ReactorA[9] == 1 then 
+mon1.setCursorPos(3,8)
+RTRAMONCOL(TXTCOL[14])
+mon1.write('Energy   : ') mon1.write(tostring (math.floor(RACommP.getEnergyStored())))
+end
+
+--######################
+--## Computer Display ##################################################################################
+--######################
+
+term.setCursorPos(3,13)
+write("                      ")
+term.setCursorPos(3,13)
+term.setTextColor((TXTCOL[14]))
+write('Energy   : '..RACommP.getEnergyStored()..'')
+
+
+if RACommP.getEnergyProducedLastTick()>=500 and RACommP.getEnergyProducedLastTick()<2000 then
+    if ReactorA[9] == 1 then RTRAMONCOL(TXTCOL[2]) end
+    COMMONCOL(TXTCOL[2])
+end
+if RACommP.getEnergyProducedLastTick()>=2000 then
+    if ReactorA[9] == 1 then RTRAMONCOL(TXTCOL[15]) end
+    COMMONCOL(TXTCOL[15])
+end
+if ReactorA[9] == 1 then 
+mon1.setCursorPos(3,9)
+mon1.write ("RF/t     : ") mon1.write(tostring (math.floor(RACommP.getEnergyProducedLastTick()+0.5)))
+end
+--######################
+--## Computer Display ##################################################################################
+--######################
+
+term.setCursorPos(3,14)
+write("                      ")
+term.setCursorPos(3,14)
+write("RF/t     : ") write((math.floor(RACommP.getEnergyProducedLastTick()+0.5)))
+end
+
+
+function ReactorAWarn()
+	  if offlineflag==1 then
+	  if ReactorA[9] == 1 then 
+	    mon1.setCursorPos(3,10)
+	    RTRAMONCOL(TXTCOL[9])
+	    mon1.write('Status   : M.O  ')
+	    end
+
+	    if ComConfig[8] == 1 then
+	    StatMon.setCursorPos(1,4)
+    	STATMONCOL(TXTCOL[9])
+    	StatMon.write('Status   : M.O  ')
+        end
+
+    	term.setCursorPos(3,15)
+    	COMMONCOL(TXTCOL[9])
+    	write('Status   : M.O  ')
+	  end
+	  if emptyflag==1 then
+	  if ReactorA[9] == 1 then 
+	    mon1.setCursorPos(3,10)
+	    RTRAMONCOL(TXTCOL[7])
+	    mon1.write('Status   : F.E  ')
+	    end
+
+	    if ComConfig[8] == 1 then
+	    StatMon.setCursorPos(1,4)
+    	STATMONCOL(TXTCOL[7])
+    	StatMon.write('Status   : F.E  ')
+    	end
+
+    	term.setCursorPos(3,15)
+    	COMMONCOL(TXTCOL[7])
+    	write('Status   : F.E  ')
+	  end
+	  if emptyflag==0 and offlineflag==0 and RACommP.getControlRodLevel(0)>75 then
+	  if ReactorA[9] == 1 then 
+	    mon1.setCursorPos(3,10)
+	    RTRAMONCOL(TXTCOL[5])
+	    mon1.write('Status   : L.P.M')
+	  end
+
+	  	if ComConfig[8] == 1 then
+	    StatMon.setCursorPos(1,4)
+    	STATMONCOL(TXTCOL[5])
+    	StatMon.write('Status   : L.P.M')
+    	end
+
+    	term.setCursorPos(3,15)
+    	COMMONCOL(TXTCOL[5])
+    	write('Status   : L.P.M')
+	  end
+	  if emptyflag==0 and offlineflag==0 and RACommP.getControlRodLevel(0)<=75 then
+	  if ReactorA[9] == 1 then 
+	    mon1.setCursorPos(3,10)
+	    RTRAMONCOL(TXTCOL[2])
+	    mon1.write('Status   : H.P.M')
+	  end
+
+	    if ComConfig[8] == 1 then
+	    StatMon.setCursorPos(1,4)
+    	STATMONCOL(TXTCOL[2])
+    	StatMon.write('Status   : H.P.M')
+    	end
+
+    	term.setCursorPos(3,15)
+    	COMMONCOL(TXTCOL[2])
+    	write('Status   : H.P.M')
+	  end
+end
+	
+	function ReactorAMainErrorCheck()
+	if ReactorA[4] == 1 then
+		ReactorAFuelLevel()
+	end
+	
+	if ReactorA[5] == 1 then
+		ReactorATemp()
+	end
+
+	if ReactorA[6] == 1 then
+		ReactorAFlux()
+	end
+
+	if ReactorA[7] == 1 then
+		ReactorAWarn()
+	end
+end
+
+local ReactorADC, errsRAD = pcall(ReactorAGUIFrame) -- Reactor A Error Catcher
+if not ReactorADC then
+	ReactorA[9] = 0
+	Error[1] = 1
+	Error[3] = 1
+	Save(ComConfig, "BR-COM.cfg")
+	Save(Error, "BR-ERR.cfg")
+	os.reboot()
+end
+
+
+local ReactorADC, errsRAD = pcall(ReactorAMainErrorCheck) -- Reactor A Error Catcher
+if not ReactorADC then
+	ReactorA[9] = 0
+	Error[1] = 1
+	Error[4] = 1
+	Save(ComConfig, "BR-COM.cfg")
+	Save(Error, "BR-ERR.cfg")
+	os.reboot()
+end
+--ReactorAGUIFrame()
+--ReactorAMainErrorCheck()
+	
+end
+
+--######################################################################################################
+--## Reactor B ##
+--###############
+
+function ReactorBFunctions()
+function ReactorBGUIFrame()
+if ReactorB[9] == 1 then
+mon2.clear()
+RTRBMONCOL(TXTCOL[1])
+mon2.setCursorPos(1,2)
+mon2.write("O------------------O--------O")
+mon2.setCursorPos(1,3)
+mon2.write("|                  |        |")
+mon2.setCursorPos(1,4)
+mon2.write("|                  |        |")
+mon2.setCursorPos(1,5)
+mon2.write("|                  |        |")
+mon2.setCursorPos(1,6)
+mon2.write("O------------------O--------O")
+mon2.setCursorPos(1,7)
+mon2.write("|                           |")
+mon2.setCursorPos(1,8)
+mon2.write("|                           |")
+mon2.setCursorPos(1,9)
+mon2.write("|                           |")
+mon2.setCursorPos(1,10)
+mon2.write("|                           |")
+mon2.setCursorPos(1,11)
+mon2.write("O---------------------------O")
+end
+end
+
+function ReactorBFuelLevel()
+if ReactorB[9] == 1 then
+mon2.setCursorPos(11,1)
+RTRBMONCOL(TXTCOL[1])
+mon2.write((ReactorB[3]))
+mon2.setCursorPos(3,3)
+RTRBMONCOL(TXTCOL[5])
+mon2.write(math.floor((((RBCommP.getFuelAmount())/(RBCommP.getFuelAmountMax()))*100)+0.5)..'% Fuel')
+mon2.setCursorPos(3,4)
+RTRBMONCOL(TXTCOL[4])
+mon2.write(math.floor((((RBCommP.getWasteAmount())/(RBCommP.getFuelAmountMax()))*100)+0.5)..'% Waste')
+mon2.setCursorPos(3,5)
+RTRBMONCOL(TXTCOL[6])
+mon2.write(''..(100-(RBCommP.getControlRodLevel(0)))..'% Rod Depth  ')
+end
+SplashProgSettingsB()
+end
+
+
+function ReactorBTemp()
+--#######################
+--## Monitor 2 Display #################################################################################
+--#######################
+
+if RBCommP.getCasingTemperature()>=650 then
+if ReactorB[9] == 1 then mon2.setCursorPos(3,7) RTRBMONCOL(TXTCOL[11]) end
+    term.setTextColor((TXTCOL[11]))
+    else if RBCommP.getCasingTemperature()>=950 then
+        if ReactorB[9] == 1 then RTRBMONCOL(TXTCOL[15]) end
+        term.setTextColor((TXTCOL[15]))
+    else
+	if ReactorB[9] == 1 then RTRBMONCOL(TXTCOL[14]) end
+	term.setTextColor((TXTCOL[14]))
+    end
+end
+if ReactorB[9] == 1 then mon2.write('Temp (C) : ') mon2.write(tostring (math.floor(RBCommP.getCasingTemperature()))) end
+
+--######################
+--## Computer Display ##################################################################################
+--######################
+
+term.setCursorPos(28,12)
+write("                       ")
+term.setCursorPos(28,12)
+term.write('Temp (C) : ') term.write(tostring (math.floor(RBCommP.getCasingTemperature())))
+end
+
+
+function ReactorBFlux()
+--#######################
+--## Monitor 2 Display #################################################################################
+--#######################
+
+if ReactorB[9] == 1 then 
+mon2.setCursorPos(3,8)
+RTRBMONCOL(TXTCOL[14])
+mon2.write('Energy   : ') mon2.write(tostring (math.floor(RBCommP.getEnergyStored())))
+end
+--######################
+--## Computer Display ##################################################################################
+--######################
+
+term.setCursorPos(28,13)
+write("                       ")
+term.setCursorPos(28,13)
+term.setTextColor((TXTCOL[14]))
+term.write('Energy   : '..RBCommP.getEnergyStored().."")
+
+--#######################
+--## Monitor 2 Display #################################################################################
+--#######################
+
+if RBCommP.getEnergyProducedLastTick()>=500 and RBCommP.getEnergyProducedLastTick()<2000 then
+    if ReactorB[9] == 1 then RTRBMONCOL(TXTCOL[2]) end
+    term.setTextColor((TXTCOL[2]))
+end
+
+if RBCommP.getEnergyProducedLastTick()>=2000 then
+    if ReactorB[9] == 1 then RTRBMONCOL(TXTCOL[15]) end
+    term.setTextColor((TXTCOL[15]))
+end
+if ReactorB[9] == 1 then mon2.setCursorPos(3,9)
+mon2.write ("RF/t     : ") mon2.write(tostring (math.floor(RBCommP.getEnergyProducedLastTick()+0.5)))
+end
+--######################
+--## Computer Display ##################################################################################
+--######################
+
+term.setCursorPos(28,14)
+write("                       ")
+term.setCursorPos(28,14)
+write("RF/t     : ") write((math.floor(RBCommP.getEnergyProducedLastTick()+0.5))..'')
+end
+
+function ReactorBWarn()
+	  if Bofflineflag==1 then
+	  if ReactorB[9] == 1 then 
+	    mon2.setCursorPos(3,10)
+	    RTRBMONCOL(TXTCOL[9])
+	    mon2.write('Status   : M.O  ')
+	    end
+
+	    if ComConfig[8] == 1 then
+	    StatMon.setCursorPos(1,5)
+	    StatMon.setTextColor((TXTCOL[9]))
+	    StatMon.write('Status   : M.O  ')
+	    end
+
+		term.setCursorPos(28,15)
+		term.setTextColor((TXTCOL[9]))
+    	write('Status   : M.O  ')
+	  end
+	  if Bemptyflag==1 then
+	  if ReactorB[9] == 1 then 
+	    mon2.setCursorPos(3,10)
+	    RTRBMONCOL(TXTCOL[7])
+	    mon2.write('Status   : F.E  ')
+	    end
+
+	    if ComConfig[8] == 1 then
+	    StatMon.setCursorPos(1,5)
+	    StatMon.setTextColor((TXTCOL[7]))
+	    StatMon.write('Status   : F.E  ')
+		end
+
+		term.setCursorPos(28,15)
+		term.setTextColor((TXTCOL[7]))
+    	write('Status   : F.E  ')
+	  end
+	  if Bemptyflag==0 and Bofflineflag==0 and RBCommP.getControlRodLevel(0)>75 then
+	    if ReactorB[9] == 1 then
+	    mon2.setCursorPos(3,10)
+	    RTRBMONCOL(TXTCOL[5])
+	    mon2.write('Status   : L.P.M')
+	    end
+
+	    if ComConfig[8] == 1 then
+	    StatMon.setCursorPos(1,5)
+	    StatMon.setTextColor((TXTCOL[5]))
+	    StatMon.write('Status   : L.P.M')
+		end
+
+	    term.setCursorPos(28,15)
+	    term.setTextColor((TXTCOL[5]))
+    	write('Status   : L.P.M')
+	  end
+	  if Bemptyflag==0 and Bofflineflag==0 and RBCommP.getControlRodLevel(0)<=75 then
+	    if ReactorB[9] == 1 then
+	    mon2.setCursorPos(3,10)
+	    RTRBMONCOL(TXTCOL[2])
+	    mon2.write('Status   : H.P.M')
+	    end
+
+	    if ComConfig[8] == 1 then
+	    StatMon.setCursorPos(1,5)
+	    StatMon.setTextColor((TXTCOL[2]))
+	    StatMon.write('Status   : H.P.M')
+	    end
+
+	    term.setCursorPos(28,15)
+	    term.setTextColor((TXTCOL[2]))
+    	write('Status   : H.P.M')
+	  end
+end
+function ReactorBMainErrorCheck()
+	if ReactorB[4] == 1 then
+		ReactorBFuelLevel()
+	end
+
+	if ReactorB[5] == 1 then
+		ReactorBTemp()
+	end
+
+	if ReactorB[6] == 1 then
+		ReactorBFlux()
+	end
+
+	if ReactorB[7] == 1 then
+		ReactorBWarn()
+	end
+end
+
+
+
+local ReactorBDC, errsRBD = pcall(ReactorBGUIFrame) -- Reactor B Error Catcher
+if not ReactorBDC then
+	ReactorB[9] = 0
+	Error[1] = 1
+	Error[5] = 1
+	Save(ComConfig, "BR-COM.cfg")
+	Save(Error, "BR-ERR.cfg")
+	os.reboot()
+end
+
+
+local ReactorBDC, errsRBD = pcall(ReactorBMainErrorCheck) -- Reactor B Error Catcher
+if not ReactorBDC then
+	ReactorB[9] = 0
+	Error[1] = 1
+	Error[6] = 1
+	Save(ComConfig, "BR-COM.cfg")
+	Save(Error, "BR-ERR.cfg")
+	os.reboot()
+end
+
+	--ReactorBGUIFrame()
+	--ReactorBMainErrorCheck()
+end
+
+--######################################################################################################
+--## Reactor Control ##
+--#####################
+
+function ReactorControl()
+
+function ReactorALogic()
+	if Error[3] == 0 then
+		if Error[4] == 0 then
+			if RACommP.getEnergyStored()<=10000000 and RACommP.getEnergyStored()>100 then
+	    		RACommP.setAllControlRodLevels(0+(math.floor(RACommP.getEnergyStored()/100000)))
+					else
+	    				RACommP.setAllControlRodLevels(0)
+							end
+						end
+					end
+										
+	if Error[3] == 0 then
+	if Error[4] == 0 then	
+	if RACommP.getFuelAmount()<=100 and offlineflag==0 then
+	    RACommP.setAllControlRodLevels(100)
+	    RACommP.setActive(false)
+	    emptyflag=1
+	else
+	    emptyflag=0
+	end
+end
+end
+
+if Error[3] == 0 then
+	if Error[4] == 0 then
+    if rs.getInput((ReactorA[8]))==false and emptyflag==0 then
+	    RACommP.setActive(true)
+	    offlineflag=0
+	end
+  end
+end
+
+if Error[3] == 0 then
+	 if Error[4] == 0 then
+	    if rs.getInput((ReactorA[8]))==true and emptyflag==0 then
+	       RACommP.setActive(false)
+	       RACommP.setAllControlRodLevels(100)
+	       offlineflag=1
+	    end
+   end
+end
+	
+end
+
+
+function ReactorBLogic()
+
+if Error[5] == 0 then
+	if Error[6] == 0 then
+	   if RBCommP.getEnergyStored()<=10000000 and RBCommP.getEnergyStored()>100 then
+	      RBCommP.setAllControlRodLevels(0+(math.floor(RBCommP.getEnergyStored()/100000)))
+	   else
+	      RBCommP.setAllControlRodLevels(0)
+	   end
+   end
+end
+
+if Error[5] == 0 then
+	 if Error[6] == 0 then
+	    if RBCommP.getFuelAmount()<=100 and Bofflineflag==0 then
+	       RBCommP.setAllControlRodLevels(100)
+	       RBCommP.setActive(false)
+	       Bemptyflag=1
+	    else
+	       Bemptyflag=0
+	    end
+   end
+end
+
+if Error[5] == 0 then
+	 if Error[6] == 0 then
+	    if rs.getInput((ReactorB[8]))==false and Bemptyflag==0 then
+         RBCommP.setActive(true)
+	       Bofflineflag=0
+	    end
+	 end
+end
+
+if Error[5] == 0 then
+	 if Error[6] == 0 then
+	    if rs.getInput((ReactorB[8]))==true and Bemptyflag==0 then
+	       RBCommP.setActive(false)
+	       RBCommP.setAllControlRodLevels(100)
+	       Bofflineflag=1
+      end
+   end
+end
+
+end
+
+ReactorALogic()
+	if ComConfig[2] == 1 then
+		ReactorBLogic()
+	end
+end
+--########################################################################
+--Added in 0.1.9
+
+function LoadBar(Time)
+local TextX = 13
+local TextY = 10
+local MainX = TextX + 0 -- Loading Bar X (left to right location) Default = TextX + 0
+local MainY = TextY + 1 -- Loading Bar Y (up and down location) Default = TextY + 1
+local NXTX = MainX + 0 -- change this number to change hoe far accross the new line will start (Default = 0)
+local NXTY = MainY + 1 -- change this number to change how far down the new line will be (Default = 1)
+--local Text = "" -- Tells the user what the loading bar is for
+local Clear = true -- If false and using for Pastebin set TextY to 4
+local LoadTime = 0.1
+--local LDPE     = 20 --20 Default
+local LDPE = Time
+
+--Everything below here is auto setup by the values entered above
+local MainX2 = MainX + 21
+local MainY2 = MainY + 0
+local TextPX = MainX2 + 1
+local TextPY = MainY + 0
+local LBX= MainX + 1
+local LBY= MainY + 0
+local PER = 5
+
+
+
+function LoadClear()
+  if Clear == false then
+    return
+  else
+    shell.run("clear")
+  end
+end
+
+function LoadingBarBW()
+  LoadClear()
+  term.setCursorPos (TextX,TextY)
+  write(Text)
+  term.setCursorPos (MainX,MainY)
+  write ("[")
+  term.setCursorPos (MainX2,MainY2)
+  write ("]")
+  
+  for i = LDPE, 1, - 1 do
+  term.setCursorPos (LBX,LBY)
+  write ("=")
+  sleep(LoadTime)
+  LBX = LBX + 1
+  term.setCursorPos (TextPX,TextPY)
+  write (PER) write("%")
+  PER = PER + 5
+  term.setCursorPos (NXTX,NXTY)
+end
+
+end
+
+function LoadingBarCL()
+  LoadClear()
+  
+  term.setCursorPos (TextX,TextY)
+  term.setTextColor (Tile)
+  write(Text)
+  term.setTextColor (colors.white)
+  term.setCursorPos (MainX,MainY)
+  write ("[")
+  term.setCursorPos (MainX2,MainY2)
+  write ("]")
+  
+  for i = LDPE, 1, - 1 do
+  term.setTextColor (8192)
+  term.setBackgroundColor (8192)
+  term.setCursorPos (LBX,LBY)
+  write ("#")
+  sleep(LoadTime)
+  LBX = LBX + 1 
+  term.setCursorPos (TextPX,TextPY)
+  term.setTextColor (1)
+  term.setBackgroundColor (32768)
+  write (PER) write("%") 
+  PER = PER + 5
+  term.setCursorPos (NXTX,NXTY)
+end
+
+end
+
+
+if COL == true then
+  LoadingBarCL()
+else
+  LoadingBarBW()
+end
+
+end
+
+function LoadBarGen(LBR, Time, Color)
+	Text = (LBR)
+	if Color == false then Color = colors.white end
+	Tile = (Color)
+	LoadBar(Time)
+end
+
+--####################
+--## Backup Handler #################################################################################################
+--####################
+
+
+
+function LoadBackup()
+	if fs.exists ("BR-BCK.wan") then
+	
+	LoadBarGen("Loading Backup File", 20, TXTCOL[6])
+	LBackup = Load("BR-BCK.wan")
+	PasConfig[1] = LBackup[1]
+	PasConfig[2] = LBackup[2]
+	PasConfig[3] = LBackup[3]
+	LoadBarGen("Saving Pas Settings", 20, colors.red)
+	Save(PasConfig, "BR-PAS.cfg")
+	
+	ComConfig[1] = LBackup[4]
+	ComConfig[2] = LBackup[5]
+	ComConfig[3] = LBackup[6]
+	ComConfig[4] = LBackup[7]
+	ComConfig[5] = LBackup[8]
+	ComConfig[6] = LBackup[9]
+	ComConfig[7] = LBackup[10]
+	ComConfig[8] = LBackup[11]
+	LoadBarGen("Saving Com Settings", 20, colors.red)
+	Save(ComConfig, "BR-COM.cfg")
+
+
+	ReactorA[1] = LBackup[12]
+	ReactorA[2] = LBackup[13]
+	ReactorA[3] = LBackup[14]
+	ReactorA[4] = LBackup[15]
+	ReactorA[5] = LBackup[16]
+	ReactorA[6] = LBackup[17]
+	ReactorA[7] = LBackup[18]
+	ReactorA[8] = LBackup[19]
+	ReactorA[9] = LBackup[20]
+	LoadBarGen("Saving ReactorA Settings", 20, colors.red)
+	Save(ReactorA, "BR-RTA.cfg")
+
+	ReactorB[1] = LBackup[21]
+	ReactorB[2] = LBackup[22]
+	ReactorB[3] = LBackup[23]
+	ReactorB[4] = LBackup[24]
+	ReactorB[5] = LBackup[25]
+	ReactorB[6] = LBackup[26]
+	ReactorB[7] = LBackup[27]
+	ReactorB[8] = LBackup[28]
+	ReactorB[9] = LBackup[29]
+	LoadBarGen("Saving ReactorB Settings", 20, colors.red)
+	Save(ReactorB, "BR-RTB.cfg")
+
+	EXPAND[1]   = LBackup[30]
+	EXPAND[2]   = LBackup[31]
+	EXPAND[3]   = LBackup[32]
+	EXPAND[4]   = LBackup[33]
+	EXPAND[5]   = LBackup[34]
+	EXPAND[6]   = LBackup[35]
+	EXPAND[7]   = LBackup[36]
+	EXPAND[8]   = LBackup[37]
+	EXPAND[9]   = LBackup[38]
+	EXPAND[10]  = LBackup[39]
+	EXPAND[11]  = LBackup[40]
+	EXPAND[12]  = LBackup[41]
+	EXPAND[13]  = LBackup[42]
+	EXPAND[14]  = LBackup[43]
+	EXPAND[15]  = LBackup[44]
+	EXPAND[16]  = LBackup[45]
+	EXPAND[17]  = LBackup[46]
+	EXPAND[18]  = LBackup[47]
+	EXPAND[19]  = LBackup[48]
+	EXPAND[20]  = LBackup[49]
+	EXPAND[21]  = LBackup[50]
+	EXPAND[22]  = LBackup[51]
+	EXPAND[23]  = LBackup[52]
+	EXPAND[24]  = LBackup[53]
+	EXPAND[25]  = LBackup[54]
+	EXPAND[26]  = LBackup[55]
+	EXPAND[27]  = LBackup[56]
+	EXPAND[28]  = LBackup[57]
+	EXPAND[29]  = LBackup[58]
+	EXPAND[30]  = LBackup[59]
+	EXPAND[31]  = LBackup[60]
+	EXPAND[32]  = LBackup[61]
+	EXPAND[33]  = LBackup[62]
+	EXPAND[34]  = LBackup[63]
+	EXPAND[35]  = LBackup[64]
+	EXPAND[36]  = LBackup[65]
+    LoadBarGen("Saving Expand Settings", 20, colors.red)
+	Save(EXPAND, "BR-EXP.cfg")
+
+	BCKUPVER    = LBackup[66]
+	LoadBarGen("Rebooting System...", 20, colors.orange)
+	os.reboot()
+else
+	write("Backup File Not Found!")
+	sleep(2)
+			SettingsMenuComputer()
+	end
+end
+
+function SaveBackup()
+Backup = {PasConfig[1], PasConfig[2], PasConfig[3], 
+          ComConfig[1], ComConfig[2], ComConfig[3], ComConfig[4], ComConfig[5], ComConfig[6], ComConfig[7], ComConfig[8], 
+          ReactorA[1], ReactorA[2], ReactorA[3], ReactorA[4], ReactorA[5], ReactorA[6], ReactorA[7], ReactorA[8], ReactorA[9],
+          ReactorB[1], ReactorB[2], ReactorB[3], ReactorB[4], ReactorB[5], ReactorB[6], ReactorB[7], ReactorB[8], ReactorB[9], 
+          EXPAND[1]  , EXPAND[2]  , EXPAND[3]  , EXPAND[4]  , EXPAND[5]  , EXPAND[6]  , EXPAND[7]  , EXPAND[8]  , EXPAND[9]  , 
+          EXPAND[10] , EXPAND[11] , EXPAND[12] , EXPAND[13] , EXPAND[14] , EXPAND[15] , EXPAND[16] , EXPAND[17] , EXPAND[18] ,
+          EXPAND[19] , EXPAND[20] , EXPAND[21] , EXPAND[22] , EXPAND[23] , EXPAND[24] , EXPAND[25] , EXPAND[26] , EXPAND[27] ,
+          EXPAND[28] , EXPAND[29] , EXPAND[30] , EXPAND[31] , EXPAND[32] , EXPAND[33] , EXPAND[34] , EXPAND[35] , EXPAND[36] ,
+          NewProgVer}
+LoadBarGen("Creating Settings Backup", 20, colors.red)
+Save(Backup, "BR-BCK.wan")
+SettingsMenuComputer()
+end
+
+function ResetErrorMsg()
+	Error[1] = 0
+    Error[2] = 0
+    Error[3] = 0
+    Error[4] = 0
+    Error[5] = 0
+    Error[6] = 0
+    Error[7] = 0
+    Error[8] = 0
+    Error[9] = 0
+    Save(Error, "BR-ERR.cfg")
+    SettingsMenuBR()
+end
+
+function ResetErrorMsgExit()
+	Error[1] = 0
+    Error[2] = 0
+    Error[3] = 0
+    Error[4] = 0
+    Error[5] = 0
+    Error[6] = 0
+    Error[7] = 0
+    Error[8] = 0
+    Error[9] = 0
+    Save(Error, "BR-ERR.cfg")
+end
+
+
+
+
+--######################################################################################################
+--######################################################################################################
+--## Check for update ##
+--######################
+
+function DeleteDBRVerU()
+	shell.run("delete BR-UPD.upd")
+end
+                
+function Download()
+                if fs.exists ("BR-UPD.upd") then
+                  LoadBarGen("Deleting Old Update File", 20, TXTCOL[6])
+                  DeleteDBRVerU()
+                  shell.run("clear")
+                  shell.run (DBRVerUGet) 
+	                   if fs.exists ("BR-UPD.upd") then
+                   	      LoadBarGen("Checking and Loading", 20, colors.lime)
+                   	   else
+                   	      Error[1] = 1
+                   	      Error[8] = 1
+                   	      Save(Error, "BR-ERR.cfg")
+                   	      os.reboot()
+                   	   end
+                end
+        end
+
+function BRUpdateCheck() -- BRUDA (Big Reacotors UpDate Aviliable)       
+	Download()
+	
+	VERU = Load("BR-UPD.upd")
+	
+	if VERU[1] <= NewProgVer then
+    	BRUDA = 0
+    else
+   		BRUDA = 1
+    
+    if VERU[3] <= NewComVer then 
+    	COMUPDATE = 0
+   	else
+		COMUPDATE = 1
+	end
+
+	if VERU[4] <= NewRTAVer then
+		RTAUPDATE = 0
+    else
+		RTAUPDATE = 1
+	end
+
+	if VERU[5] <= NewRTBVer then
+		RTBUPDATE = 0
+   	else
+		RTBUPDATE = 1
+	end
+
+	if VERU[6] <= NewERRVer then
+		ERRUPDATE = 0
+	else
+		ERRUPDATE = 1
+	end
+  end
+end
+
+function BRUpdater()
+	VERU = Load("BR-UPD.upd")
+	if VERU[1] <= NewProgVer then
+		write("Program installed is latest ver.")
+		sleep(1.5)
+		SettingsMenuComputer()
+	else
+	if COMUPDATE == 1 then shell.run("delete BR-COM.cfg") end
+	if RTAUPDATE == 1 then shell.run("delete BR-RTA.cfg") end
+	if RTBUPDATE == 1 then shell.run("delete BR-RTB.cfg") end
+	if ERRUPDATE == 1 then shell.run("delete BR-ERR.cfg") end   
+	shell.run("delete FTBUKLW-BR")
+	shell.run(BRProgFetc)
+	print("Update Complete")
+	os.reboot()
+end
+end
+
+--######################################################################################################
+
+function clearLine() -- used to clear a line at the previously set cursor postion
+            local x, y = term.getCursorPos()
+            write ("|                                                 |")
+            term.setCursorPos (1, y)
+    end
+
+function box() -- 39x12 box used in some menus
+            term.setCursorPos (1, 1)
+            write ("O-------------------------------------------------O")
+            for i = 2, 18 do
+                    term.setCursorPos (1, i)
+                    clearLine()
+            end
+            term.setCursorPos (1, 19)
+            write ("O-------------------------------------------------O")
+    end
+
+--######################################################################################################
+--## Functions To Change Each Value ##
+--####################################
+
+function GeneralSleep()
+--	GenS
+ term.clear()
+            box()
+            term.setCursorPos (15, 1)
+            write ("Refresh Rate")
+            term.setCursorPos (3, 3)
+            write ("Last used setting : "..ComConfig[1].." ")
+            term.setCursorPos (3, 5)
+            write ("Change Refresh Time? y/n")
+            sleep(0.3)
+            while true do
+                    keypress = 0
+                    event, keypress = os.pullEvent("key")
+                    if keypress == 49 then
+                            SettingsMenuComputer()
+                            break
+                    elseif keypress == 21 then
+                            term.setCursorPos (3, 5)
+                            write ("New Refresh Rate (3(Min) > 20(Max))")
+                            term.setCursorPos (3, 6)
+                            sleep(0.3)
+                            GSnewSet = read ()
+                            liltest = tonumber ( GSnewSet )
+                            if type( liltest ) ~= "number" then
+                                    term.setCursorPos (15, 10)
+                                    write ("I was expecting a number")
+                                    sleep(1.5)
+                                    term.setCursorPos (15, 10)
+                                    write ("                        ")
+                                    GeneralSleep()
+                                    return
+                            else
+                                    ComConfig[1] = tonumber(GSnewSet)
+                            end
+                            Save(ComConfig, "BR-COM.cfg")
+                            sleep(1.5)
+                            SettingsMenuComputer()
+                            break
+                    elseif keypress == 30 then
+                            SettingsMenuComputer()
+                            break
+                    end
+            end
+end
+
+--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+function TwoReactors()
+--TReactor = 1 = true, 2 = false
+term.clear()
+            box()
+            term.setCursorPos (15, 1)
+            write ("Will I be running 2 Reactors?")
+            term.setCursorPos (3, 3)
+            write ("Last used setting : "..ComConfig[2].." ")
+            term.setCursorPos (3, 5)
+            write ("Change This Setting? y/n")
+            sleep(0.3)
+            while true do
+                    keypress = 0
+                    event, keypress = os.pullEvent("key")
+                    if keypress == 49 then
+                            SettingsMenuComputer()
+                            break
+                    elseif keypress == 21 then
+                            term.setCursorPos (3, 5)
+                            write ("Yes (1) / No (0)                ")
+                            term.setCursorPos (3, 6)
+                            sleep(0.3)
+                            TRnewSet = read ()
+                            liltest = tonumber ( TRnewSet )
+                            if type( liltest ) ~= "number" then
+                                    term.setCursorPos (15, 10)
+                                    write ("I was expecting a number")
+                                    sleep(1.5)
+                                    term.setCursorPos (15, 10)
+                                    write ("                        ")
+                                    GeneralSleep()
+                                    return
+                            else
+                                    ComConfig[2] = tonumber(TRnewSet)
+                            end
+                            Save(ComConfig, "BR-COM.cfg")
+                            sleep(1.5)
+                            SettingsMenuComputer()
+                            break
+                    elseif keypress == 30 then
+                            SettingsMenuComputer()
+                            break
+                    end
+            end
+end
+
+--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+function StatMonitor()-- Change the Status Monitor
+--PerStat
+            term.clear()
+            box()
+            term.setCursorPos (15, 1)
+            write ("Status Monitor")
+            term.setCursorPos (5, 3)
+            write ("Current Monitor is: "..ComConfig[3])
+            term.setCursorPos (5, 5)
+            write ("Would you like to change it? y/n")
+            sleep(0.3)
+            while true do
+                            keypress = 0
+                    event, keypress = os.pullEvent("key")
+                    if keypress == 49 then
+                            SettingsMenuComputer()
+                            break
+                    elseif keypress == 21 then
+                            term.setCursorPos (5, 5)
+                            write ("New monitor to use :             ")
+                            term.setCursorPos (5, 6)
+                            sleep(0.3)
+                            ComConfig[3] = read ()
+                            Save(ComConfig, "BR-COM.cfg")
+                            sleep(1.5)
+                            SettingsMenuComputer()
+                            end
+                        end
+                    end
+
+
+function SetComLabel()-- Change the CommLabel
+--ComLabel = ("BR-Reactor")
+            term.clear()
+            box()
+            term.setCursorPos (15, 1)
+            write ("Computer Label")
+            term.setCursorPos (5, 3)
+            write ("Current Com Label is: "..ComConfig[4])
+            term.setCursorPos (5, 5)
+            write ("Would you like to change it? y/n")
+            sleep(0.3)
+            while true do
+                            keypress = 0
+                    event, keypress = os.pullEvent("key")
+                    if keypress == 49 then
+                            SettingsMenuComputer()
+                            break
+                    elseif keypress == 21 then
+                            term.setCursorPos (5, 5)
+                            write ("New monitor to use :             ")
+                            term.setCursorPos (5, 6)
+                            sleep(0.3)
+                            ComConfig[4] = read ()
+                            os.setComputerLabel(ComConfig[4])
+                            Save(ComConfig, "BR-COM.cfg")
+                            sleep(1.5)
+                            SettingsMenuComputer()
+                            end
+                        end
+                    end
+
+
+
+
+
+function FirstRunSetting() --Default Settings
+--Default = 1 = true, 0 = false
+term.clear()
+            box()
+            term.setCursorPos (15, 1)
+            write ("Return to Default")
+            term.setCursorPos (3, 5)
+            write ("Return Settings to Default? Y/N")
+            sleep(0.3)
+            while true do
+                    keypress = 0
+                    event, keypress = os.pullEvent("key")
+                    if keypress == 49 then
+                            SettingsMenuComputer()
+                            break
+                    elseif keypress == 21 then
+                            term.setCursorPos (3, 5)
+                            write (" 1 = Reset / 0 = Off                ")
+                            term.setCursorPos (3, 6)
+                            sleep(0.3)
+                            NDefault = read ()
+                            liltest = tonumber ( NDefault )
+                            if type( liltest ) ~= "number" then
+                                    term.setCursorPos (15, 10)
+                                    write ("I was expecting a number")
+                                    sleep(1.5)
+                                    term.setCursorPos (15, 10)
+                                    write ("                        ")
+                                    GeneralSleep()
+                                    return
+                            else
+                                    ComConfig[6] = tonumber(NDefault)
+                            end
+                            Save(ComConfig, "BR-COM.cfg")
+                            sleep(1.5)
+                            os.reboot()
+                            break
+                    elseif keypress == 30 then
+                            SettingsMenuComputer()
+                            break
+                    end
+            end
+end
+
+
+function AutoCheckUpdate() --Default Settings
+--Default = 1 = true, 0 = false
+term.clear()
+            box()
+            term.setCursorPos (15, 1)
+            write ("Auto Check Update")
+            term.setCursorPos (3, 5)
+            write ("Do you want to change this? Y/N")
+            sleep(0.3)
+            while true do
+                    keypress = 0
+                    event, keypress = os.pullEvent("key")
+                    if keypress == 49 then
+                            SettingsMenuComputer()
+                            break
+                    elseif keypress == 21 then
+                            term.setCursorPos (3, 5)
+                            write ("On (1) / Off (0)               ")
+                            term.setCursorPos (3, 6)
+                            sleep(0.3)
+                            NCheckUpdate = read ()
+                            liltest = tonumber ( NCheckUpdate )
+                            if type( liltest ) ~= "number" then
+                                    term.setCursorPos (15, 10)
+                                    write ("I was expecting a number")
+                                    sleep(1.5)
+                                    term.setCursorPos (15, 10)
+                                    write ("                        ")
+                                    GeneralSleep()
+                                    return
+                            else
+                                    ComConfig[7] = tonumber(NCheckUpdate)
+                            end
+                            Save(ComConfig, "BR-COM.cfg")
+                            SettingsMenuComputer()
+                            break
+                    elseif keypress == 30 then
+                            SettingsMenuComputer()
+                            break
+                    end
+            end
+end
+
+function ChangePassword()-- Change the Status Monitor
+--PerStat
+            term.clear()
+            box()
+            term.setCursorPos (15, 1)
+            write ("Change Password")
+            term.setCursorPos (5, 3)
+            write ("Current Password is: "..PasConfig[1])
+            term.setCursorPos (5, 5)
+            write ("Would you like to change it? y/n")
+            sleep(0.3)
+            while true do
+                            keypress = 0
+                    event, keypress = os.pullEvent("key")
+                    if keypress == 49 then
+                            SettingsMenuComputer()
+                            break
+                    elseif keypress == 21 then
+                            term.setCursorPos (5, 5)
+                            write ("New admin password:             ")
+                            term.setCursorPos (5, 6)
+                            sleep(0.3)
+                            PasConfig[1] = read ()
+                            Save(PasConfig, "BR-PAS.cfg")
+                            sleep(1.5)
+                            SettingsMenuComputer()
+                            end
+                        end
+                    end
+
+
+function RequirePassword() --Default Settings
+--Default = 1 = true, 0 = false
+term.clear()
+            box()
+            term.setCursorPos (15, 1)
+            write ("Require Password?")
+            term.setCursorPos (3, 5)
+            write ("Do you want to change this? Y/N")
+            sleep(0.3)
+            while true do
+                    keypress = 0
+                    event, keypress = os.pullEvent("key")
+                    if keypress == 49 then
+                            SettingsMenuComputer()
+                            break
+                    elseif keypress == 21 then
+                            term.setCursorPos (3, 5)
+                            write ("ON (1) / OFF (0)                ")
+                            term.setCursorPos (3, 6)
+                            sleep(0.3)
+                            NCheckUpdate = read ()
+                            liltest = tonumber ( NCheckUpdate )
+                            if type( liltest ) ~= "number" then
+                                    term.setCursorPos (15, 10)
+                                    write ("I was expecting a number")
+                                    sleep(1.5)
+                                    term.setCursorPos (15, 10)
+                                    write ("                        ")
+                                    GeneralSleep()
+                                    return
+                            else
+                                    PasConfig[2] = tonumber(NCheckUpdate)
+                            end
+                            Save(PasConfig, "BR-PAS.cfg")
+                            SettingsMenuComputer()
+                            break
+                    elseif keypress == 30 then
+                            SettingsMenuComputer()
+                            break
+                    end
+            end
+end
+
+function StatMonOn()
+--Status Monitor On/Off
+term.clear()
+            box()
+            term.setCursorPos (15, 1)
+            write ("Require Password?")
+            term.setCursorPos (3, 5)
+            write ("Do you want to change this? Y/N")
+            sleep(0.3)
+            while true do
+                    keypress = 0
+                    event, keypress = os.pullEvent("key")
+                    if keypress == 49 then
+                            SettingsMenuComputer()
+                            break
+                    elseif keypress == 21 then
+                            term.setCursorPos (3, 5)
+                            write ("YES (1) / NO (0)                ")
+                            term.setCursorPos (3, 6)
+                            sleep(0.3)
+                            NCheckUpdate = read ()
+                            liltest = tonumber ( NCheckUpdate )
+                            if type( liltest ) ~= "number" then
+                                    term.setCursorPos (15, 10)
+                                    write ("I was expecting a number 1 (on) or 0 (off)")
+                                    sleep(1.5)
+                                    term.setCursorPos (15, 10)
+                                    write ("                        ")
+                                    GeneralSleep()
+                                    return
+                            else
+                                    ComConfig[8] = tonumber(NCheckUpdate)
+                            end
+                            Save(ComConfig, "BR-COM.cfg")
+                            SettingsMenuComputer()
+                            break
+                    elseif keypress == 30 then
+                            SettingsMenuComputer()
+                            break
+                    end
+            end
+end
+
+
+--#####################################################################################################
+--## Reactor 1 Settings ##
+--########################
+
+function ReactorAComm()
+--	PerCOM1  = "BigReactors-Reactor_1" ReactorA[3]
+term.clear()
+            box()
+            term.setCursorPos (15, 1)
+            write ("Reactor A Com Port")
+            term.setCursorPos (5, 3)
+            write ("Current Comm port is: "..ReactorA[1])
+            term.setCursorPos (5, 5)
+            write ("Would you like to change it? y/n")
+            sleep(0.3)
+            while true do
+                            keypress = 0
+                    event, keypress = os.pullEvent("key")
+                    if keypress == 49 then
+                    		nOption = 1
+                            SettingsMenuReactorA()
+                            break
+                    elseif keypress == 21 then
+                            term.setCursorPos (5, 5) 
+                            write ("New comm port to use :                       ")
+                            term.setCursorPos (5, 6)
+                            sleep(0.3)
+                            ReactorA[1] = read ()
+                            sleep(1.5)
+                            Save(ReactorA, "BR-RTA.cfg")
+                            SettingsMenuReactorA()
+                            end
+                        end
+end
+
+
+function ReactorAMonitor()
+--	PerM1    = "monitor_6"
+term.clear()
+            box()
+            term.setCursorPos (15, 1)
+            write ("Reactor A Monitor")
+            term.setCursorPos (5, 3)
+            write ("Current Monitor is: "..ReactorA[2])
+            term.setCursorPos (5, 5)
+            write ("Would you like to change it? y/n")
+            sleep(0.3)
+            while true do
+                            keypress = 0
+                    event, keypress = os.pullEvent("key")
+                    if keypress == 49 then
+                    		nOption = 2
+                            SettingsMenuReactorA()
+                            break
+                    elseif keypress == 21 then
+                            term.setCursorPos (5, 5)
+                            write ("New monitor to use :                         ")
+                            term.setCursorPos (5, 6)
+                            sleep(0.3)
+                            ReactorA[2] = read ()
+                            sleep(1.5)
+                            Save(ReactorA, "BR-RTA.cfg")
+                            SettingsMenuReactorA()
+                            end
+                        end
+end
+
+function ReactorAName()
+--	RTN1     = 'Reactor 1'
+term.clear()
+            box()
+            term.setCursorPos (15, 1)
+            write ("Reactor A Name")
+            term.setCursorPos (5, 3)
+            write ("Current Reactor A name is: "..ReactorA[3])
+            term.setCursorPos (5, 5)
+            write ("Would you like to change it? y/n")
+            sleep(0.3)
+            while true do
+                            keypress = 0
+                    event, keypress = os.pullEvent("key")
+                    if keypress == 49 then
+                    		nOption = 3
+                            SettingsMenuReactorA()
+                            break
+                    elseif keypress == 21 then
+                            term.setCursorPos (5, 5)
+                            write ("New Reactor Name :                           ")
+                            term.setCursorPos (5, 6)
+                            sleep(0.3)
+                            ReactorA[3] = read ()
+                            Save(ReactorA, "BR-RTA.cfg")
+                            sleep(1.5)
+                            SettingsMenuReactorA()
+                            end
+                        end
+end
+
+function ReactorADisplayFuel()
+--	RAFuel   = true
+term.clear()
+            box()
+            term.setCursorPos (15, 1)
+            write (" Display Fuel ")
+            term.setCursorPos (3, 3)
+            write ("Last used setting : "..ReactorA[4])
+            term.setCursorPos (3, 5)
+            write ("Change Display Fuel? y/n")
+            sleep(0.3)
+            while true do
+                    keypress = 0
+                    event, keypress = os.pullEvent("key")
+                    if keypress == 49 then
+                    		nOption = 4
+                            SettingsMenuReactorA()
+                            break
+                    elseif keypress == 21 then
+                            term.setCursorPos (3, 5)
+                            write ("On (1) / Off (0)                ")
+                            term.setCursorPos (3, 6)
+                            sleep(0.3)
+                            RADFnewSet = read ()
+                            liltest = tonumber ( RADFnewSet )
+                            if type( liltest ) ~= "number" then
+                                    term.setCursorPos (15, 10)
+                                    write ("I was expecting a number")
+                                    sleep(1.5)
+                                    term.setCursorPos (15, 10)
+                                    write ("                        ")
+                                    GeneralSleep()
+                                    return
+                            else
+                                    ReactorA[4] = tonumber(RADFnewSet)
+                            end
+                            Save(ReactorA, "BR-RTA.cfg")
+                            sleep(1.5)
+                            SettingsMenuReactorA()
+                            break
+                    elseif keypress == 30 then
+                            SettingsMenuReactorA()
+                            break
+                    end
+            end
+end
+
+function ReactorADisplayTemp()
+term.clear()
+            box()
+            term.setCursorPos (15, 1)
+            write (" Display Temp ")
+            term.setCursorPos (3, 3)
+            write ("Last used setting : "..ReactorA[5])
+            term.setCursorPos (3, 5)
+            write ("Change Display Fuel? y/n")
+            sleep(0.3)
+            while true do
+                    keypress = 0
+                    event, keypress = os.pullEvent("key")
+                    if keypress == 49 then
+                    		nOption = 5
+                            SettingsMenuReactorA()
+                            break
+                    elseif keypress == 21 then
+                            term.setCursorPos (3, 5)
+                            write ("On (1) / Off (0)                ")
+                            term.setCursorPos (3, 6)
+                            sleep(0.3)
+                            RADTnewSet = read ()
+                            liltest = tonumber ( RADTnewSet )
+                            if type( liltest ) ~= "number" then
+                                    term.setCursorPos (15, 10)
+                                    write ("I was expecting a number")
+                                    sleep(1.5)
+                                    term.setCursorPos (15, 10)
+                                    write ("                        ")
+                                    GeneralSleep()
+                                    return
+                            else
+                                    ReactorA[5] = tonumber(RADTnewSet)
+                            end
+                            Save(ReactorA, "BR-RTA.cfg")
+                            sleep(1.5)
+                            SettingsMenuReactorA()
+                            break
+                    elseif keypress == 30 then
+                            SettingsMenuReactorA()
+                            break
+                    end
+            end
+end
+
+function ReactorADisplayFlux()
+--	FluxRA   = true
+term.clear()
+            box()
+            term.setCursorPos (15, 1)
+            write (" Display Temp ")
+            term.setCursorPos (3, 3)
+            write ("Last used setting : "..ReactorA[6])
+            term.setCursorPos (3, 5)
+            write ("Change Display Flux? y/n")
+            sleep(0.3)
+            while true do
+                    keypress = 0
+                    event, keypress = os.pullEvent("key")
+                    if keypress == 49 then
+                    		nOption = 6
+                            SettingsMenuReactorA()
+                            break
+                    elseif keypress == 21 then
+                            term.setCursorPos (3, 5)
+                            write ("On (1) / Off (0)                ")
+                            term.setCursorPos (3, 6)
+                            sleep(0.3)
+                            RADFXnewSet = read ()
+                            liltest = tonumber ( RADFXnewSet )
+                            if type( liltest ) ~= "number" then
+                                    term.setCursorPos (15, 10)
+                                    write ("I was expecting a number")
+                                    sleep(1.5)
+                                    term.setCursorPos (15, 10)
+                                    write ("                        ")
+                                    GeneralSleep()
+                                    return
+                            else
+                                    ReactorA[6] = tonumber(RADFXnewSet)
+                            end
+                            Save(ReactorA, "BR-RTA.cfg")
+                            sleep(1.5)
+                            SettingsMenuReactorA()
+                            break
+                    elseif keypress == 30 then
+                            SettingsMenuReactorA()
+                            break
+                    end
+            end
+
+
+end
+
+function ReactorADisplayWarn()
+--	RAWarn   = true
+term.clear()
+            box()
+            term.setCursorPos (15, 1)
+            write (" Display Warn ")
+            term.setCursorPos (3, 3)
+            write ("Last used setting : "..ReactorA[7])
+            term.setCursorPos (3, 5)
+            write ("Change Display Flux? y/n")
+            sleep(0.3)
+            while true do
+                    keypress = 0
+                    event, keypress = os.pullEvent("key")
+                    if keypress == 49 then
+                    		nOption = 7
+                            SettingsMenuReactorA()
+                            break
+                    elseif keypress == 21 then
+                            term.setCursorPos (3, 5)
+                            write ("On (1) / Off (0)                ")
+                            term.setCursorPos (3, 6)
+                            sleep(0.3)
+                            RADWnewSet = read ()
+                            liltest = tonumber ( RADWnewSet )
+                            if type( liltest ) ~= "number" then
+                                    term.setCursorPos (15, 10)
+                                    write ("I was expecting a number")
+                                    sleep(1.5)
+                                    term.setCursorPos (15, 10)
+                                    write ("                        ")
+                                    GeneralSleep()
+                                    return
+                            else
+                                    ReactorA[7] = tonumber(RADWnewSet)
+                            end
+                            Save(ReactorA, "BR-RTA.cfg")
+                            sleep(1.5)
+                            SettingsMenuReactorA()
+                            break
+                    elseif keypress == 30 then
+                            SettingsMenuReactorA()
+                            break
+                    end
+            end
+
+
+end
+
+function ReactorARSInput()
+--	RSRA     = "right"
+term.clear()
+            box()
+            term.setCursorPos (15, 1)
+            write ("Reactor A RS Input")
+            term.setCursorPos (5, 3)
+            write ("Current Comm port is: "..ReactorA[8])
+            term.setCursorPos (5, 5)
+            write ("Would you like to change it? y/n")
+            sleep(0.3)
+            while true do
+                            keypress = 0
+                    event, keypress = os.pullEvent("key")
+                    if keypress == 49 then
+                    		nOption = 8
+                            SettingsMenuReactorA()
+                            break
+                    elseif keypress == 21 then
+                            term.setCursorPos (5, 5)
+                            write ("RS input left/right? :             ")
+                            term.setCursorPos (5, 6)
+                            sleep(0.3)
+                            ReactorA[8] = read ()
+                            Save(ReactorA, "BR-RTA.cfg")
+                            sleep(1.5)
+                            SettingsMenuReactorA()
+                            end
+                        end
+end
+
+function ReactorADisplayOn()
+--	RAWarn   = true
+term.clear()
+            box()
+            term.setCursorPos (15, 1)
+            write (" Display On/Off ")
+            term.setCursorPos (3, 3)
+            write ("Last used setting : "..ReactorA[9])
+            term.setCursorPos (3, 5)
+            write ("Switch Monitor On/Off? y/n")
+            sleep(0.3)
+            while true do
+                    keypress = 0
+                    event, keypress = os.pullEvent("key")
+                    if keypress == 49 then
+                    		nOption = 7
+                            SettingsMenuReactorA()
+                            break
+                    elseif keypress == 21 then
+                            term.setCursorPos (3, 5)
+                            write ("On (1) / Off (0)                ")
+                            term.setCursorPos (3, 6)
+                            sleep(0.3)
+                            RADWnewSet = read ()
+                            liltest = tonumber ( RADWnewSet )
+                            if type( liltest ) ~= "number" then
+                                    term.setCursorPos (15, 10)
+                                    write ("I was expecting a number")
+                                    sleep(1.5)
+                                    term.setCursorPos (15, 10)
+                                    write ("                        ")
+                                    GeneralSleep()
+                                    return
+                            else
+                                    ReactorA[9] = tonumber(RADWnewSet)
+                            end
+                            Save(ReactorA, "BR-RTA.cfg")
+                            sleep(1.5)
+                            SettingsMenuReactorA()
+                            break
+                    elseif keypress == 30 then
+                            SettingsMenuReactorA()
+                            break
+                    end
+            end
+end
+--########################
+--## Reactor 2 Settings ##
+--########################
+
+function ReactorBComm()
+--	PerCOM1  = "BigReactors-Reactor_1"
+term.clear()
+            box()
+            term.setCursorPos (15, 1)
+            write ("Reactor B Com Port")
+            term.setCursorPos (5, 3)
+            write ("Current Comm port is: "..ReactorB[1])
+            term.setCursorPos (5, 5)
+            write ("Would you like to change it? y/n")
+            sleep(0.3)
+            while true do
+                            keypress = 0
+                    event, keypress = os.pullEvent("key")
+                    if keypress == 49 then
+                            SettingsMenuReactorB()
+                            break
+                    elseif keypress == 21 then
+                            term.setCursorPos (5, 5)
+                            write ("New comm port to use :             ")
+                            term.setCursorPos (5, 6)
+                            sleep(0.3)
+                            ReactorB[1] = read ()
+                            Save(ReactorB, "BR-RTB.cfg")
+                            sleep(1.5)
+                            SettingsMenuReactorB()
+                            end
+                        end
+end
+
+
+function ReactorBMonitor()
+--	PerM1    = "monitor_6"
+term.clear()
+            box()
+            term.setCursorPos (15, 1)
+            write ("Reactor B Monitor")
+            term.setCursorPos (5, 3)
+            write ("Current Monitor is: "..ReactorB[2])
+            term.setCursorPos (5, 5)
+            write ("Would you like to change it? y/n")
+            sleep(0.3)
+            while true do
+                            keypress = 0
+                    event, keypress = os.pullEvent("key")
+                    if keypress == 49 then
+                            SettingsMenuReactorB()
+                            break
+                    elseif keypress == 21 then
+                            term.setCursorPos (5, 5)
+                            write ("New monitor to use :             ")
+                            term.setCursorPos (5, 6)
+                            sleep(0.3)
+                            ReactorB[2] = read ()
+                            Save(ReactorB, "BR-RTB.cfg")
+                            sleep(1.5)
+                            SettingsMenuReactorB()
+                            end
+                        end
+end
+
+function ReactorBName()
+--	RTN2     = 'Reactor 2'
+term.clear()
+            box()
+            term.setCursorPos (15, 1)
+            write ("Reactor B Name")
+            term.setCursorPos (5, 3)
+            write ("Current Reactor A name is: "..ReactorB[3])
+            term.setCursorPos (5, 5)
+            write ("Would you like to change it? y/n")
+            sleep(0.3)
+            while true do
+                            keypress = 0
+                    event, keypress = os.pullEvent("key")
+                    if keypress == 49 then
+                            SettingsMenuReactorB()
+                            break
+                    elseif keypress == 21 then
+                            term.setCursorPos (5, 5)
+                            write ("New Reactor Name :              ")
+                            term.setCursorPos (5, 6)
+                            sleep(0.3)
+                            ReactorB[3] = read ()
+                            Save(ReactorB, "BR-RTB.cfg")
+                            sleep(1.5)
+                            SettingsMenuReactorB()
+                            end
+                        end
+end
+
+function ReactorBDisplayFuel()
+--	RAFuel   = true
+term.clear()
+            box()
+            term.setCursorPos (15, 1)
+            write (" Display Fuel ")
+            term.setCursorPos (3, 3)
+            write ("Last used setting : "..ReactorB[4])
+            term.setCursorPos (3, 5)
+            write ("Change Display Fuel? y/n")
+            sleep(0.3)
+            while true do
+                    keypress = 0
+                    event, keypress = os.pullEvent("key")
+                    if keypress == 49 then
+                            SettingsMenuReactorB()
+                            break
+                    elseif keypress == 21 then
+                            term.setCursorPos (3, 5)
+                            write ("                             ")
+                            term.setCursorPos (3, 6)
+                            sleep(0.3)
+                            RBDFnewSet = read ()
+                            liltest = tonumber ( RBDFnewSet )
+                            if type( liltest ) ~= "number" then
+                                    term.setCursorPos (15, 10)
+                                    write ("I was expecting a number")
+                                    sleep(1.5)
+                                    term.setCursorPos (15, 10)
+                                    write ("                        ")
+                                    GeneralSleep()
+                                    return
+                            else
+                                    ReactorB[4] = tonumber(RBDFnewSet)
+                            end
+                            Save(ReactorB, "BR-RTB.cfg")
+                            sleep(1.5)
+                            SettingsMenuReactorB()
+                            break
+                    elseif keypress == 30 then
+                            SettingsMenuReactorB()
+                            break
+                    end
+            end
+end
+
+function ReactorBDisplayTemp()
+term.clear()
+            box()
+            term.setCursorPos (15, 1)
+            write (" Display Temp ")
+            term.setCursorPos (3, 3)
+            write ("Last used setting : "..ReactorB[5])
+            term.setCursorPos (3, 5)
+            write ("Change Display Fuel? y/n")
+            sleep(0.3)
+            while true do
+                    keypress = 0
+                    event, keypress = os.pullEvent("key")
+                    if keypress == 49 then
+                            SettingsMenuReactorB()
+                            break
+                    elseif keypress == 21 then
+                            term.setCursorPos (3, 5)
+                            write ("                             ")
+                            term.setCursorPos (3, 6)
+                            sleep(0.3)
+                            RBDTnewSet = read ()
+                            liltest = tonumber ( RBDTnewSet )
+                            if type( liltest ) ~= "number" then
+                                    term.setCursorPos (15, 10)
+                                    write ("I was expecting a number")
+                                    sleep(1.5)
+                                    term.setCursorPos (15, 10)
+                                    write ("                        ")
+                                    GeneralSleep()
+                                    return
+                            else
+                                    ReactorB[5] = tonumber(RBDTnewSet)
+                            end
+                            Save(ReactorB, "BR-RTB.cfg")
+                            sleep(1.5)
+                            SettingsMenuReactorB()
+                            break
+                    elseif keypress == 30 then
+                            SettingsMenuReactorB()
+                            break
+                    end
+            end
+end
+
+function ReactorBDisplayFlux()
+--	FluxRA   = true
+term.clear()
+            box()
+            term.setCursorPos (15, 1)
+            write (" Display Temp ")
+            term.setCursorPos (3, 3)
+            write ("Last used setting : "..ReactorB[6])
+            term.setCursorPos (3, 5)
+            write ("Change Display Flux? y/n")
+            sleep(0.3)
+            while true do
+                    keypress = 0
+                    event, keypress = os.pullEvent("key")
+                    if keypress == 49 then
+                            SettingsMenuReactorB()
+                            break
+                    elseif keypress == 21 then
+                            term.setCursorPos (3, 5)
+                            write ("                             ")
+                            term.setCursorPos (3, 6)
+                            sleep(0.3)
+                            RBDFXnewSet = read ()
+                            liltest = tonumber ( RBDFXnewSet )
+                            if type( liltest ) ~= "number" then
+                                    term.setCursorPos (15, 10)
+                                    write ("I was expecting a number")
+                                    sleep(1.5)
+                                    term.setCursorPos (15, 10)
+                                    write ("                        ")
+                                    GeneralSleep()
+                                    return
+                            else
+                                    ReactorB[6] = tonumber(RBDFXnewSet)
+                            end
+                            Save(ReactorB, "BR-RTB.cfg")
+                            sleep(1.5)
+                            SettingsMenuReactorB()
+                            break
+                    elseif keypress == 30 then
+                            SettingsMenuReactorB()
+                            break
+                    end
+            end
+
+
+end
+
+function ReactorBDisplayWarn()
+--	RAWarn   = true
+term.clear()
+            box()
+            term.setCursorPos (15, 1)
+            write (" Display Warn ")
+            term.setCursorPos (3, 3)
+            write ("Last used setting : "..ReactorB[7])
+            term.setCursorPos (3, 5)
+            write ("Change Display Flux? y/n")
+            sleep(0.3)
+            while true do
+                    keypress = 0
+                    event, keypress = os.pullEvent("key")
+                    if keypress == 49 then
+                            SettingsMenuReactorB()
+                            break
+                    elseif keypress == 21 then
+                            term.setCursorPos (3, 5)
+                            write ("                             ")
+                            term.setCursorPos (3, 6)
+                            sleep(0.3)
+                            RBDWnewSet = read ()
+                            liltest = tonumber ( RBDWnewSet )
+                            if type( liltest ) ~= "number" then
+                                    term.setCursorPos (15, 10)
+                                    write ("I was expecting a number")
+                                    sleep(1.5)
+                                    term.setCursorPos (15, 10)
+                                    write ("                        ")
+                                    GeneralSleep()
+                                    return
+                            else
+                                    ReactorB[7] = tonumber(RBDWnewSet)
+                            end
+                            Save(ReactorB, "BR-RTB.cfg")
+                            sleep(1.5)
+                            SettingsMenuReactorB()
+                            break
+                    elseif keypress == 30 then
+                            SettingsMenuReactorB()
+                            break
+                    end
+            end
+end
+
+
+function ReactorBRSInput()
+--	RSRA     = "right"
+term.clear()
+            box()
+            term.setCursorPos (15, 1)
+            write ("Reactor B RS Input")
+            term.setCursorPos (5, 3)
+            write ("Current Comm port is: "..ReactorB[8])
+            term.setCursorPos (5, 5)
+            write ("Would you like to change it? y/n")
+            sleep(0.3)
+            while true do
+                            keypress = 0
+                    event, keypress = os.pullEvent("key")
+                    if keypress == 49 then
+                            SettingsMenuReactorB()
+                            break
+                    elseif keypress == 21 then
+                            term.setCursorPos (5, 5)
+                            write ("RS input left/right? :             ")
+                            term.setCursorPos (5, 6)
+                            sleep(0.3)
+                            ReactorB[8] = read ()
+                            Save(ReactorB, "BR-RTB.cfg")
+                            sleep(1.5)
+                            SettingsMenuReactorB()
+                            end
+                        end
+end
+
+function ReactorBDisplayOn()
+--	RAWarn   = true
+term.clear()
+            box()
+            term.setCursorPos (15, 1)
+            write (" Display On/Off ")
+            term.setCursorPos (3, 3)
+            write ("Last used setting : "..ReactorB[9])
+            term.setCursorPos (3, 5)
+            write ("Switch Monitor On/Off? y/n")
+            sleep(0.3)
+            while true do
+                    keypress = 0
+                    event, keypress = os.pullEvent("key")
+                    if keypress == 49 then
+                    		nOption = 7
+                            SettingsMenuReactorB()
+                            break
+                    elseif keypress == 21 then
+                            term.setCursorPos (3, 5)
+                            write ("On (1) / Off (0)                ")
+                            term.setCursorPos (3, 6)
+                            sleep(0.3)
+                            RADWnewSet = read ()
+                            liltest = tonumber ( RADWnewSet )
+                            if type( liltest ) ~= "number" then
+                                    term.setCursorPos (15, 10)
+                                    write ("I was expecting a number")
+                                    sleep(1.5)
+                                    term.setCursorPos (15, 10)
+                                    write ("                        ")
+                                    GeneralSleep()
+                                    return
+                            else
+                                    ReactorB[9] = tonumber(RADWnewSet)
+                            end
+                            Save(ReactorB, "BR-RTB.cfg")
+                            sleep(1.5)
+                            SettingsMenuReactorB()
+                            break
+                    elseif keypress == 30 then
+                            SettingsMenuReactorB()
+                            break
+                    end
+            end
+end
+
+
+--######################################################################################################
+
+function SettingsMenuBR()
+
+	local w,h = term.getSize()
+
+function BRprintCentred( y, s )
+    local x = math.floor((w - string.len(s)) / 2)
+    term.setCursorPos(x,y)
+    term.clearLine()
+    term.write( s )
+end
+
+local nOption = 1
+
+-- Display menu
+local function BRdrawMenu()
+    term.clear()
+    term.setCursorPos(w-11,1)
+    if nOption == 1 then
+    term.write( "1" )
+    elseif nOption == 2 then
+    term.write( "2" )
+    elseif nOption == 3 then
+    term.write( "3" )
+    elseif nOption == 4 then
+    term.write( "4" )
+    else
+    term.write( "5" )
+    end
+end
+
+-- Display the frontend
+term.clear()
+local function BRdrawFrontend()
+    BRprintCentred( math.floor(h/2) - 4, (MTITL[1]))
+    BRprintCentred( math.floor(h/2) - 3, "" )
+    BRprintCentred( math.floor(h/2) - 2, "" )
+    BRprintCentred( math.floor(h/2) - 1, "" )
+    BRprintCentred( math.floor(h/2) + 0, ((nOption == 1) and (MMSET[1])) or (MMSET[2] )) if Error[3] == 1 then write("#") end if Error[4] == 1 then write(" # ") end
+    BRprintCentred( math.floor(h/2) + 1, ((nOption == 2) and (MMSET[3])) or (MMSET[4] )) if Error[5] == 1 then write("#") end if Error[6] == 1 then write(" # ") end
+    BRprintCentred( math.floor(h/2) + 2, ((nOption == 3) and (MMSET[5])) or (MMSET[6] )) if Error[2] == 1 then write(" # ") end
+    BRprintCentred( math.floor(h/2) + 3, ((nOption == 4) and (MMSET[7])) or (MMSET[8] ))
+    BRprintCentred( math.floor(h/2) + 4, ((nOption == 5) and (MMSET[9])) or (MMSET[10]))
+    BRprintCentred( math.floor(h/2) + 5, "" )
+    BRprintCentred( math.floor(h/2) + 6, "" )
+    BRprintCentred( math.floor(h/2) + 7, "" ) 
+
+
+
+    --if PasConfig[2] == 1 then term.setCursorPos(1,15) write("Attempts : ") write(PasConfig[3]) end
+    if fs.exists ("BR-BCK.wan") then 
+    		term.setCursorPos(1,19)
+    		write("Backup : ") 
+    		term.setTextColor( (TXTCOL[16]) ) 
+    		term.setBackgroundColor ( (TXTCOL[6]) ) 
+    		write(" Present ")
+    		term.setTextColor( (TXTCOL[1]) )
+    		term.setBackgroundColor( (TXTCOL[16]) )
+    	else  
+    		term.setCursorPos(1,19) 
+    		write("Backup : ") 
+    		term.setTextColor( (TXTCOL[16]) ) 
+    		term.setBackgroundColor ( (TXTCOL[15]) ) 
+    		write(" None ") 
+    		term.setTextColor( (TXTCOL[1]) )
+    		term.setBackgroundColor( (TXTCOL[16]) )
+    	end
+
+
+
+
+
+
+
+end
+
+-- Call functions for display menu
+--BRdrawMenu()
+BRdrawFrontend()
+
+while true do
+    local e,p = os.pullEvent()
+    if e == "key" then
+        local key = p
+        if key == 17 or key == 200 then
+            -- Up
+            if nOption > 1 then
+                nOption = nOption - 1
+                --BRdrawMenu()
+                BRdrawFrontend()
+            end
+        elseif key == 31 or key == 208 then
+            -- Down
+            if nOption < 5 then -- Change 4 by the number of option.
+                nOption = nOption + 1
+                --BRdrawMenu()
+                BRdrawFrontend()
+            end
+        elseif key == 28 then
+            -- Enter
+            break
+        end
+    end
+end
+term.clear()
+
+-- Conditions
+    if nOption == 1 then
+    	SettingsMenuReactorA()
+    end
+
+	if nOption == 2 then
+    	SettingsMenuReactorB()
+    end
+
+	if nOption == 3 then
+		SettingsMenuComputer()
+	end
+
+	if nOption == 4 then
+ 		ResetErrorMsg()
+ 	end
+
+ 	if nOption == 5 then
+ 	   if Error[1] == 1 then 
+ 	   	ResetErrorMsgExit()
+ 	   end
+ 	    print ("")
+ 	    sleep(0.1)
+ 	    SetMenu = false
+ 	    running = true
+ 	    os.reboot()
+    end
+
+end
+
+
+
+--######################################################################################################
+--## Reactor A ##
+--###############
+
+
+function SettingsMenuReactorA()
+
+	local w,h = term.getSize()
+
+function BRAprintCentred( y, s )
+    local x = math.floor((w - string.len(s)) / 2)
+    term.setCursorPos(x,y)
+    term.clearLine()
+    term.write( s )
+end
+
+local nOption = 1
+
+-- Display menu
+local function BRAdrawMenu()
+    term.clear()
+    term.setCursorPos(w-8,1)
+    if nOption == 1 then
+    term.write( "1" )
+    elseif nOption == 2 then
+    term.write( "2" )
+    elseif nOption == 3 then
+    term.write( "3" )
+    elseif nOption == 4 then
+    term.write( "4" )
+    elseif nOption == 5 then
+    term.write( "5" )
+    elseif nOption == 6 then
+    term.write( "6" )
+    elseif nOption == 7 then
+    term.write( "7" )
+    elseif nOption == 8 then
+    term.write( "8" )
+    elseif nOption == 9 then
+    term.write( "9" )
+    else
+    term.write( "10" )
+    end   
+end
+
+-- Display the frontend
+term.clear()
+local function BRAdrawFrontend()
+    BRAprintCentred( math.floor(h/2) - 2, (MTITL[2]))
+    BRAprintCentred( math.floor(h/2) - 1, "" )
+    BRAprintCentred( math.floor(h/2) + 0, ((nOption == 1) and (RASET[1] ))   or (RASET[2])  ) if Error[4] == 1 then write(" # ") end
+    BRAprintCentred( math.floor(h/2) + 1, ((nOption == 2) and (RASET[3] ))   or (RASET[4])  ) if Error[3] == 1 then write(" # ") end
+    BRAprintCentred( math.floor(h/2) + 2, ((nOption == 3) and (RASET[5] ))   or (RASET[6])  )
+    BRAprintCentred( math.floor(h/2) + 3, ((nOption == 4) and (RASET[7] ))   or (RASET[8])  )
+    BRAprintCentred( math.floor(h/2) + 4, ((nOption == 5) and (RASET[9] ))   or (RASET[10]) )
+	BRAprintCentred( math.floor(h/2) + 5, ((nOption == 6) and (RASET[11]))   or (RASET[12]) )
+	BRAprintCentred( math.floor(h/2) + 6, ((nOption == 7) and (RASET[13]))   or (RASET[14]) )
+	BRAprintCentred( math.floor(h/2) + 7, ((nOption == 8) and (RASET[15]))   or (RASET[16]) )
+    BRAprintCentred( math.floor(h/2) + 8, ((nOption == 9) and (RASET[17]))   or (RASET[18]) ) if Error[3] == 1 then write("#") end if Error[4] == 1 then write(" # ") end
+    BRAprintCentred( math.floor(h/2) + 9, ((nOption == 10)and (RASET[19]))   or (RASET[20]) )
+    BRAprintCentred( math.floor(h/2) + 10, "" )
+    
+ end
+
+-- Call functions for display menu
+--BRAdrawMenu()
+BRAdrawFrontend()
+
+
+
+while true do
+    local e,p = os.pullEvent()
+    if e == "key" then
+        local key = p
+        if key == 17 or key == 200 then
+            -- Up
+            if nOption > 1 then
+                nOption = nOption - 1
+                --BRAdrawMenu()
+                BRAdrawFrontend()
+            end
+        elseif key == 31 or key == 208 then
+            -- Down
+            if nOption < 10 then -- Change 4 by the number of option.
+                nOption = nOption + 1
+                --BRAdrawMenu()
+                BRAdrawFrontend()
+            end
+        elseif key == 28 then
+            -- Enter
+            break
+        end
+    end
+end
+term.clear()
+
+-- Conditions
+if nOption == 1 then
+    	term.setCursorPos(1,1)
+				return  ReactorAComm()--Reactor Comm
+	elseif nOption == 2 then
+    	term.setCursorPos(1,1)
+					return ReactorAMonitor()--Reactor Mon
+	elseif nOption == 3 then
+		term.setCursorPos(1,1)
+    				return ReactorAName()--Reactor Name
+	elseif nOption == 4 then
+ 		term.setCursorPos(1,1)
+ 					return ReactorADisplayFuel()--Dispaly Fuel
+	elseif nOption == 5 then
+ 		term.setCursorPos(1,1)
+ 					return ReactorADisplayTemp()--Display Temp
+	elseif nOption == 6 then
+ 		term.setCursorPos(1,1)
+ 					return ReactorADisplayFlux()--Display Flux
+	elseif nOption == 7 then
+ 		term.setCursorPos(1,1)
+ 					return ReactorADisplayWarn()--Display Warn
+	elseif nOption == 8 then
+ 		term.setCursorPos(1,1)
+ 					return ReactorARSInput()--Redstone In
+ 	elseif nOption == 9 then
+ 		term.setCursorPos(1,1)
+ 					return ReactorADisplayOn()--Monitor On/Off
+ 	else
+ 		term.setCursorPos(1,1)
+ 						nOption = 1
+ 					return SettingsMenuBR()
+  end
+end
+
+--######################################################################################################
+--## Reactor B ##
+--###############
+
+function SettingsMenuReactorB()
+
+local w,h = term.getSize()
+
+function BRBprintCentred( y, s )
+    local x = math.floor((w - string.len(s)) / 2)
+    term.setCursorPos(x,y)
+    term.clearLine()
+    term.write( s )
+end
+local nOption = 1
+-- Display menu
+local function BRBdrawMenu()
+    term.clear()
+    term.setCursorPos(1,1)
+    term.write( "Reactor B Settings Main Menu" )
+
+    term.setCursorPos(w-8,1)
+    if nOption == 1 then
+    term.write( "1" )
+    elseif nOption == 2 then
+    term.write( "2" )
+    elseif nOption == 3 then
+    term.write( "3" )
+    elseif nOption == 4 then
+    term.write( "4" )
+    elseif nOption == 5 then
+    term.write( "5" )
+    elseif nOption == 6 then
+    term.write( "6" )
+    elseif nOption == 7 then
+    term.write( "7" )
+    elseif nOption == 8 then
+    term.write( "8" )
+    elseif nOption == 9 then
+    term.write( "9" )
+    else
+    term.write( "10" )
+    end   
+end
+
+-- Display the frontend
+term.clear()
+local function BRBdrawFrontend()
+    BRBprintCentred( math.floor(h/2) - 2, "" )
+    BRBprintCentred( math.floor(h/2) - 1, "" )
+    BRBprintCentred( math.floor(h/2) + 0, ((nOption == 1) and (RBSET[1] ))   or (RBSET[2])  ) if Error[6] == 1 then write(" # ") end
+    BRBprintCentred( math.floor(h/2) + 1, ((nOption == 2) and (RBSET[3] ))   or (RBSET[4])  ) if Error[5] == 1 then write(" # ") end
+    BRBprintCentred( math.floor(h/2) + 2, ((nOption == 3) and (RBSET[5] ))   or (RBSET[6])  )
+    BRBprintCentred( math.floor(h/2) + 3, ((nOption == 4) and (RBSET[7] ))   or (RBSET[8])  )
+    BRBprintCentred( math.floor(h/2) + 4, ((nOption == 5) and (RBSET[9] ))   or (RBSET[10]) )
+	BRBprintCentred( math.floor(h/2) + 5, ((nOption == 6) and (RBSET[11]))   or (RBSET[12]) )
+	BRBprintCentred( math.floor(h/2) + 6, ((nOption == 7) and (RBSET[13]))   or (RBSET[14]) )
+	BRBprintCentred( math.floor(h/2) + 7, ((nOption == 8) and (RBSET[15]))   or (RBSET[16]) )
+	BRBprintCentred( math.floor(h/2) + 8, ((nOption == 9) and (RBSET[17]))   or (RBSET[18]) ) if Error[5] == 1 then write("#") end if Error[6] == 1 then write(" # ") end
+    BRBprintCentred( math.floor(h/2) + 9, ((nOption == 10)and (RBSET[19]))   or (RBSET[20]) )
+    BRBprintCentred( math.floor(h/2) + 10, "" )
+    
+ end
+
+-- Call functions for display menu
+BRBdrawMenu()
+BRBdrawFrontend()
+
+
+
+while true do
+    local e,p = os.pullEvent()
+    if e == "key" then
+        local key = p
+        if key == 17 or key == 200 then
+            -- Up
+            if nOption > 1 then
+                nOption = nOption - 1
+                BRBdrawMenu()
+                BRBdrawFrontend()
+            end
+        elseif key == 31 or key == 208 then
+            -- Down
+            if nOption < 10 then -- Change 4 by the number of option.
+                nOption = nOption + 1
+                BRBdrawMenu()
+                BRBdrawFrontend()
+            end
+        elseif key == 28 then
+            -- Enter
+            break
+        end
+    end
+end
+term.clear()
+
+-- Conditions
+if nOption == 1 then
+    	term.setCursorPos(1,1)
+    		return  ReactorBComm()--Reactor Comm
+	elseif nOption == 2 then
+    	term.setCursorPos(1,1)
+			return ReactorBMonitor()--Reactor Mon
+	elseif nOption == 3 then
+		term.setCursorPos(1,1)
+    				return ReactorBName()--Reactor Name
+	elseif nOption == 4 then
+ 		term.setCursorPos(1,1)
+ 					return ReactorBDisplayFuel()--Dispaly Fuel
+	elseif nOption == 5 then
+ 		term.setCursorPos(1,1)
+ 					return ReactorBDisplayTemp()--Display Temp
+	elseif nOption == 6 then
+ 		term.setCursorPos(1,1)
+ 					return ReactorBDisplayFlux()--Display Flux
+	elseif nOption == 7 then
+ 		term.setCursorPos(1,1)
+ 					return ReactorBDisplayWarn()--Display Warn
+	elseif nOption == 8 then
+ 		term.setCursorPos(1,1)
+ 					return ReactorBRSInput() --Redstone In
+ 	elseif nOption == 9 then
+ 		term.setCursorPos(1,1)
+ 					return ReactorBDisplayOn() --Monitor On/Off
+ 	else
+ 		term.setCursorPos(1,1)
+ 					return SettingsMenuBR()
+
+  end
+
+end
+
+--######################################################################################################
+--## Reactor Computer Settings ##
+--###############################
+
+function SettingsMenuComputer()
+
+	local w,h = term.getSize()
+	
+function BRCprintCentred( y, s )
+    local x = math.floor((w - string.len(s)) / 2)
+    term.setCursorPos(x,y)
+    term.clearLine()
+    term.write( s )
+end
+local nOption = 1
+-- Display menu
+local function BRCdrawMenu()
+    term.clear()
+    term.setCursorPos(1,1)
+    term.write( "Computer Settings Main Menu" )
+
+    term.setCursorPos(w-11,1)
+    if nOption == 1 then
+    term.write( "1" )
+    elseif nOption == 2 then
+    term.write( "2" )
+    elseif nOption == 3 then
+    term.write( "3" )
+    elseif nOption == 4 then
+    term.write( "4" )
+    elseif nOption == 5 then
+    term.write( "5" )
+    elseif nOption == 6 then
+    term.write( "6" )
+    elseif nOption == 7 then
+    term.write( "7" )
+    elseif nOption == 8 then
+    term.write( "8" )
+    elseif nOption == 9 then
+    term.write( "9" )
+    elseif nOption == 10 then
+    term.write( "10" )
+    elseif nOption == 11 then
+    term.write( "11" )
+    elseif nOption == 11 then
+    term.write( "12" )
+    elseif nOption == 11 then
+    term.write( "13" )
+    else
+    term.write( "14" )
+    end   
+end
+
+-- Display the frontend
+term.clear()
+local function BRCdrawFrontend()
+    BRCprintCentred( math.floor(h/2) - 7, "" )
+    BRCprintCentred( math.floor(h/2) - 6, "" )
+    BRCprintCentred( math.floor(h/2) - 5, ((nOption == 1) and (SETMU[1] )) or (SETMU[2] ))
+    BRCprintCentred( math.floor(h/2) - 4, ((nOption == 2) and (SETMU[3] )) or (SETMU[4] ))
+    BRCprintCentred( math.floor(h/2) - 3, ((nOption == 3) and (SETMU[5] )) or (SETMU[6] )) if Error[2] == 1 then write(" # ") end
+    BRCprintCentred( math.floor(h/2) - 2, ((nOption == 4) and (SETMU[7] )) or (SETMU[8] ))
+    BRCprintCentred( math.floor(h/2) - 1, ((nOption == 5) and (SETMU[9] )) or (SETMU[10]))
+    BRCprintCentred( math.floor(h/2) + 0, ((nOption == 6) and (SETMU[11])) or (SETMU[12]))
+    BRCprintCentred( math.floor(h/2) + 1, ((nOption == 7) and (SETMU[13])) or (SETMU[14]))
+    BRCprintCentred( math.floor(h/2) + 2, ((nOption == 8) and (SETMU[15])) or (SETMU[16]))
+    BRCprintCentred( math.floor(h/2) + 3, ((nOption == 9) and (SETMU[17])) or (SETMU[18])) if Error[2] == 1 then write(" # ") end
+    BRCprintCentred( math.floor(h/2) + 4, ((nOption == 10)and (SETMU[19])) or (SETMU[20]))
+    BRCprintCentred( math.floor(h/2) + 5, ((nOption == 11)and (SETMU[21])) or (SETMU[22]))
+    BRCprintCentred( math.floor(h/2) + 6, ((nOption == 12)and (SETMU[23])) or (SETMU[24]))
+    BRCprintCentred( math.floor(h/2) + 7, ((nOption == 13)and (SETMU[25])) or (SETMU[26]))
+    BRCprintCentred( math.floor(h/2) + 8, ((nOption == 14)and (SETMU[27])) or (SETMU[28]))
+    BRCprintCentred( math.floor(h/2) + 9, "" )
+    
+ end
+
+-- Call functions for display menu
+BRCdrawMenu()
+BRCdrawFrontend()
+
+
+
+while true do
+    local e,p = os.pullEvent()
+    if e == "key" then
+        local key = p
+        if key == 17 or key == 200 then
+            -- Up
+            if nOption > 1 then
+                nOption = nOption - 1
+                BRCdrawMenu()
+                BRCdrawFrontend()
+            end
+        elseif key == 31 or key == 208 then
+            -- Down
+            if nOption < 14 then -- Change 4 by the number of option.
+                nOption = nOption + 1
+                BRCdrawMenu()
+                BRCdrawFrontend()
+            end
+        elseif key == 28 then
+            -- Enter
+            break
+        end
+    end
+end
+term.clear()
+
+-- Conditions
+if nOption == 1 then
+    	term.setCursorPos(1,1)
+					return  GeneralSleep() --Set Refresh
+
+	elseif nOption == 2 then
+    	term.setCursorPos(1,1)
+					return TwoReactors() --Set If there is two reactors
+
+	elseif nOption == 3 then
+		term.setCursorPos(1,1)
+    				return StatMonitor()
+
+	elseif nOption == 4 then
+ 		term.setCursorPos(1,1)
+ 					return SetComLabel()
+
+	elseif nOption == 5 then
+ 		term.setCursorPos(1,1)
+ 					return FirstRunSetting()
+
+ 	elseif nOption == 6 then
+ 		term.setCursorPos(1,1)
+ 					return BRUpdater()
+
+ 	elseif nOption == 7 then
+ 		term.setCursorPos(1,1)
+ 					return AutoCheckUpdate()
+
+elseif nOption == 8 then
+ 		term.setCursorPos(1,1)
+ 					return ProgVerInfo()
+
+elseif nOption == 9 then
+ 		term.setCursorPos(1,1)
+ 					return  StatMonOn()
+
+elseif nOption == 10 then
+ 		term.setCursorPos(1,1)
+ 					return SaveBackup()
+
+elseif nOption == 11 then
+ 		term.setCursorPos(1,1)
+ 					return LoadBackup()										
+
+elseif nOption == 12 then
+ 		term.setCursorPos(1,1)
+ 					return RequirePassword()				
+
+elseif nOption == 13 then
+ 		term.setCursorPos(1,1)
+ 					return ChangePassword()
+
+ 	else
+ 		term.setCursorPos(1,1)
+ 					return SettingsMenuBR()
+
+  end
+end
+
+
+--######################################################################################################
+--## Splash Screen ##
+--###################
+SplashCount = 0
+
+function SplashBox()
+	term.setCursorPos(1,1)
+	write("O-------------------------------O-----------------O")
+	term.setCursorPos(1,2)
+	write("|                               |                 |")
+	term.setCursorPos(1,3)
+	write("|                               |                 |")
+	term.setCursorPos(1,4)
+	write("|                               |                 |")
+	term.setCursorPos(1,5)
+	write("|                               |                 |")
+	term.setCursorPos(1,6)
+	write("O-----------------------OO------O-----------------O")
+	term.setCursorPos(1,7)
+	write("|                       ||                        |")
+	term.setCursorPos(1,8)
+	write("|                       ||                        |")
+	term.setCursorPos(1,9)
+	write("|                       ||                        |")
+	term.setCursorPos(1,10)
+	write("|                       ||                        |")
+	term.setCursorPos(1,11)
+	write("O-----------------------OO------------------------O")
+	term.setCursorPos(1,12)
+	write("|                       ||                        |")
+	term.setCursorPos(1,13)
+	write("|                       ||                        |")
+	term.setCursorPos(1,14)
+	write("|                       ||                        |")
+	term.setCursorPos(1,15)
+	write("|                       ||                        |")
+	term.setCursorPos(1,16)
+	write("|                       ||                        |")
+	term.setCursorPos(1,17)
+	write("|                       ||                        |")
+	term.setCursorPos(1,18)
+	write("O-----------------------OO------------------------O")	
+end
+
+function SplashUpdate() -- Adds status notifications for Password on / update aviliable
+	if BRUDA == 1 then
+	term.setCursorPos(35,2)
+	write("  New Update!")
+	term.setCursorPos(37,3)
+	write("Ver : ") write(VERU[2])
+	term.setCursorPos(34,3)
+	else
+		if Error[1] == 1 then
+			term.setTextColor((TXTCOL[15]))
+			term.setCursorPos(34,2)
+			write("")
+			term.setCursorPos(34,3)
+			write("  Error Detected")
+			term.setCursorPos(34,4)
+			write("")
+			term.setCursorPos(34,5)
+			write("  [SAFE  MODE]  ")
+			term.setTextColor((TXTCOL[1]))
+		else
+			term.setCursorPos(34,2)
+			write("")
+			term.setCursorPos(34,3)
+			write("  FTBUKLW - BR")
+			if DBLD == 1 then term.setCursorPos(37,4) write(BIDVER) else term.setCursorPos(34,4) write("") end
+			term.setCursorPos(34,5)
+			write("")
+		end
+    end
+
+    if PasConfig[2] == 1 then term.setCursorPos(22,19) term.setTextColor((TXTCOL[15])) write("[Locked]") term.setTextColor((TXTCOL[1])) end
+    if COMUPDATE == 1 then term.setCursorPos(35,5) term.setTextColor((TXTCOL[15])) write("COM") term.setTextColor((TXTCOL[1])) end
+    if RTAUPDATE == 1 then term.setCursorPos(39,5) term.setTextColor((TXTCOL[15])) write("RTA") term.setTextColor((TXTCOL[1])) end
+    if RTBUPDATE == 1 then term.setCursorPos(43,5) term.setTextColor((TXTCOL[15])) write("RTB") term.setTextColor((TXTCOL[1])) end
+    if ERRUPDATE == 1 then term.setCursorPos(47,5) term.setTextColor((TXTCOL[15])) write("ERR") term.setTextColor((TXTCOL[1])) end
+
+end
+
+
+
+function SplashProgInfo()
+	if Error[1] == 1 then
+		if Error[2] == 1 then
+			writeError(3, 2, ErrPrint[1])
+		end
+		if Error[3] == 1 then
+			writeError(3, 3, ErrPrint[2])
+		end
+		if Error[4] == 1 then
+			writeError(3, 4, ErrPrint[3])
+		end
+		if Error[5] == 1 then
+			writeError(20, 3, ErrPrint[4])
+		end
+		if Error[6] == 1 then
+			writeError(20, 4, ErrPrint[5])
+		end
+		if Error[7] == 1 then
+			writeError(20, 2, ErrPrint[6])
+		end
+		if Error[8] == 1 then
+			writeError(3, 5, ErrPrint[7])
+		end
+		if Error[9] == 1 then
+			writeError(20, 5, ErrPrint[8])
+		end
+	else
+	term.setCursorPos(3,2)
+	write('MOD     : Big Reactors')
+	term.setCursorPos(3,3)
+	write('Program : BR Reactor Control') --31
+	term.setCursorPos(3,4)
+	write('Ver     : '..VER)
+	term.setCursorPos(3,5)
+	write('By      : UK_Lone_Wolf')
+end
+end
+
+function SplashProgSettingsA()
+term.setCursorPos(3,7)
+term.setTextColor((TXTCOL[1]))
+write((ReactorA[3]))
+term.setCursorPos(3,8)
+term.setTextColor((TXTCOL[5]))
+write("Fuel     : ") write(math.floor((((RACommP.getFuelAmount())/(RACommP.getFuelAmountMax()))*100)+0.5)..'%   ')
+term.setCursorPos(3,9)
+term.setTextColor((TXTCOL[4]))
+write("Waste    : ") write(math.floor((((RACommP.getWasteAmount())/(RACommP.getFuelAmountMax()))*100)+0.5)..'%   ')
+term.setCursorPos(3,10)
+term.setTextColor((TXTCOL[6]))
+write("Rod Depth: ") write((100-(RACommP.getControlRodLevel(0)))..'%   ')
+term.setTextColor((TXTCOL[1]))
+end
+
+function SplashProgSettingsB()
+term.setCursorPos(28,7)
+term.setTextColor((TXTCOL[1]))
+write((ReactorB[3]))
+term.setCursorPos(28,8)
+term.setTextColor((TXTCOL[5]))
+write("Fuel     : ") write(math.floor((((RBCommP.getFuelAmount())/(RBCommP.getFuelAmountMax()))*100)+0.5)..'%   ')
+term.setCursorPos(28,9)
+term.setTextColor((TXTCOL[4]))
+write("Waste    : ") write(math.floor((((RBCommP.getWasteAmount())/(RBCommP.getFuelAmountMax()))*100)+0.5)..'%   ')
+term.setCursorPos(28,10)
+term.setTextColor((TXTCOL[6]))
+write("Rod Depth: ") write((100-(RBCommP.getControlRodLevel(0)))..'%   ')
+term.setTextColor((TXTCOL[1]))
+end
+
+function SplashScreen()
+shell.run("clear")
+SplashBox()
+SplashProgInfo()
+SplashUpdate()
+end
+
+--######################################################################################################
+--## Reactor Main Run ##
+--######################
+
+function ReactorMainRun()
+	if Error[3] == 0 then
+		if Error[4] == 0 then
+			ReactorAFunctions()
+		end
+	end
+		if ComConfig[2] == 1 then
+		   if Error[5] == 0 then
+		      if Error[6] == 0 then
+			ReactorBFunctions()
+		      end
+		   end
+		end
+	ReactorControl()
+end
+
+function CL()
+	shell.run("clear")
+end
+
+--######################################################################################################
+goodNight = function()
+	imdone = false
+	term.setCursorPos (1, 19)
+	term.setTextColor((TXTCOL[1]))
+	write ("F12 : Settings")
+	if ComConfig[1] > 0 then
+		while resetsleep < ComConfig[1] do
+			if running == false then break end
+			term.setCursorPos (33, 19)
+			write ("Refresh Rate: "..ComConfig[1]-resetsleep.."/"..ComConfig[1].." ")
+			sleep(0.1)
+			resetsleep = resetsleep + 1
+		end
+	end
+	resetsleep = 1
+	imdone = true
+end
+
+wakeUp = function() -- inturrption by keyboard input, goes to settings menu
+	local Accept, param = os.pullEvent("key")
+    if Accept == "key" then
+        if param == 88 then
+	SetMenu = true
+        end
+    end
+end
+
+function nowISleep() -- sets up for sleeping and inturrupting the sleep for the settings menu
+	parallel.waitForAny(wakeUp, goodNight)
+	if running == false then term.clear() return end
+	if SetMenu == true then
+		sleep(0.4)
+		if PasConfig[2] == 1 then  FTBUKLWSecure() else SettingsMenuBR() end
+	end
+	if imdone == false then
+	nowISleep()
+	
+	end
+end
+
+
+--#######################################################################
+--## Main Loop ##
+--###############
+function MainLoop()
+Setmenu = false
+imdone = true
+
+running = true
+SplashScreen()
+
+if ReactorA[9] == 1 then
+mon1.setTextScale(1)
+mon1.setBackgroundColor((TXTCOL[16]))
+end
+
+while running == true do
+if ReactorA[9] == 1 then mon1.clear() end
+if ComConfig[2] == 1 then mon2.clear() end
+StatusMonitor()
+if running == false then break end
+ReactorMainRun()
+resetsleep = 1
+nowISleep()
+if running == false then break end
+end
+end
+
+--#######################################################################
+
+function StartUp()
+if Test == 0 then
+--CL()
+--LoadBarGen("Loading Settings", 20, colors.lime)
+--CL()
+--CheckUpdate
+
+if Error[1] == 0 then
+	if Error[2] == 1 then
+		Error[1] = 1
+		Save(Error, "BR-ERR.cfg")
+	end
+	if Error[3] == 1 then
+		Error[1] = 1
+		Save(Error, "BR-ERR.cfg")
+	end
+	if Error[4] == 1 then
+		Error[1] = 1
+		Save(Error, "BR-ERR.cfg")
+	end
+  if Error[5] == 1 then
+		Error[1] = 1
+		Save(Error, "BR-ERR.cfg")
+	end
+	if Error[6] == 1 then
+		Error[1] = 1
+		Save(Error, "BR-ERR.cfg")
+	end
+	if Error[7] == 1 then
+		Error[1] = 1
+		Save(Error, "BR-ERR.cfg")
+	end
+	if Error[8] == 1 then
+		Error[1] = 1
+		Save(Error, "BR-ERR.cfg")
+	end
+	if Error[9] == 1 then
+		Error[1] = 1
+		Save(Error, "BR-ERR.cfg")
+	end
+end
+
+
+
+
+
+if ComConfig[7] == 1 then if Error[8] == 0 then BRUpdateCheck() end end
+
+--Defaults
+
+if ComConfig[6] == 1 then
+	LoadBarGen("Deleting ComConfig", 20, colors.red)
+				shell.run("delete BR-COM.cfg")
+	LoadBarGen("Deleting ReactorAConfig", 20, colors.red)
+				shell.run("delete BR-RTA.cfg")
+	LoadBarGen("Deleting ReactorBConfig", 20, colors.red)
+				shell.run("delete BR-RTB.cfg")
+	LoadBarGen("Rebooting", 20, colors.orange)
+				os.reboot()
+end
+
+-- First Run
+
+if ComConfig[5] == 1 then
+	ComConfig[5] = 0
+	CL()
+	Save(ComConfig, "BR-COM.cfg")
+	print("The program will now take you to the Com setting")
+	print("for Reactor 1 to get you running quickly.")
+	print("")
+	print("When you add monitors press F12 to go to the settings")
+	print("menu, where you can change different items.")
+	print("Press any key to continue")
+	os.pullEvent("key")
+	shell.run ("clear")
+	ReactorAComm()
+end
+end
+end
+
+StartUp()
+MainLoop()
