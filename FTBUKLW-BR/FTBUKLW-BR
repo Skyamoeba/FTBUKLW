@@ -3,6 +3,14 @@
 --#####################
 
 --[[
+
+Ver  : 0.3.7
+Build: 01.15.0.1
+
+		Fixed
+			-- A error when accessing the settings menu.
+
+
 Ver  : 0.3.6 
 Build: 11.14.1.35 - 11.14.1.46
 
@@ -373,8 +381,8 @@ end
 --###########################################
 --## Ver Information defined By Programmer #########################################################
 --###########################################
-local VER         = "0.3.6"
-local BIDVER      = "11.14.1.46"
+local VER         = "0.3.7"
+local BIDVER      = "01.15.0.1"
 local NewProgVer  = 036
 local BCKUPVER    = 036
 local NewComVer   = 001
@@ -3146,7 +3154,7 @@ function SettingsMenuComputer()
 
 	local w,h = term.getSize()
 	
-function BRCprintCentred( y, s )
+function SMCprintCentred( y, s )
     local x = math.floor((w - string.len(s)) / 2)
     term.setCursorPos(x,y)
     term.clearLine()
@@ -3154,7 +3162,7 @@ function BRCprintCentred( y, s )
 end
 local nOption = 1
 -- Display menu
-local function BRCdrawMenu()
+local function SMCdrawMenu()
     term.clear()
     term.setCursorPos(1,1)
     term.write( "Computer Settings Main Menu" )
@@ -3193,30 +3201,30 @@ end
 
 -- Display the frontend
 term.clear()
-local function BRCdrawFrontend()
-    BRCprintCentred( math.floor(h/2) - 7, "" )
-    BRCprintCentred( math.floor(h/2) - 6, "" )
-    BRCprintCentred( math.floor(h/2) - 5, ((nOption == 1) and (SETMU[1] )) or (SETMU[2] ))
-    BRCprintCentred( math.floor(h/2) - 4, ((nOption == 2) and (SETMU[3] )) or (SETMU[4] ))
-    BRCprintCentred( math.floor(h/2) - 3, ((nOption == 3) and (SETMU[5] )) or (SETMU[6] )) if Error[2] == 1 then write(" # ") end
-    BRCprintCentred( math.floor(h/2) - 2, ((nOption == 4) and (SETMU[7] )) or (SETMU[8] ))
-    BRCprintCentred( math.floor(h/2) - 1, ((nOption == 5) and (SETMU[9] )) or (SETMU[10]))
-    BRCprintCentred( math.floor(h/2) + 0, ((nOption == 6) and (SETMU[11])) or (SETMU[12]))
-    BRCprintCentred( math.floor(h/2) + 1, ((nOption == 7) and (SETMU[13])) or (SETMU[14]))
-    BRCprintCentred( math.floor(h/2) + 2, ((nOption == 8) and (SETMU[15])) or (SETMU[16]))
-    BRCprintCentred( math.floor(h/2) + 3, ((nOption == 9) and (SETMU[17])) or (SETMU[18])) if Error[2] == 1 then write(" # ") end
-    BRCprintCentred( math.floor(h/2) + 4, ((nOption == 10)and (SETMU[19])) or (SETMU[20]))
-    BRCprintCentred( math.floor(h/2) + 5, ((nOption == 11)and (SETMU[21])) or (SETMU[22]))
-    BRCprintCentred( math.floor(h/2) + 6, ((nOption == 12)and (SETMU[23])) or (SETMU[24]))
-    BRCprintCentred( math.floor(h/2) + 7, ((nOption == 13)and (SETMU[25])) or (SETMU[26]))
-    BRCprintCentred( math.floor(h/2) + 8, ((nOption == 14)and (SETMU[27])) or (SETMU[28]))
-    BRCprintCentred( math.floor(h/2) + 9, "" )
+local function SMCdrawFrontend()
+    SMCprintCentred( math.floor(h/2) - 7, "" )
+    SMCprintCentred( math.floor(h/2) - 6, "" )
+    SMCprintCentred( math.floor(h/2) - 5, ((nOption == 1) and (SETMU[1] )) or (SETMU[2] ))
+    SMCprintCentred( math.floor(h/2) - 4, ((nOption == 2) and (SETMU[3] )) or (SETMU[4] ))
+    SMCprintCentred( math.floor(h/2) - 3, ((nOption == 3) and (SETMU[5] )) or (SETMU[6] )) if Error[2] == 1 then write(" # ") end
+    SMCprintCentred( math.floor(h/2) - 2, ((nOption == 4) and (SETMU[7] )) or (SETMU[8] ))
+    SMCprintCentred( math.floor(h/2) - 1, ((nOption == 5) and (SETMU[9] )) or (SETMU[10]))
+    SMCprintCentred( math.floor(h/2) + 0, ((nOption == 6) and (SETMU[11])) or (SETMU[12]))
+    SMCprintCentred( math.floor(h/2) + 1, ((nOption == 7) and (SETMU[13])) or (SETMU[14]))
+    SMCprintCentred( math.floor(h/2) + 2, ((nOption == 8) and (SETMU[15])) or (SETMU[16]))
+    SMCprintCentred( math.floor(h/2) + 3, ((nOption == 9) and (SETMU[17])) or (SETMU[18])) if Error[2] == 1 then write(" # ") end
+    SMCprintCentred( math.floor(h/2) + 4, ((nOption == 10)and (SETMU[19])) or (SETMU[20]))
+    SMCprintCentred( math.floor(h/2) + 5, ((nOption == 11)and (SETMU[21])) or (SETMU[22]))
+    SMCprintCentred( math.floor(h/2) + 6, ((nOption == 12)and (SETMU[23])) or (SETMU[24]))
+    SMCprintCentred( math.floor(h/2) + 7, ((nOption == 13)and (SETMU[25])) or (SETMU[26]))
+    SMCprintCentred( math.floor(h/2) + 8, ((nOption == 14)and (SETMU[27])) or (SETMU[28]))
+    SMCprintCentred( math.floor(h/2) + 9, "" )
     
  end
 
 -- Call functions for display menu
-BRCdrawMenu()
-BRCdrawFrontend()
+SMCdrawMenu()
+SMCdrawFrontend()
 
 
 
@@ -3228,15 +3236,15 @@ while true do
             -- Up
             if nOption > 1 then
                 nOption = nOption - 1
-                BRCdrawMenu()
-                BRCdrawFrontend()
+                SMCdrawMenu()
+                SMCdrawFrontend()
             end
         elseif key == 31 or key == 208 then
             -- Down
             if nOption < 14 then -- Change 4 by the number of option.
                 nOption = nOption + 1
-                BRCdrawMenu()
-                BRCdrawFrontend()
+                SMCdrawMenu()
+                SMCdrawFrontend()
             end
         elseif key == 28 then
             -- Enter
