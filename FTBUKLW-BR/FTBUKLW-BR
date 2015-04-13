@@ -4,11 +4,22 @@
 
 --[[
 
+Ver  : 0.3.8
+Build: 01.15.0.3
+		Fixed
+			-- A error where the temp on reactor 2 external display
+			   would show on wrong line.
+
 Ver  : 0.3.7
 Build: 01.15.0.1
 
 		Fixed
 			-- A error when accessing the settings menu.
+
+Build: 01.15.0.2
+
+		Added
+			-- API loading area within code.
 
 
 Ver  : 0.3.6 
@@ -279,6 +290,25 @@ Ver: 0.0.0
 	First Draft Build (Very Basic functionality)
 --]]
 
+--############################
+--## API Loader/ Downloader  #
+--###################################################################################################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--### END OF API LOADER ###--
+
 --#############################
 --## Program Config Defaults ########################################################################
 --#############################
@@ -381,8 +411,8 @@ end
 --###########################################
 --## Ver Information defined By Programmer #########################################################
 --###########################################
-local VER         = "0.3.7"
-local BIDVER      = "01.15.0.1"
+local VER         = "0.3.8"
+local BIDVER      = "01.15.0.3"
 local NewProgVer  = 036
 local BCKUPVER    = 036
 local NewComVer   = 001
@@ -1014,17 +1044,27 @@ function ReactorBTemp()
 --#######################
 
 if RBCommP.getCasingTemperature()>=650 then
-if ReactorB[9] == 1 then mon2.setCursorPos(3,7) RTRBMONCOL(TXTCOL[11]) end
-    term.setTextColor((TXTCOL[11]))
+    	if ReactorB[9] == 1 then
+    	mon2.setCursorPos(3,7)
+    	RTRAMONCOL(TXTCOL[11])
+    	end
+    	COMMONCOL(TXTCOL[11])
     else if RBCommP.getCasingTemperature()>=950 then
-        if ReactorB[9] == 1 then RTRBMONCOL(TXTCOL[15]) end
-        term.setTextColor((TXTCOL[15]))
+        if ReactorB[9] == 1 then
+        mon2.setCursorPos(3,7)
+        RTRBMONCOL(TXTCOL[15])
+    	end
+        COMMONCOL(TXTCOL[15])
     else
-	if ReactorB[9] == 1 then RTRBMONCOL(TXTCOL[14]) end
-	term.setTextColor((TXTCOL[14]))
+		if ReactorB[9] == 1 then
+		mon2.setCursorPos(3,7)
+		RTRBMONCOL(TXTCOL[14])
+	    end
+		COMMONCOL(TXTCOL[14])
     end
 end
-if ReactorB[9] == 1 then mon2.write('Temp (C) : ') mon2.write(tostring (math.floor(RBCommP.getCasingTemperature()))) end
+if ReactorB[9] == 1 then mon2.write('Temp (C) : ') mon2.write(tostring (math.floor(RBCommP.getCasingTemperature()))) 
+end
 
 --######################
 --## Computer Display ##################################################################################
