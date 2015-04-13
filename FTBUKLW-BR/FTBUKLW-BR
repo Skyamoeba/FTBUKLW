@@ -413,8 +413,8 @@ end
 --###########################################
 local VER         = "0.3.8"
 local BIDVER      = "01.15.0.3"
-local NewProgVer  = 036
-local BCKUPVER    = 036
+local NewProgVer  = 038
+local BCKUPVER    = 038
 local NewComVer   = 001
 local NewRTAVer   = 001
 local NewRTBVer   = 001
