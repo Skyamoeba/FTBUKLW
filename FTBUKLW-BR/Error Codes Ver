@@ -1,0 +1,14 @@
+[CO-87494-4] = Problem with Status Monitor
+[CO-45164-4] = Problem with Reactor A Display
+[CO-12554-5] = Problem with Reactor B Display
+
+[CO-48965-1] = Problem with Reactor A Comunication
+[CO-89741-2] = Problem with Reactor B Comunication
+[CO-30733-6] = Problem connecting to internet
+
+[CE-08422-8] = Ooooops Unknown Error Occured
+[SU-30733-6] = Software Version already upto date
+
+SU = Software Update
+CO = Communication Error
+CE = Other / Unkown Error
