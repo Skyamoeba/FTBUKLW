@@ -1,8 +1,19 @@
+Ver  : 0.3.8
+Build: 01.15.0.3
+		Fixed
+			-- A error where the temp on reactor 2 external display
+			   would show on wrong line.
+
 Ver  : 0.3.7
 Build: 01.15.0.1
 
 		Fixed
 			-- A error when accessing the settings menu.
+
+Build: 01.15.0.2
+
+		Added
+			-- API loading area within code.
 
 
 Ver  : 0.3.6 
