@@ -455,10 +455,10 @@ end
 --###########################################
 --## Ver Information defined By Programmer #########################################################
 --###########################################
-local VER         = "0.3.8"
-local BIDVER      = "01.15.0.4"
-local NewProgVer  = 038
-local BCKUPVER    = 038
+local VER         = "0.3.9"
+local BIDVER      = "01.15.0.9"
+local NewProgVer  = 039
+local BCKUPVER    = 039
 local NewComVer   = 001
 local NewRTAVer   = 001
 local NewRTBVer   = 001
