@@ -1,8 +1,28 @@
+Ver  : 0.3.9
+Build: 01.15.0.5
+		
+		Fixed
+			-- A bug which would not allow Auto Check to call remote file.
+
+Grammar Fixes:
+			--  Noticed some spelling mistakes in the Ver notes. :)
+
+
 Ver  : 0.3.8
 Build: 01.15.0.3
 		Fixed
 			-- A error where the temp on reactor 2 external display
 			   would show on wrong line.
+
+Build: 01.15.0.4
+		
+		Fixed
+			-- A typo which selected a color for reactor A but displayed it on Reactor B
+			-- A bug which would not allow Auto Check to call remote file.
+
+		Added
+			-- A few things for Expandable settings
+
 
 Ver  : 0.3.7
 Build: 01.15.0.1
@@ -24,7 +44,7 @@ Build: 11.14.1.35 - 11.14.1.46
 					-- Menus now have a boarder around.
 
 			-- Added
-					-- function writeError() to make programin compact
+					-- function writeError() to make programing compact
 					-- Backup present indicator.
 					-- Program installed is latest ver if update 
 					    program is selected when current version is installed
@@ -45,7 +65,7 @@ Build: 11.14.1.35 - 11.14.1.46
 Ver: 0.3.0- 0.3.5
 		Added
 			-- Error Catcher
-					-- Status Monitor now protcted (0.3.1)
+					-- Status Monitor now protected (0.3.1)
 					-- Reactor A Monitor now protected (0.3.2)
 					-- Reactor A Comms now protected (0.3.2)
 					-- Reactor B Monitor now protected (0.3.3)
@@ -66,7 +86,7 @@ Ver: 0.2.9
             -- If the Update makes changes to the .cfg files then a COM, RTA, RTB, ERR
                will be displayed along with the new version number.
 
-		Compactibility Test
+		Compatibility Test
 			-- Tested with CraftOS 1.6 and works as expected.
 
 	    Bugs Fixed
@@ -81,7 +101,7 @@ Ver: 0.2.9
             -- Got rid of flashing status due to frame rate and cosmetic reasons
             -- Refining how the update and ver config is delt within program.
             -- Changed the format of how BR-UPD.upd is read.
-            -- Changed how Status is displayed on staus monitor.
+            -- Changed how Status is displayed on status monitor.
             -- Changed First startup to take you to the set Reactor 1 Comm port first.
             -- Removed BR-Ver.cfg from program due to it only being used for something
                that can be stated within the program.
