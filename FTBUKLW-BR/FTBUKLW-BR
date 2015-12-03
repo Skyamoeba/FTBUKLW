@@ -3,6 +3,28 @@
 --#####################
 
 --[[
+Ver  : 0.4.1 - 0.4.5
+Build: 12.15.45.DE - 08.15.10.76
+
+		Added
+			-- Universal menu to API
+			-- Universal Load Bar to API
+
+		Changed
+			-- How the menus are delt with from internally and moved it to the API
+			-- How the Loadbar is delt with from internally and moved it to the API
+
+		Removed
+			-- Old outdated and not used code
+
+
+
+Ver  : 0.4.0
+Build: 08.15.10.25
+
+		Added
+			-- Added API to move some of the universal functions to it.
+
 
 Ver  : 0.3.9
 Build: 01.15.0.5
@@ -314,6 +336,13 @@ Ver: 0.0.0
 --## API Loader/ Downloader  #
 --###################################################################################################
 
+local GAPI = "pastebin get PwiHKVaH BRAPI"
+while not fs.exists ("BRAPI") do
+	print("API not found... Fetching Now")
+	shell.run(GAPI)
+end
+
+os.unloadAPI("BRAPI") -- Unloads to refresh API
 
 
 
@@ -325,7 +354,7 @@ Ver: 0.0.0
 
 
 
-
+os.loadAPI("BRAPI")
 
 --### END OF API LOADER ###--
 
@@ -455,10 +484,10 @@ end
 --###########################################
 --## Ver Information defined By Programmer #########################################################
 --###########################################
-local VER         = "0.3.9"
-local BIDVER      = "01.15.0.9"
-local NewProgVer  = 039
-local BCKUPVER    = 039
+local VER         = "0.4.5"
+local BIDVER      = "08.15.10.76"
+local NewProgVer  = 040
+local BCKUPVER    = 040
 local NewComVer   = 001
 local NewRTAVer   = 001
 local NewRTBVer   = 001
@@ -505,28 +534,28 @@ TXTCOL = {
 --## Related Functions ##
 --#######################
 
-function COMMONCOL(TEXTCOL)
+function COMMONCOL(TEXTCOL1)
 	if COL == true then
-	term.setTextColor((TEXTCOL))
+	term.setTextColor((TEXTCOL1))
 	end
 end
 
-function STATMONCOL(TEXTCOL)
+function STATMONCOL(TEXTCOL2)
 	if COL == true then
-	StatMon.setTextColor((TEXTCOL))
+	StatMon.setTextColor((TEXTCOL2))
     end
 end
 
-function RTRAMONCOL(TEXTCOL)
+function RTRAMONCOL(TEXTCOL3)
 	if COL == true then
-	mon1.setTextColor((TEXTCOL))
+	mon1.setTextColor((TEXTCOL3))
 
 	end
 end
 
-function RTRBMONCOL(TEXTCOL)
+function RTRBMONCOL(TEXTCOL4)
 	if COL == true then
-	mon2.setTextColor((TEXTCOL))
+	mon2.setTextColor((TEXTCOL4))
 	end
 end
 
@@ -562,59 +591,6 @@ ErrPrint = {"[CO-87494-4]", "[CO-45164-4]", "[CO-48965-1]", "[CO-12554-5]", "[CO
 --## Menu Options ######################################################################################
 --##################
 MISCA = {""}
-
-MTITL = {"Main Menu", 
-         "Reactor 1 Settings", 
-         "Reactor 2 Settings", 
-         "Computer Settings"
-        }
-
-MMSET = {">> Reactor 1 ", "   Reactor 1 ", 
-         ">> Reactor 2 ", "   Reactor 2 ", 
-         ">> Computer  ", "   Computer  ", 
-         ">> Reset Err ", "   Reset Err ", 
-         ">> Exit      ", "   Exit      "
-        }
-
-RASET = {">> Reactor Comm   ", "   Reactor Comm   ", 
-         ">> Reactor Mon    ", "   Reactor Mon    ", 
-         ">> Reactor Name   ", "   Reactor Name   ", 
-         ">> Display Fuel   ", "   Display Fuel   ", 
-         ">> Display Temp   ", "   Display Temp   ", 
-         ">> Display Flux   ", "   Display Flux   ",
-         ">> Display Warn   ", "   Display Warn   ", 
-         ">> Redstone In    ", "   Redstone In    ", 
-         ">> Monitor On/Off ", "   Monitor On/Off ", 
-         ">> Back           ", "   Back           "
-        }
-	
-RBSET = {">> Reactor Comm   ", "   Reactor Comm   ", 
-         ">> Reactor Mon    ", "   Reactor Mon    ", 
-         ">> Reactor Name   ", "   Reactor Name   ", 
-         ">> Display Fuel   ", "   Display Fuel   ", 
-         ">> Display Temp   ", "   Display Temp   ", 
-         ">> Display Flux   ", "   Display Flux   ",
-         ">> Display Warn   ", "   Display Warn   ", 
-         ">> Redstone In    ", "   Redstone In    ", 
-         ">> Monitor On/Off ", "   Monitor On/Off ", 
-         ">> Back           ", "   Back           "
-        }
-
-SETMU = {">> Set Refresh     ", "   Set Refresh     ",
-         ">> 2 Reactors?     ", "   2 Reactors?     ",
-         ">> Status Mon      ", "   Status Mon      ",
-         ">> Com Label       ", "   Com Label       ",
-         ">> Default Set     ", "   Default Set     ",
-         ">> Update Program  ", "   Update Program  ",
-         ">> Auto Check      ", "   Auto Check      ",
-         ">> Ver Info        ", "   Ver Info        ",
-         ">> Monitor On/Off  ", "   Monitor On/Off  ",
-         ">> Backup Settings ", "   Backup Settings ",
-         ">> Restore Backup  ", "   Restore Backup  ",
-         ">> Require Pass    ", "   Require Pass    ",
-         ">> Change Pass     ", "   Change Pass     ",
-         ">> Back            ", "   Back            "
-        }
 
 SWARN = {
          'Status   : M.O  ', 
@@ -683,31 +659,6 @@ end
 
 --######################################################################################################
 
-function FTBUKLWSecure()
-
-local Name = ("FTBUKLW-BR")
-Admin = PasConfig[1]
-Exit = "0000"
-Attempts = PasConfig[3]
-term.clear()
-os.pullEvent = os.pullEventRaw
-term.setCursorPos(1,1)
-write (Name)
-term.setCursorPos(1,3)
-write ("Admin Logon: ")write ("")
-
-local Input = read("*")
-if Input == (Admin) then
-SettingsMenuBR()
-elseif Input == (Exit) then
-	os.reboot()
-else
-sleep(1)
-PasConfig[3] = PasConfig[3] +1
-Save(PasConfig, "BR-PAS.cfg")
-end
-FTBUKLWSecure()
-end
 
 --######################################################################################################
 --## Status Display ##
@@ -905,6 +856,7 @@ end
 if ReactorA[9] == 1 then 
 mon1.setCursorPos(3,9)
 mon1.write ("RF/t     : ") mon1.write(tostring (math.floor(RACommP.getEnergyProducedLastTick()+0.5)))
+RTRAMONCOL(TXTCOL[1])
 end
 --######################
 --## Computer Display ##################################################################################
@@ -968,7 +920,7 @@ function ReactorAWarn()
     	term.setCursorPos(3,15)
     	COMMONCOL(TXTCOL[5])
     	write('Status   : L.P.M')
-	  end
+    end
 	  if emptyflag==0 and offlineflag==0 and RACommP.getControlRodLevel(0)<=75 then
 	  if ReactorA[9] == 1 then 
 	    mon1.setCursorPos(3,10)
@@ -1383,123 +1335,20 @@ ReactorALogic()
 		ReactorBLogic()
 	end
 end
---########################################################################
---Added in 0.1.9
 
-function LoadBar(Time)
-local TextX = 13
-local TextY = 10
-local MainX = TextX + 0 -- Loading Bar X (left to right location) Default = TextX + 0
-local MainY = TextY + 1 -- Loading Bar Y (up and down location) Default = TextY + 1
-local NXTX = MainX + 0 -- change this number to change hoe far accross the new line will start (Default = 0)
-local NXTY = MainY + 1 -- change this number to change how far down the new line will be (Default = 1)
---local Text = "" -- Tells the user what the loading bar is for
-local Clear = true -- If false and using for Pastebin set TextY to 4
-local LoadTime = 0.1
---local LDPE     = 20 --20 Default
-local LDPE = Time
-
---Everything below here is auto setup by the values entered above
-local MainX2 = MainX + 21
-local MainY2 = MainY + 0
-local TextPX = MainX2 + 1
-local TextPY = MainY + 0
-local LBX= MainX + 1
-local LBY= MainY + 0
-local PER = 5
-
-
-
-function LoadClear()
-  if Clear == false then
-    return
-  else
-    shell.run("clear")
-  end
-end
-
-function LoadingBarBW()
-  LoadClear()
-  term.setCursorPos (TextX,TextY)
-  write(Text)
-  term.setCursorPos (MainX,MainY)
-  write ("[")
-  term.setCursorPos (MainX2,MainY2)
-  write ("]")
-  
-  for i = LDPE, 1, - 1 do
-  term.setCursorPos (LBX,LBY)
-  write ("=")
-  sleep(LoadTime)
-  LBX = LBX + 1
-  term.setCursorPos (TextPX,TextPY)
-  write (PER) write("%")
-  PER = PER + 5
-  term.setCursorPos (NXTX,NXTY)
-end
-
-end
-
-function LoadingBarCL()
-  LoadClear()
-  
-  term.setCursorPos (TextX,TextY)
-  term.setTextColor (Tile)
-  write(Text)
-  term.setTextColor (colors.white)
-  term.setCursorPos (MainX,MainY)
-  write ("[")
-  term.setCursorPos (MainX2,MainY2)
-  write ("]")
-  
-  for i = LDPE, 1, - 1 do
-  term.setTextColor (8192)
-  term.setBackgroundColor (8192)
-  term.setCursorPos (LBX,LBY)
-  write ("#")
-  sleep(LoadTime)
-  LBX = LBX + 1 
-  term.setCursorPos (TextPX,TextPY)
-  term.setTextColor (1)
-  term.setBackgroundColor (32768)
-  write (PER) write("%") 
-  PER = PER + 5
-  term.setCursorPos (NXTX,NXTY)
-end
-
-end
-
-
-if COL == true then
-  LoadingBarCL()
-else
-  LoadingBarBW()
-end
-
-end
-
-function LoadBarGen(LBR, Time, Color)
-	Text = (LBR)
-	if Color == false then Color = colors.white end
-	Tile = (Color)
-	LoadBar(Time)
-end
 
 --####################
 --## Backup Handler #################################################################################################
 --####################
-
-
-
 function LoadBackup()
 	if fs.exists ("BR-BCK.wan") then
 	
-	LoadBarGen("Loading Backup File", 20, TXTCOL[6])
+	BRAPI.LoadBarGen("Loading Backup File", 20, TXTCOL[6])
 	LBackup = Load("BR-BCK.wan")
 	PasConfig[1] = LBackup[1]
 	PasConfig[2] = LBackup[2]
 	PasConfig[3] = LBackup[3]
-	LoadBarGen("Saving Pas Settings", 20, colors.red)
+	BRAPI.LoadBarGen("Saving Pas Settings", 20, colors.red)
 	Save(PasConfig, "BR-PAS.cfg")
 	
 	ComConfig[1] = LBackup[4]
@@ -1510,7 +1359,7 @@ function LoadBackup()
 	ComConfig[6] = LBackup[9]
 	ComConfig[7] = LBackup[10]
 	ComConfig[8] = LBackup[11]
-	LoadBarGen("Saving Com Settings", 20, colors.red)
+	BRAPI.LoadBarGen("Saving Com Settings", 20, colors.red)
 	Save(ComConfig, "BR-COM.cfg")
 
 
@@ -1523,7 +1372,7 @@ function LoadBackup()
 	ReactorA[7] = LBackup[18]
 	ReactorA[8] = LBackup[19]
 	ReactorA[9] = LBackup[20]
-	LoadBarGen("Saving ReactorA Settings", 20, colors.red)
+	BRAPI.LoadBarGen("Saving ReactorA Settings", 20, colors.red)
 	Save(ReactorA, "BR-RTA.cfg")
 
 	ReactorB[1] = LBackup[21]
@@ -1535,7 +1384,7 @@ function LoadBackup()
 	ReactorB[7] = LBackup[27]
 	ReactorB[8] = LBackup[28]
 	ReactorB[9] = LBackup[29]
-	LoadBarGen("Saving ReactorB Settings", 20, colors.red)
+	BRAPI.LoadBarGen("Saving ReactorB Settings", 20, colors.red)
 	Save(ReactorB, "BR-RTB.cfg")
 
 	EXPAND[1]   = LBackup[30]
@@ -1574,11 +1423,11 @@ function LoadBackup()
 	EXPAND[34]  = LBackup[63]
 	EXPAND[35]  = LBackup[64]
 	EXPAND[36]  = LBackup[65]
-    LoadBarGen("Saving Expand Settings", 20, colors.red)
+    BRAPI.LoadBarGen("Saving Expand Settings", 20, colors.red)
 	Save(EXPAND, "BR-EXP.cfg")
 
 	BCKUPVER    = LBackup[66]
-	LoadBarGen("Rebooting System...", 20, colors.orange)
+	BRAPI.LoadBarGen("Rebooting System...", 20, colors.orange)
 	os.reboot()
 else
 	write("Backup File Not Found!")
@@ -1597,7 +1446,7 @@ Backup = {PasConfig[1], PasConfig[2], PasConfig[3],
           EXPAND[19] , EXPAND[20] , EXPAND[21] , EXPAND[22] , EXPAND[23] , EXPAND[24] , EXPAND[25] , EXPAND[26] , EXPAND[27] ,
           EXPAND[28] , EXPAND[29] , EXPAND[30] , EXPAND[31] , EXPAND[32] , EXPAND[33] , EXPAND[34] , EXPAND[35] , EXPAND[36] ,
           NewProgVer}
-LoadBarGen("Creating Settings Backup", 20, colors.red)
+BRAPI.LoadBarGen("Creating Settings Backup", 20, colors.red)
 Save(Backup, "BR-BCK.wan")
 SettingsMenuComputer()
 end
@@ -1643,12 +1492,12 @@ end
                 
 function Download()
                 if fs.exists ("BR-UPD.upd") then
-                  LoadBarGen("Deleting Old Update File", 20, TXTCOL[6])
+                  BRAPI.LoadBarGen("Deleting Old Update File", 20, TXTCOL[6])
                   DeleteDBRVerU()
                   shell.run("clear")
                   shell.run (DBRVerUGet) 
 	                   if fs.exists ("BR-UPD.upd") then
-                   	      LoadBarGen("Checking and Loading", 20, colors.lime)
+                   	      BRAPI.LoadBarGen("Checking and Loading", 20, colors.lime)
                    	   else
                    	      Error[1] = 1
                    	      Error[8] = 1
@@ -1691,6 +1540,12 @@ function BRUpdateCheck() -- BRUDA (Big Reacotors UpDate Aviliable)
 	else
 		ERRUPDATE = 1
 	end
+
+	--if VERU[7] <= NewAPIVer then
+	--	APIUPDATE = 0
+	--else
+	--	APIUPDATE = 1
+	--end
   end
 end
 
@@ -1704,7 +1559,8 @@ function BRUpdater()
 	if COMUPDATE == 1 then shell.run("delete BR-COM.cfg") end
 	if RTAUPDATE == 1 then shell.run("delete BR-RTA.cfg") end
 	if RTBUPDATE == 1 then shell.run("delete BR-RTB.cfg") end
-	if ERRUPDATE == 1 then shell.run("delete BR-ERR.cfg") end   
+	if ERRUPDATE == 1 then shell.run("delete BR-ERR.cfg") end
+	--if APIUPDATE == 1 then shell.run("delete           ") end   
 	shell.run("delete FTBUKLW-BR")
 	shell.run(BRProgFetc)
 	print("Update Complete")
@@ -2829,57 +2685,56 @@ end
 
 
 --######################################################################################################
+--## Reactor Computer Settings V2 ##
+--##################################
 
-function SettingsMenuBR()
+	function SettingsMenuComputer()
+		SMSE = {"Computer Settings V2", "Set Refresh", "2 Reactors", "Status Mon", "Com Label", "Default Set", "Update Program", "Auto Check", "Ver Info", "Monitor On/Off", "Backup Settings", "Restore Backup", "Require Pass", "Change Pass", "Back"}
+		SMFL = {GeneralSleep, TwoReactors, StatMonitor, SetComLabel, FirstRunSetting, BRUpdater, AutoCheckUpdate, ProgVerInfo, StatMonOn, SaveBackup, LoadBackup, RequirePassword, ChangePassword, SettingsMenuBR}
+		SMID = {}
+		BRAPI.MENU(3,1, 10,3, SMSE, SMFL, 14, SMID)
+	end
 
-	local w,h = term.getSize()
+--######################################################################################################
+--## Reactor A V2 ##
+--##################
 
-function BRprintCentred( y, s )
-    local x = math.floor((w - string.len(s)) / 2)
-    term.setCursorPos(x,y)
-    term.clearLine()
-    term.write( s )
-end
+	function SettingsMenuReactorA()
+		RASE = {"Reactor A V2", "Reactor Comm", "Reactor Mon", "Reactor Name", "Display Fuel", "Display Temp", "Display Flux", "Display Warn", "Redstone In ", "Monitor On/Off", "Back"}
+		RAFL = {ReactorAComm, ReactorAMonitor, ReactorAName, ReactorADisplayFuel, ReactorADisplayTemp, ReactorADisplayFlux, ReactorADisplayWarn, ReactorARSInput, ReactorADisplayOn, SettingsMenuBR}
+		RAID = {}
+		BRAPI.MENU(3,1, 10,5, RASE, RAFL, 10, RAID)
+	end
 
-local nOption = 1
+--######################################################################################################
+--## Reactor B V2 ##
+--##################
 
--- Display menu
-local function BRdrawMenu()
-    term.clear()
-    term.setCursorPos(w-11,1)
-    if nOption == 1 then
-    term.write( "1" )
-    elseif nOption == 2 then
-    term.write( "2" )
-    elseif nOption == 3 then
-    term.write( "3" )
-    elseif nOption == 4 then
-    term.write( "4" )
-    else
-    term.write( "5" )
-    end
-end
+	function SettingsMenuReactorB()
+		RBSE = {"Reactor B V2", "Reactor Comm", "Reactor Mon", "Reactor Name", "Display Fuel", "Display Temp", "Display Flux", "Display Warn", "Redstone In ", "Monitor On/Off", "Back"}
+		RBFL = {ReactorBComm, ReactorBMonitor, ReactorBName, ReactorBDisplayFuel, ReactorBDisplayTemp, ReactorBDisplayFlux, ReactorBDisplayWarn, ReactorBRSInput, ReactorBDisplayOn, SettingsMenuBR}
+		RBID = {}
+		BRAPI.MENU(3,1, 10,5, RBSE, RBFL, 10, RBID)
+	end
 
--- Display the frontend
-term.clear()
-local function BRdrawFrontend()
-    BRprintCentred( math.floor(h/2) - 4, (MTITL[1]))
-    BRprintCentred( math.floor(h/2) - 3, "" )
-    BRprintCentred( math.floor(h/2) - 2, "" )
-    BRprintCentred( math.floor(h/2) - 1, "" )
-    BRprintCentred( math.floor(h/2) + 0, ((nOption == 1) and (MMSET[1])) or (MMSET[2] )) if Error[3] == 1 then write("#") end if Error[4] == 1 then write(" # ") end
-    BRprintCentred( math.floor(h/2) + 1, ((nOption == 2) and (MMSET[3])) or (MMSET[4] )) if Error[5] == 1 then write("#") end if Error[6] == 1 then write(" # ") end
-    BRprintCentred( math.floor(h/2) + 2, ((nOption == 3) and (MMSET[5])) or (MMSET[6] )) if Error[2] == 1 then write(" # ") end
-    BRprintCentred( math.floor(h/2) + 3, ((nOption == 4) and (MMSET[7])) or (MMSET[8] ))
-    BRprintCentred( math.floor(h/2) + 4, ((nOption == 5) and (MMSET[9])) or (MMSET[10]))
-    BRprintCentred( math.floor(h/2) + 5, "" )
-    BRprintCentred( math.floor(h/2) + 6, "" )
-    BRprintCentred( math.floor(h/2) + 7, "" ) 
+--######################################################################################################
+--## Main Menu V2 ##
+--##################
+
+function MMEXT()
+	if Error[1] == 1 then 
+ 	   	ResetErrorMsgExit()
+ 	   end
+ 	    print ("")
+ 	    sleep(0.1)
+ 	    SetMenu = false
+ 	    running = true
+ 	    os.reboot()
+ 	end
 
 
-
-    --if PasConfig[2] == 1 then term.setCursorPos(1,15) write("Attempts : ") write(PasConfig[3]) end
-    if fs.exists ("BR-BCK.wan") then 
+function BackupCheck()
+	if fs.exists ("BR-BCK.wan") then 
     		term.setCursorPos(1,19)
     		write("Backup : ") 
     		term.setTextColor( (TXTCOL[16]) ) 
@@ -2896,507 +2751,31 @@ local function BRdrawFrontend()
     		term.setTextColor( (TXTCOL[1]) )
     		term.setBackgroundColor( (TXTCOL[16]) )
     	end
-
-
-
-
-
-
-
 end
 
--- Call functions for display menu
---BRdrawMenu()
-BRdrawFrontend()
-
-while true do
-    local e,p = os.pullEvent()
-    if e == "key" then
-        local key = p
-        if key == 17 or key == 200 then
-            -- Up
-            if nOption > 1 then
-                nOption = nOption - 1
-                --BRdrawMenu()
-                BRdrawFrontend()
-            end
-        elseif key == 31 or key == 208 then
-            -- Down
-            if nOption < 5 then -- Change 4 by the number of option.
-                nOption = nOption + 1
-                --BRdrawMenu()
-                BRdrawFrontend()
-            end
-        elseif key == 28 then
-            -- Enter
-            break
-        end
-    end
+function SettingsMenuBR()
+	MMSE = {"Main Menu V2", "Reactor 1", "Reactor 2", "Computer", "Reset Err", "Exit"}
+	MMFL = {SettingsMenuReactorA, SettingsMenuReactorB, SettingsMenuComputer, ResetErrorMsg, MMEXT}
+	MMID = {BackupCheck}
+	BRAPI.MENU(3,1, 10,5, MMSE, MMFL, 5, MMID)
 end
-term.clear()
-
--- Conditions
-    if nOption == 1 then
-    	SettingsMenuReactorA()
-    end
-
-	if nOption == 2 then
-    	SettingsMenuReactorB()
-    end
-
-	if nOption == 3 then
-		SettingsMenuComputer()
-	end
-
-	if nOption == 4 then
- 		ResetErrorMsg()
- 	end
-
- 	if nOption == 5 then
- 	   if Error[1] == 1 then 
- 	   	ResetErrorMsgExit()
- 	   end
- 	    print ("")
- 	    sleep(0.1)
- 	    SetMenu = false
- 	    running = true
- 	    os.reboot()
-    end
-
-end
-
-
-
 --######################################################################################################
---## Reactor A ##
---###############
-
-
-function SettingsMenuReactorA()
-
-	local w,h = term.getSize()
-
-function BRAprintCentred( y, s )
-    local x = math.floor((w - string.len(s)) / 2)
-    term.setCursorPos(x,y)
-    term.clearLine()
-    term.write( s )
-end
-
-local nOption = 1
-
--- Display menu
-local function BRAdrawMenu()
-    term.clear()
-    term.setCursorPos(w-8,1)
-    if nOption == 1 then
-    term.write( "1" )
-    elseif nOption == 2 then
-    term.write( "2" )
-    elseif nOption == 3 then
-    term.write( "3" )
-    elseif nOption == 4 then
-    term.write( "4" )
-    elseif nOption == 5 then
-    term.write( "5" )
-    elseif nOption == 6 then
-    term.write( "6" )
-    elseif nOption == 7 then
-    term.write( "7" )
-    elseif nOption == 8 then
-    term.write( "8" )
-    elseif nOption == 9 then
-    term.write( "9" )
-    else
-    term.write( "10" )
-    end   
-end
-
--- Display the frontend
-term.clear()
-local function BRAdrawFrontend()
-    BRAprintCentred( math.floor(h/2) - 2, (MTITL[2]))
-    BRAprintCentred( math.floor(h/2) - 1, "" )
-    BRAprintCentred( math.floor(h/2) + 0, ((nOption == 1) and (RASET[1] ))   or (RASET[2])  ) if Error[4] == 1 then write(" # ") end
-    BRAprintCentred( math.floor(h/2) + 1, ((nOption == 2) and (RASET[3] ))   or (RASET[4])  ) if Error[3] == 1 then write(" # ") end
-    BRAprintCentred( math.floor(h/2) + 2, ((nOption == 3) and (RASET[5] ))   or (RASET[6])  )
-    BRAprintCentred( math.floor(h/2) + 3, ((nOption == 4) and (RASET[7] ))   or (RASET[8])  )
-    BRAprintCentred( math.floor(h/2) + 4, ((nOption == 5) and (RASET[9] ))   or (RASET[10]) )
-	BRAprintCentred( math.floor(h/2) + 5, ((nOption == 6) and (RASET[11]))   or (RASET[12]) )
-	BRAprintCentred( math.floor(h/2) + 6, ((nOption == 7) and (RASET[13]))   or (RASET[14]) )
-	BRAprintCentred( math.floor(h/2) + 7, ((nOption == 8) and (RASET[15]))   or (RASET[16]) )
-    BRAprintCentred( math.floor(h/2) + 8, ((nOption == 9) and (RASET[17]))   or (RASET[18]) ) if Error[3] == 1 then write("#") end if Error[4] == 1 then write(" # ") end
-    BRAprintCentred( math.floor(h/2) + 9, ((nOption == 10)and (RASET[19]))   or (RASET[20]) )
-    BRAprintCentred( math.floor(h/2) + 10, "" )
-    
- end
-
--- Call functions for display menu
---BRAdrawMenu()
-BRAdrawFrontend()
 
 
 
-while true do
-    local e,p = os.pullEvent()
-    if e == "key" then
-        local key = p
-        if key == 17 or key == 200 then
-            -- Up
-            if nOption > 1 then
-                nOption = nOption - 1
-                --BRAdrawMenu()
-                BRAdrawFrontend()
-            end
-        elseif key == 31 or key == 208 then
-            -- Down
-            if nOption < 10 then -- Change 4 by the number of option.
-                nOption = nOption + 1
-                --BRAdrawMenu()
-                BRAdrawFrontend()
-            end
-        elseif key == 28 then
-            -- Enter
-            break
-        end
-    end
-end
-term.clear()
-
--- Conditions
-if nOption == 1 then
-    	term.setCursorPos(1,1)
-				return  ReactorAComm()--Reactor Comm
-	elseif nOption == 2 then
-    	term.setCursorPos(1,1)
-					return ReactorAMonitor()--Reactor Mon
-	elseif nOption == 3 then
-		term.setCursorPos(1,1)
-    				return ReactorAName()--Reactor Name
-	elseif nOption == 4 then
- 		term.setCursorPos(1,1)
- 					return ReactorADisplayFuel()--Dispaly Fuel
-	elseif nOption == 5 then
- 		term.setCursorPos(1,1)
- 					return ReactorADisplayTemp()--Display Temp
-	elseif nOption == 6 then
- 		term.setCursorPos(1,1)
- 					return ReactorADisplayFlux()--Display Flux
-	elseif nOption == 7 then
- 		term.setCursorPos(1,1)
- 					return ReactorADisplayWarn()--Display Warn
-	elseif nOption == 8 then
- 		term.setCursorPos(1,1)
- 					return ReactorARSInput()--Redstone In
- 	elseif nOption == 9 then
- 		term.setCursorPos(1,1)
- 					return ReactorADisplayOn()--Monitor On/Off
- 	else
- 		term.setCursorPos(1,1)
- 						nOption = 1
- 					return SettingsMenuBR()
-  end
-end
-
---######################################################################################################
---## Reactor B ##
---###############
-
-function SettingsMenuReactorB()
-
-local w,h = term.getSize()
-
-function BRBprintCentred( y, s )
-    local x = math.floor((w - string.len(s)) / 2)
-    term.setCursorPos(x,y)
-    term.clearLine()
-    term.write( s )
-end
-local nOption = 1
--- Display menu
-local function BRBdrawMenu()
-    term.clear()
-    term.setCursorPos(1,1)
-    term.write( "Reactor B Settings Main Menu" )
-
-    term.setCursorPos(w-8,1)
-    if nOption == 1 then
-    term.write( "1" )
-    elseif nOption == 2 then
-    term.write( "2" )
-    elseif nOption == 3 then
-    term.write( "3" )
-    elseif nOption == 4 then
-    term.write( "4" )
-    elseif nOption == 5 then
-    term.write( "5" )
-    elseif nOption == 6 then
-    term.write( "6" )
-    elseif nOption == 7 then
-    term.write( "7" )
-    elseif nOption == 8 then
-    term.write( "8" )
-    elseif nOption == 9 then
-    term.write( "9" )
-    else
-    term.write( "10" )
-    end   
-end
-
--- Display the frontend
-term.clear()
-local function BRBdrawFrontend()
-    BRBprintCentred( math.floor(h/2) - 2, "" )
-    BRBprintCentred( math.floor(h/2) - 1, "" )
-    BRBprintCentred( math.floor(h/2) + 0, ((nOption == 1) and (RBSET[1] ))   or (RBSET[2])  ) if Error[6] == 1 then write(" # ") end
-    BRBprintCentred( math.floor(h/2) + 1, ((nOption == 2) and (RBSET[3] ))   or (RBSET[4])  ) if Error[5] == 1 then write(" # ") end
-    BRBprintCentred( math.floor(h/2) + 2, ((nOption == 3) and (RBSET[5] ))   or (RBSET[6])  )
-    BRBprintCentred( math.floor(h/2) + 3, ((nOption == 4) and (RBSET[7] ))   or (RBSET[8])  )
-    BRBprintCentred( math.floor(h/2) + 4, ((nOption == 5) and (RBSET[9] ))   or (RBSET[10]) )
-	BRBprintCentred( math.floor(h/2) + 5, ((nOption == 6) and (RBSET[11]))   or (RBSET[12]) )
-	BRBprintCentred( math.floor(h/2) + 6, ((nOption == 7) and (RBSET[13]))   or (RBSET[14]) )
-	BRBprintCentred( math.floor(h/2) + 7, ((nOption == 8) and (RBSET[15]))   or (RBSET[16]) )
-	BRBprintCentred( math.floor(h/2) + 8, ((nOption == 9) and (RBSET[17]))   or (RBSET[18]) ) if Error[5] == 1 then write("#") end if Error[6] == 1 then write(" # ") end
-    BRBprintCentred( math.floor(h/2) + 9, ((nOption == 10)and (RBSET[19]))   or (RBSET[20]) )
-    BRBprintCentred( math.floor(h/2) + 10, "" )
-    
- end
-
--- Call functions for display menu
-BRBdrawMenu()
-BRBdrawFrontend()
 
 
 
-while true do
-    local e,p = os.pullEvent()
-    if e == "key" then
-        local key = p
-        if key == 17 or key == 200 then
-            -- Up
-            if nOption > 1 then
-                nOption = nOption - 1
-                BRBdrawMenu()
-                BRBdrawFrontend()
-            end
-        elseif key == 31 or key == 208 then
-            -- Down
-            if nOption < 10 then -- Change 4 by the number of option.
-                nOption = nOption + 1
-                BRBdrawMenu()
-                BRBdrawFrontend()
-            end
-        elseif key == 28 then
-            -- Enter
-            break
-        end
-    end
-end
-term.clear()
-
--- Conditions
-if nOption == 1 then
-    	term.setCursorPos(1,1)
-    		return  ReactorBComm()--Reactor Comm
-	elseif nOption == 2 then
-    	term.setCursorPos(1,1)
-			return ReactorBMonitor()--Reactor Mon
-	elseif nOption == 3 then
-		term.setCursorPos(1,1)
-    				return ReactorBName()--Reactor Name
-	elseif nOption == 4 then
- 		term.setCursorPos(1,1)
- 					return ReactorBDisplayFuel()--Dispaly Fuel
-	elseif nOption == 5 then
- 		term.setCursorPos(1,1)
- 					return ReactorBDisplayTemp()--Display Temp
-	elseif nOption == 6 then
- 		term.setCursorPos(1,1)
- 					return ReactorBDisplayFlux()--Display Flux
-	elseif nOption == 7 then
- 		term.setCursorPos(1,1)
- 					return ReactorBDisplayWarn()--Display Warn
-	elseif nOption == 8 then
- 		term.setCursorPos(1,1)
- 					return ReactorBRSInput() --Redstone In
- 	elseif nOption == 9 then
- 		term.setCursorPos(1,1)
- 					return ReactorBDisplayOn() --Monitor On/Off
- 	else
- 		term.setCursorPos(1,1)
- 					return SettingsMenuBR()
-
-  end
-
-end
-
---######################################################################################################
---## Reactor Computer Settings ##
---###############################
-
-function SettingsMenuComputer()
-
-	local w,h = term.getSize()
-	
-function SMCprintCentred( y, s )
-    local x = math.floor((w - string.len(s)) / 2)
-    term.setCursorPos(x,y)
-    term.clearLine()
-    term.write( s )
-end
-local nOption = 1
--- Display menu
-local function SMCdrawMenu()
-    term.clear()
-    term.setCursorPos(1,1)
-    term.write( "Computer Settings Main Menu" )
-
-    term.setCursorPos(w-11,1)
-    if nOption == 1 then
-    term.write( "1" )
-    elseif nOption == 2 then
-    term.write( "2" )
-    elseif nOption == 3 then
-    term.write( "3" )
-    elseif nOption == 4 then
-    term.write( "4" )
-    elseif nOption == 5 then
-    term.write( "5" )
-    elseif nOption == 6 then
-    term.write( "6" )
-    elseif nOption == 7 then
-    term.write( "7" )
-    elseif nOption == 8 then
-    term.write( "8" )
-    elseif nOption == 9 then
-    term.write( "9" )
-    elseif nOption == 10 then
-    term.write( "10" )
-    elseif nOption == 11 then
-    term.write( "11" )
-    elseif nOption == 11 then
-    term.write( "12" )
-    elseif nOption == 11 then
-    term.write( "13" )
-    else
-    term.write( "14" )
-    end   
-end
-
--- Display the frontend
-term.clear()
-local function SMCdrawFrontend()
-    SMCprintCentred( math.floor(h/2) - 7, "" )
-    SMCprintCentred( math.floor(h/2) - 6, "" )
-    SMCprintCentred( math.floor(h/2) - 5, ((nOption == 1) and (SETMU[1] )) or (SETMU[2] ))
-    SMCprintCentred( math.floor(h/2) - 4, ((nOption == 2) and (SETMU[3] )) or (SETMU[4] ))
-    SMCprintCentred( math.floor(h/2) - 3, ((nOption == 3) and (SETMU[5] )) or (SETMU[6] )) if Error[2] == 1 then write(" # ") end
-    SMCprintCentred( math.floor(h/2) - 2, ((nOption == 4) and (SETMU[7] )) or (SETMU[8] ))
-    SMCprintCentred( math.floor(h/2) - 1, ((nOption == 5) and (SETMU[9] )) or (SETMU[10]))
-    SMCprintCentred( math.floor(h/2) + 0, ((nOption == 6) and (SETMU[11])) or (SETMU[12]))
-    SMCprintCentred( math.floor(h/2) + 1, ((nOption == 7) and (SETMU[13])) or (SETMU[14]))
-    SMCprintCentred( math.floor(h/2) + 2, ((nOption == 8) and (SETMU[15])) or (SETMU[16]))
-    SMCprintCentred( math.floor(h/2) + 3, ((nOption == 9) and (SETMU[17])) or (SETMU[18])) if Error[2] == 1 then write(" # ") end
-    SMCprintCentred( math.floor(h/2) + 4, ((nOption == 10)and (SETMU[19])) or (SETMU[20]))
-    SMCprintCentred( math.floor(h/2) + 5, ((nOption == 11)and (SETMU[21])) or (SETMU[22]))
-    SMCprintCentred( math.floor(h/2) + 6, ((nOption == 12)and (SETMU[23])) or (SETMU[24]))
-    SMCprintCentred( math.floor(h/2) + 7, ((nOption == 13)and (SETMU[25])) or (SETMU[26]))
-    SMCprintCentred( math.floor(h/2) + 8, ((nOption == 14)and (SETMU[27])) or (SETMU[28]))
-    SMCprintCentred( math.floor(h/2) + 9, "" )
-    
- end
-
--- Call functions for display menu
-SMCdrawMenu()
-SMCdrawFrontend()
 
 
 
-while true do
-    local e,p = os.pullEvent()
-    if e == "key" then
-        local key = p
-        if key == 17 or key == 200 then
-            -- Up
-            if nOption > 1 then
-                nOption = nOption - 1
-                SMCdrawMenu()
-                SMCdrawFrontend()
-            end
-        elseif key == 31 or key == 208 then
-            -- Down
-            if nOption < 14 then -- Change 4 by the number of option.
-                nOption = nOption + 1
-                SMCdrawMenu()
-                SMCdrawFrontend()
-            end
-        elseif key == 28 then
-            -- Enter
-            break
-        end
-    end
-end
-term.clear()
 
--- Conditions
-if nOption == 1 then
-    	term.setCursorPos(1,1)
-					return  GeneralSleep() --Set Refresh
 
-	elseif nOption == 2 then
-    	term.setCursorPos(1,1)
-					return TwoReactors() --Set If there is two reactors
 
-	elseif nOption == 3 then
-		term.setCursorPos(1,1)
-    				return StatMonitor()
 
-	elseif nOption == 4 then
- 		term.setCursorPos(1,1)
- 					return SetComLabel()
 
-	elseif nOption == 5 then
- 		term.setCursorPos(1,1)
- 					return FirstRunSetting()
 
- 	elseif nOption == 6 then
- 		term.setCursorPos(1,1)
- 					return BRUpdater()
 
- 	elseif nOption == 7 then
- 		term.setCursorPos(1,1)
- 					return AutoCheckUpdate()
-
-elseif nOption == 8 then
- 		term.setCursorPos(1,1)
- 					return ProgVerInfo()
-
-elseif nOption == 9 then
- 		term.setCursorPos(1,1)
- 					return  StatMonOn()
-
-elseif nOption == 10 then
- 		term.setCursorPos(1,1)
- 					return SaveBackup()
-
-elseif nOption == 11 then
- 		term.setCursorPos(1,1)
- 					return LoadBackup()										
-
-elseif nOption == 12 then
- 		term.setCursorPos(1,1)
- 					return RequirePassword()				
-
-elseif nOption == 13 then
- 		term.setCursorPos(1,1)
- 					return ChangePassword()
-
- 	else
- 		term.setCursorPos(1,1)
- 					return SettingsMenuBR()
-
-  end
-end
 
 
 --######################################################################################################
@@ -3515,7 +2894,7 @@ function SplashProgInfo()
 	term.setCursorPos(3,3)
 	write('Program : BR Reactor Control') --31
 	term.setCursorPos(3,4)
-	write('Ver     : '..VER)
+	write('Ver     : '..VER..'-'..BRAPI.APIVER[2])
 	term.setCursorPos(3,5)
 	write('By      : UK_Lone_Wolf')
 end
@@ -3612,12 +2991,15 @@ wakeUp = function() -- inturrption by keyboard input, goes to settings menu
     end
 end
 
+--function PROGSEC() BRAPI.Secure("FTBUKLW-BR", PasConfig[1], PasConfig[3], SettingsMenuBR, PROGSEC) end -- Here incase of a wrong passcode entry is made will load back into Secure
+
 function nowISleep() -- sets up for sleeping and inturrupting the sleep for the settings menu
 	parallel.waitForAny(wakeUp, goodNight)
 	if running == false then term.clear() return end
 	if SetMenu == true then
 		sleep(0.4)
-		if PasConfig[2] == 1 then  FTBUKLWSecure() else SettingsMenuBR() end
+
+		if PasConfig[2] == 1 then  BRAPI.Secure("FTBUKLW-BR", PasConfig[1], PasConfig[3],SettingsMenuBR, 1) else SettingsMenuBR() end
 	end
 	if imdone == false then
 	nowISleep()
@@ -3706,13 +3088,13 @@ if ComConfig[7] == 1 then if Error[8] == 0 then BRUpdateCheck() end end
 --Defaults
 
 if ComConfig[6] == 1 then
-	LoadBarGen("Deleting ComConfig", 20, colors.red)
+	BRAPI.LoadBarGen("Deleting ComConfig", 20, colors.red)
 				shell.run("delete BR-COM.cfg")
-	LoadBarGen("Deleting ReactorAConfig", 20, colors.red)
+	BRAPI.LoadBarGen("Deleting ReactorAConfig", 20, colors.red)
 				shell.run("delete BR-RTA.cfg")
-	LoadBarGen("Deleting ReactorBConfig", 20, colors.red)
+	BRAPI.LoadBarGen("Deleting ReactorBConfig", 20, colors.red)
 				shell.run("delete BR-RTB.cfg")
-	LoadBarGen("Rebooting", 20, colors.orange)
+	BRAPI.LoadBarGen("Rebooting", 20, colors.orange)
 				os.reboot()
 end
 
@@ -3735,5 +3117,7 @@ end
 end
 end
 
+BRAPI.Boot()
+sleep(1)
 StartUp()
 MainLoop()
