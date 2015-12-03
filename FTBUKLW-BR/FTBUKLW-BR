@@ -52,32 +52,6 @@ Build: 01.15.0.4
 			-- A few things for Expandable settings
 
 
-Ver  : 0.3.9
-Build: 01.15.0.5
-		
-		Fixed
-			-- A bug which would not allow Auto Check to call remote file.
-
-Grammar Fixes:
-			--  Noticed some spelling mistakes in the Ver notes. :)
-
-
-Ver  : 0.3.8
-Build: 01.15.0.3
-		Fixed
-			-- A error where the temp on reactor 2 external display
-			   would show on wrong line.
-
-Build: 01.15.0.4
-		
-		Fixed
-			-- A typo which selected a color for reactor A but displayed it on Reactor B
-			-- A bug which would not allow Auto Check to call remote file.
-
-		Added
-			-- A few things for Expandable settings
-
-
 Ver  : 0.3.7
 Build: 01.15.0.1
 
@@ -362,7 +336,6 @@ Ver: 0.0.0
 --## API Loader/ Downloader  #
 --###################################################################################################
 
-<<<<<<< HEAD
 local GAPI = "pastebin get PwiHKVaH BRAPI"
 while not fs.exists ("BRAPI") do
 	print("API not found... Fetching Now")
@@ -370,9 +343,6 @@ while not fs.exists ("BRAPI") do
 end
 
 os.unloadAPI("BRAPI") -- Unloads to refresh API
-=======
-
->>>>>>> origin/master
 
 
 
@@ -384,10 +354,7 @@ os.unloadAPI("BRAPI") -- Unloads to refresh API
 
 
 
-<<<<<<< HEAD
 os.loadAPI("BRAPI")
-=======
->>>>>>> origin/master
 
 --### END OF API LOADER ###--
 
@@ -517,17 +484,10 @@ end
 --###########################################
 --## Ver Information defined By Programmer #########################################################
 --###########################################
-<<<<<<< HEAD
 local VER         = "0.4.5"
 local BIDVER      = "08.15.10.76"
 local NewProgVer  = 040
 local BCKUPVER    = 040
-=======
-local VER         = "0.3.9"
-local BIDVER      = "01.15.0.9"
-local NewProgVer  = 039
-local BCKUPVER    = 039
->>>>>>> origin/master
 local NewComVer   = 001
 local NewRTAVer   = 001
 local NewRTBVer   = 001
