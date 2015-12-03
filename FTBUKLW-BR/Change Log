@@ -1,3 +1,26 @@
+Ver  : 0.4.1 - 0.4.5
+Build: 12.15.45.DE - 08.15.10.76
+
+		Added
+			-- Universal menu to API
+			-- Universal Load Bar to API
+
+		Changed
+			-- How the menus are delt with from internally and moved it to the API
+			-- How the Loadbar is delt with from internally and moved it to the API
+
+		Removed
+			-- Old outdated and not used code
+
+
+
+Ver  : 0.4.0
+Build: 08.15.10.25
+
+		Added
+			-- Added API to move some of the universal functions to it.
+
+
 Ver  : 0.3.9
 Build: 01.15.0.5
 		
