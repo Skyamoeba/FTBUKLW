@@ -3,6 +3,22 @@
 --#####################
 
 --[[
+Ver  : 0.5.0
+Build: 01.16.01.482
+
+		Added
+			Auto Reboot
+
+		Changed
+
+		Removed
+
+	    Alterations
+
+	    Bug Fixes
+
+
+
 Ver  : 0.4.1 - 0.4.5
 Build: 12.15.45.DE - 08.15.10.76
 
@@ -332,15 +348,29 @@ Ver: 0.0.0
 	First Draft Build (Very Basic functionality)
 --]]
 
+--##############################
+--## Main Version Information  #
+--###################################################################################################
+--               Prog Ver         Prog Bld            API Digital Ver
+--               |                |                   |
+local MVER = {"0.5.0", "01.16.01.482", 050, "1.5.0", 100}
+--                                      |       |
+--                       Prog Digital Ver       API Ver
+
+local DEV = 0
+
 --############################
 --## API Loader/ Downloader  #
 --###################################################################################################
-
 local GAPI = "pastebin get PwiHKVaH BRAPI"
 while not fs.exists ("BRAPI") do
 	print("API not found... Fetching Now")
 	shell.run(GAPI)
 end
+
+
+
+
 
 os.unloadAPI("BRAPI") -- Unloads to refresh API
 
@@ -361,26 +391,38 @@ os.loadAPI("BRAPI")
 --#############################
 --## Program Config Defaults ########################################################################
 --#############################
-os.pullEvent = os.pullEventRaw
+if DEV == 0 then os.pullEvent = os.pullEventRaw end
 
-DefVERU      = {000, "0.0.0", 0, 0, 0, 0}
+DefVERU      = {000, "0.0.0", 0, 0, 0, 0, 0}
 			--password, on/off, counter
-DefPasConfig = {"1234", 0, 0}
+DefPasConfig = {"reactor", 0, 0}
 --           GenS, TReactor, PerStat, ComLabel, FirstRun, Default ,CheckUpdate, Monitor on
 DefComConfig = {5, 0, "monitor_0", "BR-Reactor", 1, 0, 0, 0}
 --                    PerCOM1, PerM1, RTN1, RAFuel, TempRA, FluxRA, RAWarn, RSRA, monitor on
 DefRAConfig  = {"BigReactors-Reactor_0", "monitor_1", "Reactor 1", 1, 1, 1, 1, "right", 0}
+
+DefTAConfig  = {"BigReactors-Turbine_0"}
+
 --                    PerCOM2, PerM2, RTN2, RBFuel, TempRB, FluxRB, RBWarn, RSRB, monitor on
 DefRBConfig  = {"BigReactors-Reactor_1", "monitor_2", "Reactor 2", 1, 1, 1, 1, "left", 0}
 
+DefTBConfig  = {"BigReactors-Turbine_1"}
+
 DefERConfig  = {0, 0, 0, 0, 0, 0, 0, 0}
+
+--              Auto Reboot
+--              |  
+DefDEVConfig = {0, 0, 0}
+--				   |
+--				   Unassigned
+
 
 
 -- Expandable is for use for other settings, programs or api's which use this program.
 -- Use this to set defaults for your additions or make your own EXPDNAME = and I will put
 -- it in the next update.
 -- EG:
---      EXPDLogicFactory = {0, "NAME", 0, 0, 0, 0, 0, 0, 0, 0}
+--      Turbine = {0, "NAME", 0, 0, 0, 0, 0, 0, 0, 0}
 
 ExpandableD  = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
                "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""}
@@ -403,16 +445,40 @@ while not fs.exists ("BR-COM.cfg") do
             DefaultSave(DefComConfig, "BR-COM.cfg")
             end
 
+
+
+
 while not fs.exists ("BR-RTA.cfg") do
             DefaultSave(DefRAConfig, "BR-RTA.cfg")
             end
+
+while not fs.exists ("BR-TBA.cfg") do
+            DefaultSave(DefTAConfig, "BR-TBA.cfg")
+            end
+
+
+
+
 
 while not fs.exists ("BR-RTB.cfg") do
             DefaultSave(DefRBConfig, "BR-RTB.cfg")
             end
 
+while not fs.exists ("BR-TBB.cfg") do
+            DefaultSave(DefTBConfig, "BR-TBB.cfg")
+            end
+
+
+
+
+
+
 while not fs.exists ("BR-ERR.cfg") do
             DefaultSave(DefERConfig, "BR-ERR.cfg")
+            end
+
+while not fs.exists ("BR-DEV.cfg") do
+            DefaultSave(DefDEVConfig, "BR-DEV.cfg")
             end
             
 while not fs.exists ("BR-EXP.cfg") do
@@ -462,7 +528,9 @@ function SaveAll()
 	Save(PasConfig, "BR-PAS.cfg")
 	Save(ComConfig, "BR-COM.cfg")
 	Save(ReactorA, "BR-RTA.cfg")
+	Save(TurbineA, "BR-TBA.cfg")
 	Save(ReactorB, "BR-RTB.cfg")
+	Save(TurbineB, "BR-TBB.cfg")
 	Save(EXPAND  , "BR-EXP.cfg")
 end
 
@@ -471,8 +539,13 @@ end
 --##################
 PasConfig = Load("BR-PAS.cfg")
 ComConfig = Load("BR-COM.cfg")
+
 ReactorA  = Load("BR-RTA.cfg")
+TurbineA  = Load("BR-TBA.cfg")
+
 ReactorB  = Load("BR-RTB.cfg")
+TurbineB  = Load("BR-TBB.cfg")
+
 Error     = Load("BR-ERR.cfg")
 EXPAND    = Load("BR-EXP.cfg")
 
@@ -484,10 +557,7 @@ end
 --###########################################
 --## Ver Information defined By Programmer #########################################################
 --###########################################
-local VER         = "0.4.5"
-local BIDVER      = "08.15.10.76"
-local NewProgVer  = 040
-local BCKUPVER    = 040
+local BCKUPVER    = 045
 local NewComVer   = 001
 local NewRTAVer   = 001
 local NewRTBVer   = 001
@@ -502,11 +572,12 @@ local COL         = term.isColor()
 --#############################
 --## Internal Prog Shortcuts ########################################################################
 --#############################
-local StatMon  = peripheral.wrap((ComConfig[3]))
-local RACommP  = peripheral.wrap((ReactorA[1]))
-local mon1     = peripheral.wrap((ReactorA[2]))
-local RBCommP  = peripheral.wrap((ReactorB[1]))
-local mon2     = peripheral.wrap((ReactorB[2]))
+StatMon  = peripheral.wrap((ComConfig[3]))
+RACommP  = peripheral.wrap((ReactorA[1]))
+TACommp  = peripheral.wrap((TurbineA[1]))
+mon1     = peripheral.wrap((ReactorA[2]))
+RBCommP  = peripheral.wrap((ReactorB[1]))
+mon2     = peripheral.wrap((ReactorB[2]))
 --###########################################
 local DBRVerUGet = "pastebin get 6Qmw5YF5 BR-UPD.upd"
 local BRProgFetc = "pastebin get GyF1FJSH FTBUKLW-BR"
@@ -517,6 +588,7 @@ local COMUPDATE = 0
 local RTAUPDATE = 0
 local RTBUPDATE = 0
 local ERRUPDATE = 0
+local APIUPDATE = 0
 --############################################
 
 
@@ -667,9 +739,7 @@ end
 function StatusMonitor()
 
 function VerInfo()
-	STATMONCOL(TXTCOL[1])
-	StatMon.setCursorPos(21,1)
-	StatMon.write("Ver:") StatMon.write((VER))
+	BRAPI.verInfoStat(21,1, MVER[1], StatMon,TXTCOL[1])
 end
 
 function FuelLevel()
@@ -711,6 +781,9 @@ STATMONCOL(TXTCOL[4])
 StatMon.write(math.floor((((RACommP.getWasteAmount())/(RACommP.getFuelAmountMax()))*100)+0.5)..'%')
 	end
 end
+
+
+
 if ComConfig[8] == 1 then
 	
 local StatMonCK1, errsd1 = pcall(VerInfo)
@@ -746,53 +819,98 @@ end
 function ReactorAFunctions()
 function ReactorAGUIFrame()
 if ReactorA[9] == 1 then
-mon1.clear()
-RTRAMONCOL(TXTCOL[1])
-mon1.setCursorPos(1,2)
-mon1.write("O------------------O--------O")
-mon1.setCursorPos(1,3)
-mon1.write("|                  |        |")
-mon1.setCursorPos(1,4)
-mon1.write("|                  |        |")
-mon1.setCursorPos(1,5)
-mon1.write("|                  |        |")
-mon1.setCursorPos(1,6)
-mon1.write("O------------------O--------O")
-mon1.setCursorPos(1,7)
-mon1.write("|                           |")
-mon1.setCursorPos(1,8)
-mon1.write("|                           |")
-mon1.setCursorPos(1,9)
-mon1.write("|                           |")
-mon1.setCursorPos(1,10)
-mon1.write("|                           |")
-mon1.setCursorPos(1,11)
-mon1.write("O---------------------------O")
+BRAPI.ReactorGUIF(mon1, TXTCOL[1])
 end
 end
 
+function ReactorANameDIS()
+	TurRotA = math.floor(TACommp.getRotorSpeed())
 
-function ReactorAFuelLevel()
-if ReactorA[9] == 1 then
-mon1.setCursorPos(11,1)
-RTRAMONCOL(TXTCOL[1])
-mon1.write((ReactorA[3]))
+	mon1.setCursorPos(11,1)
+	RTRAMONCOL(TXTCOL[1]) --COL1
+	mon1.write((ReactorA[3])) 
+	--mon1.write(TurRotA) -- 1791.5 rpm with 862 mB/t
+end
+
+
+
+function FUELREACA()
+FUELA = math.floor((((RACommP.getFuelAmount())/(RACommP.getFuelAmountMax()))*100)+0.5)
+CHAR = "="
 mon1.setCursorPos(3,3)
-RTRAMONCOL(TXTCOL[5])
-mon1.write(math.floor((((RACommP.getFuelAmount())/(RACommP.getFuelAmountMax()))*100)+0.5)..'% Fuel')
+RTRAMONCOL(TXTCOL[14])
+mon1.write('Fuel [')
+if FUELA == 0.0   then mon1.setCursorPos(9,3) mon1.setTextColor(TXTCOL[15]) mon1.write("          ") end
+if FUELA >= 10.0  then mon1.setCursorPos(9,3) mon1.setTextColor(TXTCOL[15]) mon1.write(CHAR) end
+if FUELA >= 20.0  then mon1.setCursorPos(10,3) mon1.setTextColor(TXTCOL[15]) mon1.write(CHAR) end
+if FUELA >= 30.0  then mon1.setCursorPos(11,3) mon1.setTextColor(TXTCOL[15]) mon1.write(CHAR) end
+if FUELA >= 40.0  then mon1.setCursorPos(12,3) mon1.setTextColor(TXTCOL[2] ) mon1.write(CHAR) end
+if FUELA >= 50.0  then mon1.setCursorPos(13,3) mon1.setTextColor(TXTCOL[2] ) mon1.write(CHAR) end
+if FUELA >= 60.0  then mon1.setCursorPos(14,3) mon1.setTextColor(TXTCOL[2] ) mon1.write(CHAR) end
+if FUELA >= 70.0  then mon1.setCursorPos(15,3) mon1.setTextColor(TXTCOL[14]) mon1.write(CHAR) end
+if FUELA >= 80.0  then mon1.setCursorPos(16,3) mon1.setTextColor(TXTCOL[14]) mon1.write(CHAR) end
+if FUELA >= 90.0  then mon1.setCursorPos(17,3) mon1.setTextColor(TXTCOL[14]) mon1.write(CHAR) end
+if FUELA >= 100.0 then mon1.setCursorPos(18,3) mon1.setTextColor(TXTCOL[14]) mon1.write(CHAR) end
+mon1.setCursorPos(19,3)
+RTRAMONCOL(TXTCOL[14])
+mon1.write("]")
+end
+
+
+function WasteRecA()
+WASTA = math.floor((((RACommP.getWasteAmount())/(RACommP.getFuelAmountMax()))*100)+0.5)
+CHAR = "="
 mon1.setCursorPos(3,4)
-RTRAMONCOL(TXTCOL[4])
-mon1.write(math.floor((((RACommP.getWasteAmount())/(RACommP.getFuelAmountMax()))*100)+0.5)..'% Waste')
+RTRAMONCOL(TXTCOL[14])
+mon1.write('Waste[')
+if WASTA <= 10.0   then mon1.setCursorPos(9, 4) mon1.setTextColor(TXTCOL[14]) mon1.write("          ") end
+if WASTA >= 10.0  then mon1.setCursorPos(9, 4) mon1.setTextColor(TXTCOL[14]) mon1.write(CHAR) end
+if WASTA >= 20.0  then mon1.setCursorPos(10,4) mon1.setTextColor(TXTCOL[14]) mon1.write(CHAR) end
+if WASTA >= 30.0  then mon1.setCursorPos(11,4) mon1.setTextColor(TXTCOL[14]) mon1.write(CHAR) end
+if WASTA >= 40.0  then mon1.setCursorPos(12,4) mon1.setTextColor(TXTCOL[2] ) mon1.write(CHAR) end
+if WASTA >= 50.0  then mon1.setCursorPos(13,4) mon1.setTextColor(TXTCOL[2] ) mon1.write(CHAR) end
+if WASTA >= 60.0  then mon1.setCursorPos(14,4) mon1.setTextColor(TXTCOL[2] ) mon1.write(CHAR) end
+if WASTA >= 70.0  then mon1.setCursorPos(15,4) mon1.setTextColor(TXTCOL[15]) mon1.write(CHAR) end
+if WASTA >= 80.0  then mon1.setCursorPos(16,4) mon1.setTextColor(TXTCOL[15]) mon1.write(CHAR) end
+if WASTA >= 90.0  then mon1.setCursorPos(17,4) mon1.setTextColor(TXTCOL[15]) mon1.write(CHAR) end
+if WASTA >= 100.0 then mon1.setCursorPos(18,4) mon1.setTextColor(TXTCOL[15]) mon1.write(CHAR) end
+mon1.setCursorPos(19,4)
+RTRAMONCOL(TXTCOL[14])
+mon1.write("]")
+end
+
+
+function ConRODA()
+RODSA = math.floor(100-(RACommP.getControlRodLevel(0)))
+CHAR = "="
 mon1.setCursorPos(3,5)
-mon1.setTextColor((TXTCOL[6]))
-mon1.write(''..(100-(RACommP.getControlRodLevel(0)))..'% Rod Depth  ')
+RTRAMONCOL(TXTCOL[14])
+mon1.write('Rods [')
+if RODSA <= 10.0  then mon1.setCursorPos(9, 5) mon1.setTextColor(TXTCOL[14]) mon1.write("          ") end
+if RODSA >= 10.0  then mon1.setCursorPos(9, 5) mon1.setTextColor(TXTCOL[14]) mon1.write(CHAR) end
+if RODSA >= 20.0  then mon1.setCursorPos(10,5) mon1.setTextColor(TXTCOL[14]) mon1.write(CHAR) end
+if RODSA >= 30.0  then mon1.setCursorPos(11,5) mon1.setTextColor(TXTCOL[14]) mon1.write(CHAR) end
+if RODSA >= 40.0  then mon1.setCursorPos(12,5) mon1.setTextColor(TXTCOL[2] ) mon1.write(CHAR) end
+if RODSA >= 50.0  then mon1.setCursorPos(13,5) mon1.setTextColor(TXTCOL[2] ) mon1.write(CHAR) end
+if RODSA >= 60.0  then mon1.setCursorPos(14,5) mon1.setTextColor(TXTCOL[2] ) mon1.write(CHAR) end
+if RODSA >= 70.0  then mon1.setCursorPos(15,5) mon1.setTextColor(TXTCOL[15]) mon1.write(CHAR) end
+if RODSA >= 80.0  then mon1.setCursorPos(16,5) mon1.setTextColor(TXTCOL[15]) mon1.write(CHAR) end
+if RODSA >= 90.0  then mon1.setCursorPos(17,5) mon1.setTextColor(TXTCOL[15]) mon1.write(CHAR) end
+if RODSA >= 100.0 then mon1.setCursorPos(18,5) mon1.setTextColor(TXTCOL[15]) mon1.write(CHAR) end
+mon1.setCursorPos(19,5)
+RTRAMONCOL(TXTCOL[14])
+mon1.write("]")
 end
-SplashProgSettingsA()
-end
+
+
+
+
+
+
+
 
 
 function ReactorATemp()
-
 if RACommP.getCasingTemperature()>=650 then
     	if ReactorA[9] == 1 then
     	mon1.setCursorPos(3,7)
@@ -813,8 +931,32 @@ if RACommP.getCasingTemperature()>=650 then
 		COMMONCOL(TXTCOL[14])
     end
 end
-if ReactorA[9] == 1 then mon1.write('Temp (C) : ') mon1.write(tostring (math.floor(RACommP.getCasingTemperature()))) 
+
+TEMPA = math.floor(RACommP.getCasingTemperature())
+ENGYA   = math.floor(RACommP.getEnergyStored())
+RFATA = math.floor(RACommP.getEnergyProducedLastTick()+0.5)
+CHAR = "="
+
+if ReactorA[9] == 1 then
+mon1.setCursorPos(3,7)
+RTRAMONCOL(TXTCOL[14])
+mon1.write('Temp     [')
+if TEMPA == 19   then mon1.setCursorPos(13,7) mon1.setTextColor(TXTCOL[4])  mon1.write("          ") end
+if TEMPA >= 200  then mon1.setCursorPos(13,7) mon1.setTextColor(TXTCOL[4])  mon1.write(CHAR) end
+if TEMPA >= 400  then mon1.setCursorPos(14,7) mon1.setTextColor(TXTCOL[4])  mon1.write(CHAR) end
+if TEMPA >= 600  then mon1.setCursorPos(15,7) mon1.setTextColor(TXTCOL[4])  mon1.write(CHAR) end
+if TEMPA >= 800  then mon1.setCursorPos(16,7) mon1.setTextColor(TXTCOL[2] ) mon1.write(CHAR) end
+if TEMPA >= 1000 then mon1.setCursorPos(17,7) mon1.setTextColor(TXTCOL[2] ) mon1.write(CHAR) end
+if TEMPA >= 1200 then mon1.setCursorPos(18,7) mon1.setTextColor(TXTCOL[2] ) mon1.write(CHAR) end
+if TEMPA >= 1400 then mon1.setCursorPos(19,7) mon1.setTextColor(TXTCOL[15]) mon1.write(CHAR) end
+if TEMPA >= 1600 then mon1.setCursorPos(20,7) mon1.setTextColor(TXTCOL[15]) mon1.write(CHAR) end
+if TEMPA >= 1800 then mon1.setCursorPos(21,7) mon1.setTextColor(TXTCOL[15]) mon1.write(CHAR) end
+if TEMPA >= 2000 then mon1.setCursorPos(22,7) mon1.setTextColor(TXTCOL[15]) mon1.write(CHAR) end
+mon1.setCursorPos(23,7)
+RTRAMONCOL(TXTCOL[14])
+mon1.write("]")
 end
+
 
 --######################
 --## Computer Display ##################################################################################
@@ -826,12 +968,26 @@ term.setCursorPos(3,12)
 term.write('Temp (C) : ') term.write(tostring (math.floor(RACommP.getCasingTemperature())))
 end
 
-
 function ReactorAFlux()
 if ReactorA[9] == 1 then 
 mon1.setCursorPos(3,8)
 RTRAMONCOL(TXTCOL[14])
-mon1.write('Energy   : ') mon1.write(tostring (math.floor(RACommP.getEnergyStored())))
+mon1.write('Energy   [') 
+if ENGYA == 0       then mon1.setCursorPos(13,8) mon1.setTextColor(TXTCOL[15]) mon1.write("          ") end
+if ENGYA >= 1000000 then mon1.setCursorPos(13,8) mon1.setTextColor(TXTCOL[15]) mon1.write(CHAR) end
+if ENGYA >= 2000000 then mon1.setCursorPos(14,8) mon1.setTextColor(TXTCOL[15]) mon1.write(CHAR) end
+if ENGYA >= 3000000 then mon1.setCursorPos(15,8) mon1.setTextColor(TXTCOL[15]) mon1.write(CHAR) end
+if ENGYA >= 4000000 then mon1.setCursorPos(16,8) mon1.setTextColor(TXTCOL[2] ) mon1.write(CHAR) end
+if ENGYA >= 5000000 then mon1.setCursorPos(17,8) mon1.setTextColor(TXTCOL[2] ) mon1.write(CHAR) end
+if ENGYA >= 6000000 then mon1.setCursorPos(18,8) mon1.setTextColor(TXTCOL[2] ) mon1.write(CHAR) end
+if ENGYA >= 7000000 then mon1.setCursorPos(19,8) mon1.setTextColor(TXTCOL[14]) mon1.write(CHAR) end
+if ENGYA >= 8000000 then mon1.setCursorPos(20,8) mon1.setTextColor(TXTCOL[14]) mon1.write(CHAR) end
+if ENGYA >= 9000000 then mon1.setCursorPos(21,8) mon1.setTextColor(TXTCOL[14]) mon1.write(CHAR) end
+if ENGYA ==10000000 then mon1.setCursorPos(22,8) mon1.setTextColor(TXTCOL[14]) mon1.write(CHAR) end
+mon1.setCursorPos(23,8)
+RTRAMONCOL(TXTCOL[14])
+mon1.write("]")
+mon1.setBackgroundColor(TXTCOL[16])
 end
 
 --######################
@@ -853,11 +1009,28 @@ if RACommP.getEnergyProducedLastTick()>=2000 then
     if ReactorA[9] == 1 then RTRAMONCOL(TXTCOL[15]) end
     COMMONCOL(TXTCOL[15])
 end
-if ReactorA[9] == 1 then 
+
+if ReactorA[9] == 1 then
 mon1.setCursorPos(3,9)
-mon1.write ("RF/t     : ") mon1.write(tostring (math.floor(RACommP.getEnergyProducedLastTick()+0.5)))
-RTRAMONCOL(TXTCOL[1])
+RTRAMONCOL(TXTCOL[14])
+mon1.write('RF/t     [') 
+if RFATA == 0     then mon1.setCursorPos(13,9) mon1.setTextColor(TXTCOL[15]) mon1.write("          ") end
+if RFATA >= 3200  then mon1.setCursorPos(13,9) mon1.setTextColor(TXTCOL[15]) mon1.write(CHAR) end
+if RFATA >= 6400  then mon1.setCursorPos(14,9) mon1.setTextColor(TXTCOL[15]) mon1.write(CHAR) end
+if RFATA >= 9600  then mon1.setCursorPos(15,9) mon1.setTextColor(TXTCOL[15]) mon1.write(CHAR) end
+if RFATA >= 12800 then mon1.setCursorPos(16,9) mon1.setTextColor(TXTCOL[2] ) mon1.write(CHAR) end
+if RFATA >= 16000 then mon1.setCursorPos(17,9) mon1.setTextColor(TXTCOL[2] ) mon1.write(CHAR) end
+if RFATA >= 19200 then mon1.setCursorPos(18,9) mon1.setTextColor(TXTCOL[2] ) mon1.write(CHAR) end
+if RFATA >= 22400 then mon1.setCursorPos(19,9) mon1.setTextColor(TXTCOL[14]) mon1.write(CHAR) end
+if RFATA >= 25600 then mon1.setCursorPos(20,9) mon1.setTextColor(TXTCOL[14]) mon1.write(CHAR) end
+if RFATA >= 28800 then mon1.setCursorPos(21,9) mon1.setTextColor(TXTCOL[14]) mon1.write(CHAR) end
+if RFATA >= 32000 then mon1.setCursorPos(22,9) mon1.setTextColor(TXTCOL[14]) mon1.write(CHAR) end
+mon1.setCursorPos(23,9)
+RTRAMONCOL(TXTCOL[14])
+mon1.write("]")
+mon1.setBackgroundColor(TXTCOL[16])
 end
+
 --######################
 --## Computer Display ##################################################################################
 --######################
@@ -872,9 +1045,9 @@ end
 function ReactorAWarn()
 	  if offlineflag==1 then
 	  if ReactorA[9] == 1 then 
-	    mon1.setCursorPos(3,10)
+	    mon1.setCursorPos(21,4)
 	    RTRAMONCOL(TXTCOL[9])
-	    mon1.write('Status   : M.O  ')
+	    mon1.write('  MANO  ')
 	    end
 
 	    if ComConfig[8] == 1 then
@@ -889,9 +1062,9 @@ function ReactorAWarn()
 	  end
 	  if emptyflag==1 then
 	  if ReactorA[9] == 1 then 
-	    mon1.setCursorPos(3,10)
+	    mon1.setCursorPos(21,4)
 	    RTRAMONCOL(TXTCOL[7])
-	    mon1.write('Status   : F.E  ')
+	    mon1.write('  FUEL  ')
 	    end
 
 	    if ComConfig[8] == 1 then
@@ -906,9 +1079,9 @@ function ReactorAWarn()
 	  end
 	  if emptyflag==0 and offlineflag==0 and RACommP.getControlRodLevel(0)>75 then
 	  if ReactorA[9] == 1 then 
-	    mon1.setCursorPos(3,10)
+	    mon1.setCursorPos(21,4)
 	    RTRAMONCOL(TXTCOL[5])
-	    mon1.write('Status   : L.P.M')
+	    mon1.write('  LPSM  ')
 	  end
 
 	  	if ComConfig[8] == 1 then
@@ -923,9 +1096,9 @@ function ReactorAWarn()
     end
 	  if emptyflag==0 and offlineflag==0 and RACommP.getControlRodLevel(0)<=75 then
 	  if ReactorA[9] == 1 then 
-	    mon1.setCursorPos(3,10)
+	    mon1.setCursorPos(21,4)
 	    RTRAMONCOL(TXTCOL[2])
-	    mon1.write('Status   : H.P.M')
+	    mon1.write('  HIGH  ')
 	  end
 
 	    if ComConfig[8] == 1 then
@@ -942,7 +1115,13 @@ end
 	
 	function ReactorAMainErrorCheck()
 	if ReactorA[4] == 1 then
-		ReactorAFuelLevel()
+		if ReactorA[9] == 1 then
+		--ReactorANameDIS()
+		FUELREACA()
+		WasteRecA()
+		ConRODA()
+		end
+		SplashProgSettingsA()
 	end
 	
 	if ReactorA[5] == 1 then
@@ -978,9 +1157,6 @@ if not ReactorADC then
 	Save(Error, "BR-ERR.cfg")
 	os.reboot()
 end
---ReactorAGUIFrame()
---ReactorAMainErrorCheck()
-	
 end
 
 --######################################################################################################
@@ -990,48 +1166,104 @@ end
 function ReactorBFunctions()
 function ReactorBGUIFrame()
 if ReactorB[9] == 1 then
-mon2.clear()
-RTRBMONCOL(TXTCOL[1])
-mon2.setCursorPos(1,2)
-mon2.write("O------------------O--------O")
-mon2.setCursorPos(1,3)
-mon2.write("|                  |        |")
-mon2.setCursorPos(1,4)
-mon2.write("|                  |        |")
-mon2.setCursorPos(1,5)
-mon2.write("|                  |        |")
-mon2.setCursorPos(1,6)
-mon2.write("O------------------O--------O")
-mon2.setCursorPos(1,7)
-mon2.write("|                           |")
-mon2.setCursorPos(1,8)
-mon2.write("|                           |")
-mon2.setCursorPos(1,9)
-mon2.write("|                           |")
-mon2.setCursorPos(1,10)
-mon2.write("|                           |")
-mon2.setCursorPos(1,11)
-mon2.write("O---------------------------O")
+BRAPI.ReactorGUIF(mon2, TXTCOL[1])
 end
 end
 
-function ReactorBFuelLevel()
-if ReactorB[9] == 1 then
-mon2.setCursorPos(11,1)
-RTRBMONCOL(TXTCOL[1])
-mon2.write((ReactorB[3]))
+
+function ReactorBNameDIS()
+	mon2.setCursorPos(11,1)
+	RTRBMONCOL(TXTCOL[1]) --COL1
+	mon2.write((ReactorB[3]))
+end
+
+
+
+function FUELREACB()
+FUELB = math.floor((((RBCommP.getFuelAmount())/(RBCommP.getFuelAmountMax()))*100)+0.5)
+CHAR = "="
 mon2.setCursorPos(3,3)
-RTRBMONCOL(TXTCOL[5])
-mon2.write(math.floor((((RBCommP.getFuelAmount())/(RBCommP.getFuelAmountMax()))*100)+0.5)..'% Fuel')
+RTRBMONCOL(TXTCOL[14])
+mon2.write('Fuel [')
+if FUELB == 0.0   then mon2.setCursorPos(9,3)  mon2.setTextColor(TXTCOL[15]) mon2.write("          ") end
+if FUELB >= 10.0  then mon2.setCursorPos(9,3)  mon2.setTextColor(TXTCOL[15]) mon2.write(CHAR) end
+if FUELB >= 20.0  then mon2.setCursorPos(10,3) mon2.setTextColor(TXTCOL[15]) mon2.write(CHAR) end
+if FUELB >= 30.0  then mon2.setCursorPos(11,3) mon2.setTextColor(TXTCOL[15]) mon2.write(CHAR) end
+if FUELB >= 40.0  then mon2.setCursorPos(12,3) mon2.setTextColor(TXTCOL[2] ) mon2.write(CHAR) end
+if FUELB >= 50.0  then mon2.setCursorPos(13,3) mon2.setTextColor(TXTCOL[2] ) mon2.write(CHAR) end
+if FUELB >= 60.0  then mon2.setCursorPos(14,3) mon2.setTextColor(TXTCOL[2] ) mon2.write(CHAR) end
+if FUELB >= 70.0  then mon2.setCursorPos(15,3) mon2.setTextColor(TXTCOL[14]) mon2.write(CHAR) end
+if FUELB >= 80.0  then mon2.setCursorPos(16,3) mon2.setTextColor(TXTCOL[14]) mon2.write(CHAR) end
+if FUELB >= 90.0  then mon2.setCursorPos(17,3) mon2.setTextColor(TXTCOL[14]) mon2.write(CHAR) end
+if FUELB >= 100.0 then mon2.setCursorPos(18,3) mon2.setTextColor(TXTCOL[14]) mon2.write(CHAR) end
+mon2.setCursorPos(19,3)
+RTRBMONCOL(TXTCOL[14])
+mon2.write("]")
+end
+
+
+function WasteRecB()
+WASTB = math.floor((((RBCommP.getWasteAmount())/(RBCommP.getFuelAmountMax()))*100)+0.5)
+CHAR = "="
 mon2.setCursorPos(3,4)
-RTRBMONCOL(TXTCOL[4])
-mon2.write(math.floor((((RBCommP.getWasteAmount())/(RBCommP.getFuelAmountMax()))*100)+0.5)..'% Waste')
+RTRBMONCOL(TXTCOL[14])
+mon2.write('Waste[')
+if WASTB <= 10.0  then mon2.setCursorPos(9, 4) mon2.setTextColor(TXTCOL[14]) mon2.write("          ") end
+if WASTB >= 10.0  then mon2.setCursorPos(9, 4) mon2.setTextColor(TXTCOL[14]) mon2.write(CHAR) end
+if WASTB >= 20.0  then mon2.setCursorPos(10,4) mon2.setTextColor(TXTCOL[14]) mon2.write(CHAR) end
+if WASTB >= 30.0  then mon2.setCursorPos(11,4) mon2.setTextColor(TXTCOL[14]) mon2.write(CHAR) end
+if WASTB >= 40.0  then mon2.setCursorPos(12,4) mon2.setTextColor(TXTCOL[2] ) mon2.write(CHAR) end
+if WASTB >= 50.0  then mon2.setCursorPos(13,4) mon2.setTextColor(TXTCOL[2] ) mon2.write(CHAR) end
+if WASTB >= 60.0  then mon2.setCursorPos(14,4) mon2.setTextColor(TXTCOL[2] ) mon2.write(CHAR) end
+if WASTB >= 70.0  then mon2.setCursorPos(15,4) mon2.setTextColor(TXTCOL[15]) mon2.write(CHAR) end
+if WASTB >= 80.0  then mon2.setCursorPos(16,4) mon2.setTextColor(TXTCOL[15]) mon2.write(CHAR) end
+if WASTB >= 90.0  then mon2.setCursorPos(17,4) mon2.setTextColor(TXTCOL[15]) mon2.write(CHAR) end
+if WASTB >= 100.0 then mon2.setCursorPos(18,4) mon2.setTextColor(TXTCOL[15]) mon2.write(CHAR) end
+mon2.setCursorPos(19,4)
+RTRBMONCOL(TXTCOL[14])
+mon2.write("]")
+end
+
+
+function ConRODB()
+RODSB = math.floor(100-(RBCommP.getControlRodLevel(0)))
+CHAR = "="
 mon2.setCursorPos(3,5)
-RTRBMONCOL(TXTCOL[6])
-mon2.write(''..(100-(RBCommP.getControlRodLevel(0)))..'% Rod Depth  ')
+RTRBMONCOL(TXTCOL[14])
+mon2.write('Rods [')
+if RODSB <= 10.0  then mon2.setCursorPos(9, 5) mon2.setTextColor(TXTCOL[14]) mon2.write("          ") end
+if RODSB >= 10.0  then mon2.setCursorPos(9, 5) mon2.setTextColor(TXTCOL[14]) mon2.write(CHAR) end
+if RODSB >= 20.0  then mon2.setCursorPos(10,5) mon2.setTextColor(TXTCOL[14]) mon2.write(CHAR) end
+if RODSB >= 30.0  then mon2.setCursorPos(11,5) mon2.setTextColor(TXTCOL[14]) mon2.write(CHAR) end
+if RODSB >= 40.0  then mon2.setCursorPos(12,5) mon2.setTextColor(TXTCOL[2] ) mon2.write(CHAR) end
+if RODSB >= 50.0  then mon2.setCursorPos(13,5) mon2.setTextColor(TXTCOL[2] ) mon2.write(CHAR) end
+if RODSB >= 60.0  then mon2.setCursorPos(14,5) mon2.setTextColor(TXTCOL[2] ) mon2.write(CHAR) end
+if RODSB >= 70.0  then mon2.setCursorPos(15,5) mon2.setTextColor(TXTCOL[15]) mon2.write(CHAR) end
+if RODSB >= 80.0  then mon2.setCursorPos(16,5) mon2.setTextColor(TXTCOL[15]) mon2.write(CHAR) end
+if RODSB >= 90.0  then mon2.setCursorPos(17,5) mon2.setTextColor(TXTCOL[15]) mon2.write(CHAR) end
+if RODSB >= 100.0 then mon2.setCursorPos(18,5) mon2.setTextColor(TXTCOL[15]) mon2.write(CHAR) end
+mon2.setCursorPos(19,5)
+RTRBMONCOL(TXTCOL[14])
+mon2.write("]")
 end
-SplashProgSettingsB()
-end
+
+--function ReactorBFuelLevel()
+--if ReactorB[9] == 1 then
+--mon2.setCursorPos(11,1)
+--RTRBMONCOL(TXTCOL[1])
+--mon2.write((ReactorB[3]))
+--mon2.setCursorPos(3,3)
+--RTRBMONCOL(TXTCOL[5])
+--mon2.write(math.floor((((RBCommP.getFuelAmount())/(RBCommP.getFuelAmountMax()))*100)+0.5)..'% Fuel')
+--mon2.setCursorPos(3,4)
+--RTRBMONCOL(TXTCOL[4])
+--mon2.write(math.floor((((RBCommP.getWasteAmount())/(RBCommP.getFuelAmountMax()))*100)+0.5)..'% Waste')
+--mon2.setCursorPos(3,5)
+--RTRBMONCOL(TXTCOL[6])
+--mon2.write(''..(100-(RBCommP.getControlRodLevel(0)))..'% Rod Depth  ')
+--end
+--SplashProgSettingsB()
+--end
 
 
 function ReactorBTemp()
@@ -1059,7 +1291,31 @@ if RBCommP.getCasingTemperature()>=650 then
 		COMMONCOL(TXTCOL[14])
     end
 end
-if ReactorB[9] == 1 then mon2.write('Temp (C) : ') mon2.write(tostring (math.floor(RBCommP.getCasingTemperature()))) 
+
+
+TEMPB = math.floor(RBCommP.getCasingTemperature())
+ENGYB   = math.floor(RBCommP.getEnergyStored())
+RFATB = math.floor(RBCommP.getEnergyProducedLastTick()+0.5)
+CHAR = "="
+
+if ReactorB[9] == 1 then
+mon2.setCursorPos(3,7)
+RTRBMONCOL(TXTCOL[14])
+mon2.write('Temp     [')
+if TEMPB == 19   then mon2.setCursorPos(13,7) mon2.setTextColor(TXTCOL[4])  mon2.write(" ") end
+if TEMPB >= 200  then mon2.setCursorPos(13,7) mon2.setTextColor(TXTCOL[4])  mon2.write(CHAR) end
+if TEMPB >= 400  then mon2.setCursorPos(14,7) mon2.setTextColor(TXTCOL[4])  mon2.write(CHAR) end
+if TEMPB >= 600  then mon2.setCursorPos(15,7) mon2.setTextColor(TXTCOL[4])  mon2.write(CHAR) end
+if TEMPB >= 800  then mon2.setCursorPos(16,7) mon2.setTextColor(TXTCOL[2] ) mon2.write(CHAR) end
+if TEMPB >= 1000 then mon2.setCursorPos(17,7) mon2.setTextColor(TXTCOL[2] ) mon2.write(CHAR) end
+if TEMPB >= 1200 then mon2.setCursorPos(18,7) mon2.setTextColor(TXTCOL[2] ) mon2.write(CHAR) end
+if TEMPB >= 1400 then mon2.setCursorPos(19,7) mon2.setTextColor(TXTCOL[15]) mon2.write(CHAR) end
+if TEMPB >= 1600 then mon2.setCursorPos(20,7) mon2.setTextColor(TXTCOL[15]) mon2.write(CHAR) end
+if TEMPB >= 1800 then mon2.setCursorPos(21,7) mon2.setTextColor(TXTCOL[15]) mon2.write(CHAR) end
+if TEMPB >= 2000 then mon2.setCursorPos(22,7) mon2.setTextColor(TXTCOL[15]) mon2.write(CHAR) end
+mon2.setCursorPos(23,7)
+RTRBMONCOL(TXTCOL[14])
+mon2.write("]")
 end
 
 --######################
@@ -1081,8 +1337,47 @@ function ReactorBFlux()
 if ReactorB[9] == 1 then 
 mon2.setCursorPos(3,8)
 RTRBMONCOL(TXTCOL[14])
-mon2.write('Energy   : ') mon2.write(tostring (math.floor(RBCommP.getEnergyStored())))
+mon2.write('Energy   [') 
+if ENGYB == 0       then mon2.setCursorPos(13,8) mon2.setTextColor(TXTCOL[15]) mon2.write(" ") end
+if ENGYB >= 1000000 then mon2.setCursorPos(13,8) mon2.setTextColor(TXTCOL[15]) mon2.write(CHAR) end
+if ENGYB >= 2000000 then mon2.setCursorPos(14,8) mon2.setTextColor(TXTCOL[15]) mon2.write(CHAR) end
+if ENGYB >= 3000000 then mon2.setCursorPos(15,8) mon2.setTextColor(TXTCOL[15]) mon2.write(CHAR) end
+if ENGYB >= 4000000 then mon2.setCursorPos(16,8) mon2.setTextColor(TXTCOL[2] ) mon2.write(CHAR) end
+if ENGYB >= 5000000 then mon2.setCursorPos(17,8) mon2.setTextColor(TXTCOL[2] ) mon2.write(CHAR) end
+if ENGYB >= 6000000 then mon2.setCursorPos(18,8) mon2.setTextColor(TXTCOL[2] ) mon2.write(CHAR) end
+if ENGYB >= 7000000 then mon2.setCursorPos(19,8) mon2.setTextColor(TXTCOL[14]) mon2.write(CHAR) end
+if ENGYB >= 8000000 then mon2.setCursorPos(20,8) mon2.setTextColor(TXTCOL[14]) mon2.write(CHAR) end
+if ENGYB >= 9000000 then mon2.setCursorPos(21,8) mon2.setTextColor(TXTCOL[14]) mon2.write(CHAR) end
+if ENGYB ==10000000 then mon2.setCursorPos(22,8) mon2.setTextColor(TXTCOL[14]) mon2.write(CHAR) end
+mon2.setCursorPos(23,8)
+RTRBMONCOL(TXTCOL[14])
+mon2.write("]")
+mon2.setBackgroundColor(TXTCOL[16])
 end
+
+if ReactorB[9] == 1 then
+mon2.setCursorPos(3,9)
+RTRBMONCOL(TXTCOL[14])
+mon2.write('RF/t     [') 
+if RFATB == 0     then mon2.setCursorPos(13,9) mon2.setTextColor(TXTCOL[15]) mon2.write(" ") end
+if RFATB >= 3200  then mon2.setCursorPos(13,9) mon2.setTextColor(TXTCOL[15]) mon2.write(CHAR) end
+if RFATB >= 6400  then mon2.setCursorPos(14,9) mon2.setTextColor(TXTCOL[15]) mon2.write(CHAR) end
+if RFATB >= 9600  then mon2.setCursorPos(15,9) mon2.setTextColor(TXTCOL[15]) mon2.write(CHAR) end
+if RFATB >= 12800 then mon2.setCursorPos(16,9) mon2.setTextColor(TXTCOL[2] ) mon2.write(CHAR) end
+if RFATB >= 16000 then mon2.setCursorPos(17,9) mon2.setTextColor(TXTCOL[2] ) mon2.write(CHAR) end
+if RFATB >= 19200 then mon2.setCursorPos(18,9) mon2.setTextColor(TXTCOL[2] ) mon2.write(CHAR) end
+if RFATB >= 22400 then mon2.setCursorPos(19,9) mon2.setTextColor(TXTCOL[14]) mon2.write(CHAR) end
+if RFATB >= 25600 then mon2.setCursorPos(20,9) mon2.setTextColor(TXTCOL[14]) mon2.write(CHAR) end
+if RFATB >= 28800 then mon2.setCursorPos(21,9) mon2.setTextColor(TXTCOL[14]) mon2.write(CHAR) end
+if RFATB >= 32000 then mon2.setCursorPos(22,9) mon2.setTextColor(TXTCOL[14]) mon2.write(CHAR) end
+mon2.setCursorPos(23,9)
+RTRBMONCOL(TXTCOL[14])
+mon2.write("]")
+mon2.setBackgroundColor(TXTCOL[16])
+end
+
+
+
 --######################
 --## Computer Display ##################################################################################
 --######################
@@ -1106,9 +1401,8 @@ if RBCommP.getEnergyProducedLastTick()>=2000 then
     if ReactorB[9] == 1 then RTRBMONCOL(TXTCOL[15]) end
     term.setTextColor((TXTCOL[15]))
 end
-if ReactorB[9] == 1 then mon2.setCursorPos(3,9)
-mon2.write ("RF/t     : ") mon2.write(tostring (math.floor(RBCommP.getEnergyProducedLastTick()+0.5)))
-end
+
+
 --######################
 --## Computer Display ##################################################################################
 --######################
@@ -1122,9 +1416,9 @@ end
 function ReactorBWarn()
 	  if Bofflineflag==1 then
 	  if ReactorB[9] == 1 then 
-	    mon2.setCursorPos(3,10)
+	    mon2.setCursorPos(21,4)
 	    RTRBMONCOL(TXTCOL[9])
-	    mon2.write('Status   : M.O  ')
+	    mon2.write('  MANO  ')
 	    end
 
 	    if ComConfig[8] == 1 then
@@ -1139,9 +1433,9 @@ function ReactorBWarn()
 	  end
 	  if Bemptyflag==1 then
 	  if ReactorB[9] == 1 then 
-	    mon2.setCursorPos(3,10)
+	    mon2.setCursorPos(21,4)
 	    RTRBMONCOL(TXTCOL[7])
-	    mon2.write('Status   : F.E  ')
+	    mon2.write('  FUEL  ')
 	    end
 
 	    if ComConfig[8] == 1 then
@@ -1156,9 +1450,9 @@ function ReactorBWarn()
 	  end
 	  if Bemptyflag==0 and Bofflineflag==0 and RBCommP.getControlRodLevel(0)>75 then
 	    if ReactorB[9] == 1 then
-	    mon2.setCursorPos(3,10)
+	    mon2.setCursorPos(21,4)
 	    RTRBMONCOL(TXTCOL[5])
-	    mon2.write('Status   : L.P.M')
+	    mon2.write('  LPSM  ')
 	    end
 
 	    if ComConfig[8] == 1 then
@@ -1173,9 +1467,9 @@ function ReactorBWarn()
 	  end
 	  if Bemptyflag==0 and Bofflineflag==0 and RBCommP.getControlRodLevel(0)<=75 then
 	    if ReactorB[9] == 1 then
-	    mon2.setCursorPos(3,10)
+	    mon2.setCursorPos(21,4)
 	    RTRBMONCOL(TXTCOL[2])
-	    mon2.write('Status   : H.P.M')
+	    mon2.write('  HIGH  ')
 	    end
 
 	    if ComConfig[8] == 1 then
@@ -1189,9 +1483,16 @@ function ReactorBWarn()
     	write('Status   : H.P.M')
 	  end
 end
+
 function ReactorBMainErrorCheck()
 	if ReactorB[4] == 1 then
-		ReactorBFuelLevel()
+		if ReactorB[9] == 1 then
+		ReactorBNameDIS()
+		FUELREACB()
+		WasteRecB()
+		ConRODB()
+		end
+		SplashProgSettingsB()
 	end
 
 	if ReactorB[5] == 1 then
@@ -1229,9 +1530,7 @@ if not ReactorBDC then
 	Save(Error, "BR-ERR.cfg")
 	os.reboot()
 end
-
-	--ReactorBGUIFrame()
-	--ReactorBMainErrorCheck()
+ReactorBMainErrorCheck()
 end
 
 --######################################################################################################
@@ -1445,7 +1744,7 @@ Backup = {PasConfig[1], PasConfig[2], PasConfig[3],
           EXPAND[10] , EXPAND[11] , EXPAND[12] , EXPAND[13] , EXPAND[14] , EXPAND[15] , EXPAND[16] , EXPAND[17] , EXPAND[18] ,
           EXPAND[19] , EXPAND[20] , EXPAND[21] , EXPAND[22] , EXPAND[23] , EXPAND[24] , EXPAND[25] , EXPAND[26] , EXPAND[27] ,
           EXPAND[28] , EXPAND[29] , EXPAND[30] , EXPAND[31] , EXPAND[32] , EXPAND[33] , EXPAND[34] , EXPAND[35] , EXPAND[36] ,
-          NewProgVer}
+          MVER[3]}
 BRAPI.LoadBarGen("Creating Settings Backup", 20, colors.red)
 Save(Backup, "BR-BCK.wan")
 SettingsMenuComputer()
@@ -1512,7 +1811,7 @@ function BRUpdateCheck() -- BRUDA (Big Reacotors UpDate Aviliable)
 	
 	VERU = Load("BR-UPD.upd")
 	
-	if VERU[1] <= NewProgVer then
+	if VERU[1] <= MVER[3] then
     	BRUDA = 0
     else
    		BRUDA = 1
@@ -1541,17 +1840,17 @@ function BRUpdateCheck() -- BRUDA (Big Reacotors UpDate Aviliable)
 		ERRUPDATE = 1
 	end
 
-	--if VERU[7] <= NewAPIVer then
-	--	APIUPDATE = 0
-	--else
-	--	APIUPDATE = 1
-	--end
+	if VERU[7] <= MVER[5] then
+		APIUPDATE = 0
+	else
+		APIUPDATE = 1
+	end
   end
 end
 
 function BRUpdater()
 	VERU = Load("BR-UPD.upd")
-	if VERU[1] <= NewProgVer then
+	if VERU[1] <= MVER[3] then
 		write("Program installed is latest ver.")
 		sleep(1.5)
 		SettingsMenuComputer()
@@ -1560,7 +1859,7 @@ function BRUpdater()
 	if RTAUPDATE == 1 then shell.run("delete BR-RTA.cfg") end
 	if RTBUPDATE == 1 then shell.run("delete BR-RTB.cfg") end
 	if ERRUPDATE == 1 then shell.run("delete BR-ERR.cfg") end
-	--if APIUPDATE == 1 then shell.run("delete           ") end   
+	if APIUPDATE == 1 then shell.run("delete BRAPI") end   
 	shell.run("delete FTBUKLW-BR")
 	shell.run(BRProgFetc)
 	print("Update Complete")
@@ -1570,1118 +1869,313 @@ end
 
 --######################################################################################################
 
-function clearLine() -- used to clear a line at the previously set cursor postion
-            local x, y = term.getCursorPos()
-            write ("|                                                 |")
-            term.setCursorPos (1, y)
-    end
-
-function box() -- 39x12 box used in some menus
-            term.setCursorPos (1, 1)
-            write ("O-------------------------------------------------O")
-            for i = 2, 18 do
-                    term.setCursorPos (1, i)
-                    clearLine()
-            end
-            term.setCursorPos (1, 19)
-            write ("O-------------------------------------------------O")
-    end
-
 --######################################################################################################
 --## Functions To Change Each Value ##
 --####################################
 
 function GeneralSleep()
---	GenS
- term.clear()
-            box()
-            term.setCursorPos (15, 1)
-            write ("Refresh Rate")
-            term.setCursorPos (3, 3)
-            write ("Last used setting : "..ComConfig[1].." ")
-            term.setCursorPos (3, 5)
-            write ("Change Refresh Time? y/n")
-            sleep(0.3)
-            while true do
-                    keypress = 0
-                    event, keypress = os.pullEvent("key")
-                    if keypress == 49 then
-                            SettingsMenuComputer()
-                            break
-                    elseif keypress == 21 then
-                            term.setCursorPos (3, 5)
-                            write ("New Refresh Rate (3(Min) > 20(Max))")
-                            term.setCursorPos (3, 6)
-                            sleep(0.3)
-                            GSnewSet = read ()
-                            liltest = tonumber ( GSnewSet )
-                            if type( liltest ) ~= "number" then
-                                    term.setCursorPos (15, 10)
-                                    write ("I was expecting a number")
-                                    sleep(1.5)
-                                    term.setCursorPos (15, 10)
-                                    write ("                        ")
-                                    GeneralSleep()
-                                    return
-                            else
-                                    ComConfig[1] = tonumber(GSnewSet)
-                            end
-                            Save(ComConfig, "BR-COM.cfg")
-                            sleep(1.5)
-                            SettingsMenuComputer()
-                            break
-                    elseif keypress == 30 then
-                            SettingsMenuComputer()
-                            break
-                    end
-            end
+GENSLPP = {"Refresh Rate", "Last used setting : ", "Change Refresh Time? y/n", "New Refresh Rate (3(Min) > 20(Max))"}
+GENSLPF = {SettingsMenuComputer, GeneralSleep()}
+GENSLPS = {ComConfig, 1, "BR-COM.cfg"}
+BRAPI.UniversalSettingN(GENSLPP, GENSLPF, GENSLPS)
 end
 
---@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 function TwoReactors()
---TReactor = 1 = true, 2 = false
-term.clear()
-            box()
-            term.setCursorPos (15, 1)
-            write ("Will I be running 2 Reactors?")
-            term.setCursorPos (3, 3)
-            write ("Last used setting : "..ComConfig[2].." ")
-            term.setCursorPos (3, 5)
-            write ("Change This Setting? y/n")
-            sleep(0.3)
-            while true do
-                    keypress = 0
-                    event, keypress = os.pullEvent("key")
-                    if keypress == 49 then
-                            SettingsMenuComputer()
-                            break
-                    elseif keypress == 21 then
-                            term.setCursorPos (3, 5)
-                            write ("Yes (1) / No (0)                ")
-                            term.setCursorPos (3, 6)
-                            sleep(0.3)
-                            TRnewSet = read ()
-                            liltest = tonumber ( TRnewSet )
-                            if type( liltest ) ~= "number" then
-                                    term.setCursorPos (15, 10)
-                                    write ("I was expecting a number")
-                                    sleep(1.5)
-                                    term.setCursorPos (15, 10)
-                                    write ("                        ")
-                                    GeneralSleep()
-                                    return
-                            else
-                                    ComConfig[2] = tonumber(TRnewSet)
-                            end
-                            Save(ComConfig, "BR-COM.cfg")
-                            sleep(1.5)
-                            SettingsMenuComputer()
-                            break
-                    elseif keypress == 30 then
-                            SettingsMenuComputer()
-                            break
-                    end
-            end
+TRRASTP = {"Two Reactors Setting", "Current setting : ", "Change This Setting? y/n", "Yes (1) / No (0)                "}
+TRRASTF = {SettingsMenuComputer, TwoReactors}
+TRRASTS = {ComConfig, 2, "BR-COM.cfg"}
+BRAPI.UniversalSettingN(TRRASTP, TRRASTF, TRRASTS)
 end
 
---@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 function StatMonitor()-- Change the Status Monitor
---PerStat
-            term.clear()
-            box()
-            term.setCursorPos (15, 1)
-            write ("Status Monitor")
-            term.setCursorPos (5, 3)
-            write ("Current Monitor is: "..ComConfig[3])
-            term.setCursorPos (5, 5)
-            write ("Would you like to change it? y/n")
-            sleep(0.3)
-            while true do
-                            keypress = 0
-                    event, keypress = os.pullEvent("key")
-                    if keypress == 49 then
-                            SettingsMenuComputer()
-                            break
-                    elseif keypress == 21 then
-                            term.setCursorPos (5, 5)
-                            write ("New monitor to use :             ")
-                            term.setCursorPos (5, 6)
-                            sleep(0.3)
-                            ComConfig[3] = read ()
-                            Save(ComConfig, "BR-COM.cfg")
-                            sleep(1.5)
-                            SettingsMenuComputer()
-                            end
-                        end
-                    end
+STMONDP = {"Status Monitor", "Current Monitor is: ", "Would you like to change it? y/n", "New monitor to use :             "}
+STMONDF = {SettingsMenuComputer}
+STMONDS = {ComConfig, 3, "BR-COM.cfg"}
+BRAPI.UniversalSettingT(STMONDP, STMONDF, STMONDS)
+end
 
 
 function SetComLabel()-- Change the CommLabel
---ComLabel = ("BR-Reactor")
-            term.clear()
-            box()
-            term.setCursorPos (15, 1)
-            write ("Computer Label")
-            term.setCursorPos (5, 3)
-            write ("Current Com Label is: "..ComConfig[4])
-            term.setCursorPos (5, 5)
-            write ("Would you like to change it? y/n")
-            sleep(0.3)
-            while true do
-                            keypress = 0
-                    event, keypress = os.pullEvent("key")
-                    if keypress == 49 then
-                            SettingsMenuComputer()
-                            break
-                    elseif keypress == 21 then
-                            term.setCursorPos (5, 5)
-                            write ("New monitor to use :             ")
-                            term.setCursorPos (5, 6)
-                            sleep(0.3)
-                            ComConfig[4] = read ()
-                            os.setComputerLabel(ComConfig[4])
-                            Save(ComConfig, "BR-COM.cfg")
-                            sleep(1.5)
-                            SettingsMenuComputer()
-                            end
-                        end
-                    end
-
-
-
+function RENAMECOM()
+os.setComputerLabel(ComConfig[4])
+end
+SCOMLBP = {"Computer Label", "Current Com Label is: ", "Would you like to change it? y/n", "New Computer label to use :             "}
+SCOMLBF = {SettingsMenuComputer, RENAMECOM}
+SCOMLBS = {ComConfig, 4, "BR-COM.cfg"}
+BRAPI.UniversalSettingT(SCOMLBP, SCOMLBF, SCOMLBS)
+end
 
 
 function FirstRunSetting() --Default Settings
---Default = 1 = true, 0 = false
-term.clear()
-            box()
-            term.setCursorPos (15, 1)
-            write ("Return to Default")
-            term.setCursorPos (3, 5)
-            write ("Return Settings to Default? Y/N")
-            sleep(0.3)
-            while true do
-                    keypress = 0
-                    event, keypress = os.pullEvent("key")
-                    if keypress == 49 then
-                            SettingsMenuComputer()
-                            break
-                    elseif keypress == 21 then
-                            term.setCursorPos (3, 5)
-                            write (" 1 = Reset / 0 = Off                ")
-                            term.setCursorPos (3, 6)
-                            sleep(0.3)
-                            NDefault = read ()
-                            liltest = tonumber ( NDefault )
-                            if type( liltest ) ~= "number" then
-                                    term.setCursorPos (15, 10)
-                                    write ("I was expecting a number")
-                                    sleep(1.5)
-                                    term.setCursorPos (15, 10)
-                                    write ("                        ")
-                                    GeneralSleep()
-                                    return
-                            else
-                                    ComConfig[6] = tonumber(NDefault)
-                            end
-                            Save(ComConfig, "BR-COM.cfg")
-                            sleep(1.5)
-                            os.reboot()
-                            break
-                    elseif keypress == 30 then
-                            SettingsMenuComputer()
-                            break
-                    end
-            end
+FRSETTP = {"Return to Default","Current Setting is: ", "Return Settings to Default? Y/N", " 1 = Reset / 0 = Off                "}
+FRSETTF = {SettingsMenuComputer, FirstRunSetting}
+FRSETTS = {ComConfig, 6, "BR-COM.cfg"}
+BRAPI.UniversalSettingN(FRSETTP, FRSETTF, FRSETTS)
 end
 
 
 function AutoCheckUpdate() --Default Settings
---Default = 1 = true, 0 = false
-term.clear()
-            box()
-            term.setCursorPos (15, 1)
-            write ("Auto Check Update")
-            term.setCursorPos (3, 5)
-            write ("Do you want to change this? Y/N")
-            sleep(0.3)
-            while true do
-                    keypress = 0
-                    event, keypress = os.pullEvent("key")
-                    if keypress == 49 then
-                            SettingsMenuComputer()
-                            break
-                    elseif keypress == 21 then
-                            term.setCursorPos (3, 5)
-                            write ("On (1) / Off (0)               ")
-                            term.setCursorPos (3, 6)
-                            sleep(0.3)
-                            NCheckUpdate = read ()
-                            liltest = tonumber ( NCheckUpdate )
-                            if type( liltest ) ~= "number" then
-                                    term.setCursorPos (15, 10)
-                                    write ("I was expecting a number")
-                                    sleep(1.5)
-                                    term.setCursorPos (15, 10)
-                                    write ("                        ")
-                                    GeneralSleep()
-                                    return
-                            else
-                                    ComConfig[7] = tonumber(NCheckUpdate)
-                            end
-                            Save(ComConfig, "BR-COM.cfg")
-                            SettingsMenuComputer()
-                            break
-                    elseif keypress == 30 then
-                            SettingsMenuComputer()
-                            break
-                    end
-            end
+ACUDATP = {"Auto Check Update","Current Setting is: ","Do you want to change this? Y/N","On (1) / Off (0)               "}
+ACUDATF = {SettingsMenuComputer, AutoCheckUpdate}
+ACUDATS = {ComConfig, 7, "BR-COM.cfg"}
+BRAPI.UniversalSettingN(ACUDATP, ACUDATF, ACUDATS)
 end
 
 function ChangePassword()-- Change the Status Monitor
---PerStat
-            term.clear()
-            box()
-            term.setCursorPos (15, 1)
-            write ("Change Password")
-            term.setCursorPos (5, 3)
-            write ("Current Password is: "..PasConfig[1])
-            term.setCursorPos (5, 5)
-            write ("Would you like to change it? y/n")
-            sleep(0.3)
-            while true do
-                            keypress = 0
-                    event, keypress = os.pullEvent("key")
-                    if keypress == 49 then
-                            SettingsMenuComputer()
-                            break
-                    elseif keypress == 21 then
-                            term.setCursorPos (5, 5)
-                            write ("New admin password:             ")
-                            term.setCursorPos (5, 6)
-                            sleep(0.3)
-                            PasConfig[1] = read ()
-                            Save(PasConfig, "BR-PAS.cfg")
-                            sleep(1.5)
-                            SettingsMenuComputer()
-                            end
-                        end
-                    end
+CPASSWP = {"Change Password","Current Setting is: ","Would you like to change it? y/n","New admin password:             "}
+CPASSWF = {SettingsMenuComputer}
+CPASSWS = {PasConfig, 1, "BR-PAS.cfg"}
+BRAPI.UniversalSettingT(CPASSWP, CPASSWF, CPASSWS)
+end
 
 
 function RequirePassword() --Default Settings
---Default = 1 = true, 0 = false
-term.clear()
-            box()
-            term.setCursorPos (15, 1)
-            write ("Require Password?")
-            term.setCursorPos (3, 5)
-            write ("Do you want to change this? Y/N")
-            sleep(0.3)
-            while true do
-                    keypress = 0
-                    event, keypress = os.pullEvent("key")
-                    if keypress == 49 then
-                            SettingsMenuComputer()
-                            break
-                    elseif keypress == 21 then
-                            term.setCursorPos (3, 5)
-                            write ("ON (1) / OFF (0)                ")
-                            term.setCursorPos (3, 6)
-                            sleep(0.3)
-                            NCheckUpdate = read ()
-                            liltest = tonumber ( NCheckUpdate )
-                            if type( liltest ) ~= "number" then
-                                    term.setCursorPos (15, 10)
-                                    write ("I was expecting a number")
-                                    sleep(1.5)
-                                    term.setCursorPos (15, 10)
-                                    write ("                        ")
-                                    GeneralSleep()
-                                    return
-                            else
-                                    PasConfig[2] = tonumber(NCheckUpdate)
-                            end
-                            Save(PasConfig, "BR-PAS.cfg")
-                            SettingsMenuComputer()
-                            break
-                    elseif keypress == 30 then
-                            SettingsMenuComputer()
-                            break
-                    end
-            end
+RQPASSCP = {" Ask For Password? ", "Current Setting: ", "Do you want to change this? Y/N", "Please Type A Setting: 0 / 1     "} 
+RQPASSCF = {SettingsMenuComputer, RequirePassword}
+RQPASSCS = {PasConfig, 2,"BR-PAS.cfg"}
+BRAPI.UniversalSettingN(RQPASSCP, RQPASSCF, RQPASSCS)
 end
 
 function StatMonOn()
---Status Monitor On/Off
-term.clear()
-            box()
-            term.setCursorPos (15, 1)
-            write ("Require Password?")
-            term.setCursorPos (3, 5)
-            write ("Do you want to change this? Y/N")
-            sleep(0.3)
-            while true do
-                    keypress = 0
-                    event, keypress = os.pullEvent("key")
-                    if keypress == 49 then
-                            SettingsMenuComputer()
-                            break
-                    elseif keypress == 21 then
-                            term.setCursorPos (3, 5)
-                            write ("YES (1) / NO (0)                ")
-                            term.setCursorPos (3, 6)
-                            sleep(0.3)
-                            NCheckUpdate = read ()
-                            liltest = tonumber ( NCheckUpdate )
-                            if type( liltest ) ~= "number" then
-                                    term.setCursorPos (15, 10)
-                                    write ("I was expecting a number 1 (on) or 0 (off)")
-                                    sleep(1.5)
-                                    term.setCursorPos (15, 10)
-                                    write ("                        ")
-                                    GeneralSleep()
-                                    return
-                            else
-                                    ComConfig[8] = tonumber(NCheckUpdate)
-                            end
-                            Save(ComConfig, "BR-COM.cfg")
-                            SettingsMenuComputer()
-                            break
-                    elseif keypress == 30 then
-                            SettingsMenuComputer()
-                            break
-                    end
-            end
+Wamu5chy = {"Computer Mointor", "Current seting is ", "Do you want to change this? Y/N",   "YES (1) / NO (0)                "}
+nmoduuds = {SettingsMenuComputer, StatMonOn}
+DEkcZKtS = {ComConfig, 8, "BR-COM.cfg"}
+BRAPI.UniversalSettingN(Wamu5chy, nmoduuds, DEkcZKtS)
 end
 
 
---#####################################################################################################
---## Reactor 1 Settings ##
---########################
+--##############################################################################################################################################################
+--## Reactor 1 Settings ########################################################################################################################################
+--##############################################################################################################################################################
+
+--######################################################################################################
+--## Reactor A Comm   ##
+--######################
 
 function ReactorAComm()
---	PerCOM1  = "BigReactors-Reactor_1" ReactorA[3]
-term.clear()
-            box()
-            term.setCursorPos (15, 1)
-            write ("Reactor A Com Port")
-            term.setCursorPos (5, 3)
-            write ("Current Comm port is: "..ReactorA[1])
-            term.setCursorPos (5, 5)
-            write ("Would you like to change it? y/n")
-            sleep(0.3)
-            while true do
-                            keypress = 0
-                    event, keypress = os.pullEvent("key")
-                    if keypress == 49 then
-                    		nOption = 1
-                            SettingsMenuReactorA()
-                            break
-                    elseif keypress == 21 then
-                            term.setCursorPos (5, 5) 
-                            write ("New comm port to use :                       ")
-                            term.setCursorPos (5, 6)
-                            sleep(0.3)
-                            ReactorA[1] = read ()
-                            sleep(1.5)
-                            Save(ReactorA, "BR-RTA.cfg")
-                            SettingsMenuReactorA()
-                            end
-                        end
+CMPTPA = {"Reactor A Com Port", "Current Comm port is: ", "Would you like to change it? y/n", "New comm port to use :             "}
+CMPTFA = {SettingsMenuReactorA}
+CMPTSA = {ReactorA, 1, "BR-RTA.cfg"}
+BRAPI.UniversalSettingT(CMPTPA, CMPTFA, CMPTSA)
 end
 
+--######################################################################################################
+--## Reactor A Monitor   ##
+--#########################
 
 function ReactorAMonitor()
---	PerM1    = "monitor_6"
-term.clear()
-            box()
-            term.setCursorPos (15, 1)
-            write ("Reactor A Monitor")
-            term.setCursorPos (5, 3)
-            write ("Current Monitor is: "..ReactorA[2])
-            term.setCursorPos (5, 5)
-            write ("Would you like to change it? y/n")
-            sleep(0.3)
-            while true do
-                            keypress = 0
-                    event, keypress = os.pullEvent("key")
-                    if keypress == 49 then
-                    		nOption = 2
-                            SettingsMenuReactorA()
-                            break
-                    elseif keypress == 21 then
-                            term.setCursorPos (5, 5)
-                            write ("New monitor to use :                         ")
-                            term.setCursorPos (5, 6)
-                            sleep(0.3)
-                            ReactorA[2] = read ()
-                            sleep(1.5)
-                            Save(ReactorA, "BR-RTA.cfg")
-                            SettingsMenuReactorA()
-                            end
-                        end
+MNCOPA = {"Reactor A Monitor", "Current Monitor is: ", "Would you like to change it? y/n", "New monitor to use :             "}
+MNCOFA = {SettingsMenuReactorA}
+MNCOSA = {ReactorA, 2, "BR-RTA.cfg"}
+BRAPI.UniversalSettingT(MNCOPA, MNCOFA, MNCOSA)
 end
+
+--######################################################################################################
+--## Reactor A Name   ##
+--######################
 
 function ReactorAName()
---	RTN1     = 'Reactor 1'
-term.clear()
-            box()
-            term.setCursorPos (15, 1)
-            write ("Reactor A Name")
-            term.setCursorPos (5, 3)
-            write ("Current Reactor A name is: "..ReactorA[3])
-            term.setCursorPos (5, 5)
-            write ("Would you like to change it? y/n")
-            sleep(0.3)
-            while true do
-                            keypress = 0
-                    event, keypress = os.pullEvent("key")
-                    if keypress == 49 then
-                    		nOption = 3
-                            SettingsMenuReactorA()
-                            break
-                    elseif keypress == 21 then
-                            term.setCursorPos (5, 5)
-                            write ("New Reactor Name :                           ")
-                            term.setCursorPos (5, 6)
-                            sleep(0.3)
-                            ReactorA[3] = read ()
-                            Save(ReactorA, "BR-RTA.cfg")
-                            sleep(1.5)
-                            SettingsMenuReactorA()
-                            end
-                        end
+RENMPA = {"Reactor A Name", "Current Reactor A name is: ", "Would you like to change it? y/n", "New Reactor Name :              "}
+RENMFA = {SettingsMenuReactorA}
+RENMSA = {ReactorA, 3, "BR-RTA.cfg"}
+BRAPI.UniversalSettingT(RENMPA, RENMFA, RENMSA)
 end
+
+--######################################################################################################
+--## Reactor A Display Fuel   ##
+--##############################
 
 function ReactorADisplayFuel()
---	RAFuel   = true
-term.clear()
-            box()
-            term.setCursorPos (15, 1)
-            write (" Display Fuel ")
-            term.setCursorPos (3, 3)
-            write ("Last used setting : "..ReactorA[4])
-            term.setCursorPos (3, 5)
-            write ("Change Display Fuel? y/n")
-            sleep(0.3)
-            while true do
-                    keypress = 0
-                    event, keypress = os.pullEvent("key")
-                    if keypress == 49 then
-                    		nOption = 4
-                            SettingsMenuReactorA()
-                            break
-                    elseif keypress == 21 then
-                            term.setCursorPos (3, 5)
-                            write ("On (1) / Off (0)                ")
-                            term.setCursorPos (3, 6)
-                            sleep(0.3)
-                            RADFnewSet = read ()
-                            liltest = tonumber ( RADFnewSet )
-                            if type( liltest ) ~= "number" then
-                                    term.setCursorPos (15, 10)
-                                    write ("I was expecting a number")
-                                    sleep(1.5)
-                                    term.setCursorPos (15, 10)
-                                    write ("                        ")
-                                    GeneralSleep()
-                                    return
-                            else
-                                    ReactorA[4] = tonumber(RADFnewSet)
-                            end
-                            Save(ReactorA, "BR-RTA.cfg")
-                            sleep(1.5)
-                            SettingsMenuReactorA()
-                            break
-                    elseif keypress == 30 then
-                            SettingsMenuReactorA()
-                            break
-                    end
-            end
+DIS2PA = {" Display Fuel ", "Last used setting : ", "Change Display Fuel? y/n", "                             "}
+DIS2FA = {SettingsMenuReactorA, ReactorADisplayFuel}
+DIS2SA = {ReactorA, 4, "BR-RTA.cfg"}
+BRAPI.UniversalSettingN(DIS2PA, DIS2FA, DIS2SA)
 end
+
+--######################################################################################################
+--## Reactor A Display Temp   ##
+--##############################
 
 function ReactorADisplayTemp()
-term.clear()
-            box()
-            term.setCursorPos (15, 1)
-            write (" Display Temp ")
-            term.setCursorPos (3, 3)
-            write ("Last used setting : "..ReactorA[5])
-            term.setCursorPos (3, 5)
-            write ("Change Display Fuel? y/n")
-            sleep(0.3)
-            while true do
-                    keypress = 0
-                    event, keypress = os.pullEvent("key")
-                    if keypress == 49 then
-                    		nOption = 5
-                            SettingsMenuReactorA()
-                            break
-                    elseif keypress == 21 then
-                            term.setCursorPos (3, 5)
-                            write ("On (1) / Off (0)                ")
-                            term.setCursorPos (3, 6)
-                            sleep(0.3)
-                            RADTnewSet = read ()
-                            liltest = tonumber ( RADTnewSet )
-                            if type( liltest ) ~= "number" then
-                                    term.setCursorPos (15, 10)
-                                    write ("I was expecting a number")
-                                    sleep(1.5)
-                                    term.setCursorPos (15, 10)
-                                    write ("                        ")
-                                    GeneralSleep()
-                                    return
-                            else
-                                    ReactorA[5] = tonumber(RADTnewSet)
-                            end
-                            Save(ReactorA, "BR-RTA.cfg")
-                            sleep(1.5)
-                            SettingsMenuReactorA()
-                            break
-                    elseif keypress == 30 then
-                            SettingsMenuReactorA()
-                            break
-                    end
-            end
+DISTPA = {"Display Temp", "Last used setting : ","Change Display Fuel? y/n", "                             "}
+DISTFA = {SettingsMenuReactorA, ReactorADisplayTemp}
+DISTSA = {ReactorA, 5, "BR-RTA.cfg"}
+BRAPI.UniversalSettingN(DISTPA, DISTFA, DISTSA)
 end
+
+--######################################################################################################
+--## Reactor A Display Flux   ##
+--##############################
 
 function ReactorADisplayFlux()
---	FluxRA   = true
-term.clear()
-            box()
-            term.setCursorPos (15, 1)
-            write (" Display Temp ")
-            term.setCursorPos (3, 3)
-            write ("Last used setting : "..ReactorA[6])
-            term.setCursorPos (3, 5)
-            write ("Change Display Flux? y/n")
-            sleep(0.3)
-            while true do
-                    keypress = 0
-                    event, keypress = os.pullEvent("key")
-                    if keypress == 49 then
-                    		nOption = 6
-                            SettingsMenuReactorA()
-                            break
-                    elseif keypress == 21 then
-                            term.setCursorPos (3, 5)
-                            write ("On (1) / Off (0)                ")
-                            term.setCursorPos (3, 6)
-                            sleep(0.3)
-                            RADFXnewSet = read ()
-                            liltest = tonumber ( RADFXnewSet )
-                            if type( liltest ) ~= "number" then
-                                    term.setCursorPos (15, 10)
-                                    write ("I was expecting a number")
-                                    sleep(1.5)
-                                    term.setCursorPos (15, 10)
-                                    write ("                        ")
-                                    GeneralSleep()
-                                    return
-                            else
-                                    ReactorA[6] = tonumber(RADFXnewSet)
-                            end
-                            Save(ReactorA, "BR-RTA.cfg")
-                            sleep(1.5)
-                            SettingsMenuReactorA()
-                            break
-                    elseif keypress == 30 then
-                            SettingsMenuReactorA()
-                            break
-                    end
-            end
-
-
+DISFPA = {" Display Temp ", "Last used setting : ", "Change Display Flux? y/n", "                             "}
+DISFFA = {SettingsMenuReactorA, ReactorADisplayFlux}
+DISFSA = {ReactorA, 6, "BR-RTA.cfg"}
+BRAPI.UniversalSettingN(DISFPA, DISFFA, DISFSA)
 end
+
+--######################################################################################################
+--## Reactor A Display Warn   ##
+--##############################
 
 function ReactorADisplayWarn()
---	RAWarn   = true
-term.clear()
-            box()
-            term.setCursorPos (15, 1)
-            write (" Display Warn ")
-            term.setCursorPos (3, 3)
-            write ("Last used setting : "..ReactorA[7])
-            term.setCursorPos (3, 5)
-            write ("Change Display Flux? y/n")
-            sleep(0.3)
-            while true do
-                    keypress = 0
-                    event, keypress = os.pullEvent("key")
-                    if keypress == 49 then
-                    		nOption = 7
-                            SettingsMenuReactorA()
-                            break
-                    elseif keypress == 21 then
-                            term.setCursorPos (3, 5)
-                            write ("On (1) / Off (0)                ")
-                            term.setCursorPos (3, 6)
-                            sleep(0.3)
-                            RADWnewSet = read ()
-                            liltest = tonumber ( RADWnewSet )
-                            if type( liltest ) ~= "number" then
-                                    term.setCursorPos (15, 10)
-                                    write ("I was expecting a number")
-                                    sleep(1.5)
-                                    term.setCursorPos (15, 10)
-                                    write ("                        ")
-                                    GeneralSleep()
-                                    return
-                            else
-                                    ReactorA[7] = tonumber(RADWnewSet)
-                            end
-                            Save(ReactorA, "BR-RTA.cfg")
-                            sleep(1.5)
-                            SettingsMenuReactorA()
-                            break
-                    elseif keypress == 30 then
-                            SettingsMenuReactorA()
-                            break
-                    end
-            end
-
-
+DISWPA = {"Display Warn", "Last used setting : ", "Change Display Flux? y/n", "On (1) / Off (0)                "}
+DISWFA = {SettingsMenuReactorA, ReactorADisplayWarn}
+DISWSA = {ReactorA, 7, "BR-RTA.cfg"}
+BRAPI.UniversalSettingN(DISWPA, DISWFA, DISWSA)
 end
+
+--######################################################################################################
+--## Reactor A RedStone Input   ##
+--################################
 
 function ReactorARSInput()
---	RSRA     = "right"
-term.clear()
-            box()
-            term.setCursorPos (15, 1)
-            write ("Reactor A RS Input")
-            term.setCursorPos (5, 3)
-            write ("Current Comm port is: "..ReactorA[8])
-            term.setCursorPos (5, 5)
-            write ("Would you like to change it? y/n")
-            sleep(0.3)
-            while true do
-                            keypress = 0
-                    event, keypress = os.pullEvent("key")
-                    if keypress == 49 then
-                    		nOption = 8
-                            SettingsMenuReactorA()
-                            break
-                    elseif keypress == 21 then
-                            term.setCursorPos (5, 5)
-                            write ("RS input left/right? :             ")
-                            term.setCursorPos (5, 6)
-                            sleep(0.3)
-                            ReactorA[8] = read ()
-                            Save(ReactorA, "BR-RTA.cfg")
-                            sleep(1.5)
-                            SettingsMenuReactorA()
-                            end
-                        end
+COMMPA = {"Reactor A RS Input V2", "Current Comm port is: ", "Would you like to change it? y/n", "RS input left/right? :             "}
+COMMFA = {SettingsMenuReactorA}
+COMMSA = {ReactorA, 8, "BR-RTA.cfg"}
+BRAPI.UniversalSettingT(COMMPA, COMMFA, COMMSA)
 end
 
+--######################################################################################################
+--## Reactor A Monitor On/Off   ##
+--################################
 function ReactorADisplayOn()
---	RAWarn   = true
-term.clear()
-            box()
-            term.setCursorPos (15, 1)
-            write (" Display On/Off ")
-            term.setCursorPos (3, 3)
-            write ("Last used setting : "..ReactorA[9])
-            term.setCursorPos (3, 5)
-            write ("Switch Monitor On/Off? y/n")
-            sleep(0.3)
-            while true do
-                    keypress = 0
-                    event, keypress = os.pullEvent("key")
-                    if keypress == 49 then
-                    		nOption = 7
-                            SettingsMenuReactorA()
-                            break
-                    elseif keypress == 21 then
-                            term.setCursorPos (3, 5)
-                            write ("On (1) / Off (0)                ")
-                            term.setCursorPos (3, 6)
-                            sleep(0.3)
-                            RADWnewSet = read ()
-                            liltest = tonumber ( RADWnewSet )
-                            if type( liltest ) ~= "number" then
-                                    term.setCursorPos (15, 10)
-                                    write ("I was expecting a number")
-                                    sleep(1.5)
-                                    term.setCursorPos (15, 10)
-                                    write ("                        ")
-                                    GeneralSleep()
-                                    return
-                            else
-                                    ReactorA[9] = tonumber(RADWnewSet)
-                            end
-                            Save(ReactorA, "BR-RTA.cfg")
-                            sleep(1.5)
-                            SettingsMenuReactorA()
-                            break
-                    elseif keypress == 30 then
-                            SettingsMenuReactorA()
-                            break
-                    end
-            end
+MONPA = {" Display 1 On/Off V2", "Last used setting : ", "Switch Monitor On/Off? y/n", "On (1) / Off (0)                "}
+MONFA = {SettingsMenuReactorA, ReactorADisplayOn}
+MONSA = {ReactorA, 9, "BR-RTA.cfg"}
+BRAPI.UniversalSettingN(MONPA, MONFA, MONSA)
 end
---########################
---## Reactor 2 Settings ##
---########################
+
+
+
+--##############################################################################################################################################################
+--## Reactor 2 Settings ########################################################################################################################################
+--##############################################################################################################################################################
+
+--######################################################################################################
+--## Reactor B Comm   ##
+--######################
 
 function ReactorBComm()
---	PerCOM1  = "BigReactors-Reactor_1"
-term.clear()
-            box()
-            term.setCursorPos (15, 1)
-            write ("Reactor B Com Port")
-            term.setCursorPos (5, 3)
-            write ("Current Comm port is: "..ReactorB[1])
-            term.setCursorPos (5, 5)
-            write ("Would you like to change it? y/n")
-            sleep(0.3)
-            while true do
-                            keypress = 0
-                    event, keypress = os.pullEvent("key")
-                    if keypress == 49 then
-                            SettingsMenuReactorB()
-                            break
-                    elseif keypress == 21 then
-                            term.setCursorPos (5, 5)
-                            write ("New comm port to use :             ")
-                            term.setCursorPos (5, 6)
-                            sleep(0.3)
-                            ReactorB[1] = read ()
-                            Save(ReactorB, "BR-RTB.cfg")
-                            sleep(1.5)
-                            SettingsMenuReactorB()
-                            end
-                        end
+CMPTPB = {"Reactor B Com Port", "Current Comm port is: ", "Would you like to change it? y/n", "New comm port to use :             "}
+CMPTFB = {SettingsMenuReactorB}
+CMPTSB = {ReactorB, 1, "BR-RTB.cfg"}
+BRAPI.UniversalSettingT(CMPTPB, CMPTFB, CMPTSB)
 end
 
+--######################################################################################################
+--## Reactor B Monitor   ##
+--#########################
 
 function ReactorBMonitor()
---	PerM1    = "monitor_6"
-term.clear()
-            box()
-            term.setCursorPos (15, 1)
-            write ("Reactor B Monitor")
-            term.setCursorPos (5, 3)
-            write ("Current Monitor is: "..ReactorB[2])
-            term.setCursorPos (5, 5)
-            write ("Would you like to change it? y/n")
-            sleep(0.3)
-            while true do
-                            keypress = 0
-                    event, keypress = os.pullEvent("key")
-                    if keypress == 49 then
-                            SettingsMenuReactorB()
-                            break
-                    elseif keypress == 21 then
-                            term.setCursorPos (5, 5)
-                            write ("New monitor to use :             ")
-                            term.setCursorPos (5, 6)
-                            sleep(0.3)
-                            ReactorB[2] = read ()
-                            Save(ReactorB, "BR-RTB.cfg")
-                            sleep(1.5)
-                            SettingsMenuReactorB()
-                            end
-                        end
+MNCOPB = {"Reactor B Monitor", "Current Monitor is: ", "Would you like to change it? y/n", "New monitor to use :             "}
+MNCOFB = {SettingsMenuReactorB}
+MNCOSB = {ReactorB, 2, "BR-RTB.cfg"}
+BRAPI.UniversalSettingT(MNCOPB, MNCOFB, MNCOSB)
 end
+
+--######################################################################################################
+--## Reactor B Name   ##
+--######################
 
 function ReactorBName()
---	RTN2     = 'Reactor 2'
-term.clear()
-            box()
-            term.setCursorPos (15, 1)
-            write ("Reactor B Name")
-            term.setCursorPos (5, 3)
-            write ("Current Reactor A name is: "..ReactorB[3])
-            term.setCursorPos (5, 5)
-            write ("Would you like to change it? y/n")
-            sleep(0.3)
-            while true do
-                            keypress = 0
-                    event, keypress = os.pullEvent("key")
-                    if keypress == 49 then
-                            SettingsMenuReactorB()
-                            break
-                    elseif keypress == 21 then
-                            term.setCursorPos (5, 5)
-                            write ("New Reactor Name :              ")
-                            term.setCursorPos (5, 6)
-                            sleep(0.3)
-                            ReactorB[3] = read ()
-                            Save(ReactorB, "BR-RTB.cfg")
-                            sleep(1.5)
-                            SettingsMenuReactorB()
-                            end
-                        end
+RENMPB = {"Reactor B Name", "Current Reactor A name is: ", "Would you like to change it? y/n", "New Reactor Name :              "}
+RENMFB = {SettingsMenuReactorB}
+RENMSB = {ReactorB, 3, "BR-RTB.cfg"}
+BRAPI.UniversalSettingT(RENMPB, RENMFB, RENMSB)
 end
+
+--######################################################################################################
+--## Reactor B Display Fuel   ##
+--##############################
 
 function ReactorBDisplayFuel()
---	RAFuel   = true
-term.clear()
-            box()
-            term.setCursorPos (15, 1)
-            write (" Display Fuel ")
-            term.setCursorPos (3, 3)
-            write ("Last used setting : "..ReactorB[4])
-            term.setCursorPos (3, 5)
-            write ("Change Display Fuel? y/n")
-            sleep(0.3)
-            while true do
-                    keypress = 0
-                    event, keypress = os.pullEvent("key")
-                    if keypress == 49 then
-                            SettingsMenuReactorB()
-                            break
-                    elseif keypress == 21 then
-                            term.setCursorPos (3, 5)
-                            write ("                             ")
-                            term.setCursorPos (3, 6)
-                            sleep(0.3)
-                            RBDFnewSet = read ()
-                            liltest = tonumber ( RBDFnewSet )
-                            if type( liltest ) ~= "number" then
-                                    term.setCursorPos (15, 10)
-                                    write ("I was expecting a number")
-                                    sleep(1.5)
-                                    term.setCursorPos (15, 10)
-                                    write ("                        ")
-                                    GeneralSleep()
-                                    return
-                            else
-                                    ReactorB[4] = tonumber(RBDFnewSet)
-                            end
-                            Save(ReactorB, "BR-RTB.cfg")
-                            sleep(1.5)
-                            SettingsMenuReactorB()
-                            break
-                    elseif keypress == 30 then
-                            SettingsMenuReactorB()
-                            break
-                    end
-            end
+DIS2PB = {" Display Fuel ", "Last used setting : ", "Change Display Fuel? y/n", "                             "}
+DIS2FB = {SettingsMenuReactorB, ReactorBDisplayFuel}
+DIS2SB = {ReactorB, 4, "BR-RTB.cfg"}
+BRAPI.UniversalSettingN(DIS2PB, DIS2FB, DIS2SB)
 end
+
+--######################################################################################################
+--## Reactor B Display Temp   ##
+--##############################
 
 function ReactorBDisplayTemp()
-term.clear()
-            box()
-            term.setCursorPos (15, 1)
-            write (" Display Temp ")
-            term.setCursorPos (3, 3)
-            write ("Last used setting : "..ReactorB[5])
-            term.setCursorPos (3, 5)
-            write ("Change Display Fuel? y/n")
-            sleep(0.3)
-            while true do
-                    keypress = 0
-                    event, keypress = os.pullEvent("key")
-                    if keypress == 49 then
-                            SettingsMenuReactorB()
-                            break
-                    elseif keypress == 21 then
-                            term.setCursorPos (3, 5)
-                            write ("                             ")
-                            term.setCursorPos (3, 6)
-                            sleep(0.3)
-                            RBDTnewSet = read ()
-                            liltest = tonumber ( RBDTnewSet )
-                            if type( liltest ) ~= "number" then
-                                    term.setCursorPos (15, 10)
-                                    write ("I was expecting a number")
-                                    sleep(1.5)
-                                    term.setCursorPos (15, 10)
-                                    write ("                        ")
-                                    GeneralSleep()
-                                    return
-                            else
-                                    ReactorB[5] = tonumber(RBDTnewSet)
-                            end
-                            Save(ReactorB, "BR-RTB.cfg")
-                            sleep(1.5)
-                            SettingsMenuReactorB()
-                            break
-                    elseif keypress == 30 then
-                            SettingsMenuReactorB()
-                            break
-                    end
-            end
+DISTPB = {"Display Temp", "Last used setting : ","Change Display Fuel? y/n", "                             "}
+DISTFB = {SettingsMenuReactorB, ReactorBDisplayTemp}
+DISTSB = {ReactorB, 5, "BR-RTB.cfg"}
+BRAPI.UniversalSettingN(DISTPB, DISTFB, DISTSB)
 end
+
+--######################################################################################################
+--## Reactor B Display Flux   ##
+--##############################
 
 function ReactorBDisplayFlux()
---	FluxRA   = true
-term.clear()
-            box()
-            term.setCursorPos (15, 1)
-            write (" Display Temp ")
-            term.setCursorPos (3, 3)
-            write ("Last used setting : "..ReactorB[6])
-            term.setCursorPos (3, 5)
-            write ("Change Display Flux? y/n")
-            sleep(0.3)
-            while true do
-                    keypress = 0
-                    event, keypress = os.pullEvent("key")
-                    if keypress == 49 then
-                            SettingsMenuReactorB()
-                            break
-                    elseif keypress == 21 then
-                            term.setCursorPos (3, 5)
-                            write ("                             ")
-                            term.setCursorPos (3, 6)
-                            sleep(0.3)
-                            RBDFXnewSet = read ()
-                            liltest = tonumber ( RBDFXnewSet )
-                            if type( liltest ) ~= "number" then
-                                    term.setCursorPos (15, 10)
-                                    write ("I was expecting a number")
-                                    sleep(1.5)
-                                    term.setCursorPos (15, 10)
-                                    write ("                        ")
-                                    GeneralSleep()
-                                    return
-                            else
-                                    ReactorB[6] = tonumber(RBDFXnewSet)
-                            end
-                            Save(ReactorB, "BR-RTB.cfg")
-                            sleep(1.5)
-                            SettingsMenuReactorB()
-                            break
-                    elseif keypress == 30 then
-                            SettingsMenuReactorB()
-                            break
-                    end
-            end
-
-
+DISFPB = {" Display Temp ", "Last used setting : ", "Change Display Flux? y/n", "                             "}
+DISFFB = {SettingsMenuReactorB, ReactorBDisplayFlux}
+DISFSB = {ReactorB, 6, "BR-RTB.cfg"}
+BRAPI.UniversalSettingN(DISFPB, DISFFB, DISFSB)
 end
+
+--######################################################################################################
+--## Reactor B Display Warn   ##
+--##############################
 
 function ReactorBDisplayWarn()
---	RAWarn   = true
-term.clear()
-            box()
-            term.setCursorPos (15, 1)
-            write (" Display Warn ")
-            term.setCursorPos (3, 3)
-            write ("Last used setting : "..ReactorB[7])
-            term.setCursorPos (3, 5)
-            write ("Change Display Flux? y/n")
-            sleep(0.3)
-            while true do
-                    keypress = 0
-                    event, keypress = os.pullEvent("key")
-                    if keypress == 49 then
-                            SettingsMenuReactorB()
-                            break
-                    elseif keypress == 21 then
-                            term.setCursorPos (3, 5)
-                            write ("                             ")
-                            term.setCursorPos (3, 6)
-                            sleep(0.3)
-                            RBDWnewSet = read ()
-                            liltest = tonumber ( RBDWnewSet )
-                            if type( liltest ) ~= "number" then
-                                    term.setCursorPos (15, 10)
-                                    write ("I was expecting a number")
-                                    sleep(1.5)
-                                    term.setCursorPos (15, 10)
-                                    write ("                        ")
-                                    GeneralSleep()
-                                    return
-                            else
-                                    ReactorB[7] = tonumber(RBDWnewSet)
-                            end
-                            Save(ReactorB, "BR-RTB.cfg")
-                            sleep(1.5)
-                            SettingsMenuReactorB()
-                            break
-                    elseif keypress == 30 then
-                            SettingsMenuReactorB()
-                            break
-                    end
-            end
+DISWPB = {"Display Warn", "Last used setting : ", "Change Display Flux? y/n", "On (1) / Off (0)                "}
+DISWFB = {SettingsMenuReactorB, ReactorBDisplayWarn}
+DISWSB = {ReactorB, 7, "BR-RTB.cfg"}
+BRAPI.UniversalSettingN(DISWPB, DISWFB, DISWSB)
 end
 
+--######################################################################################################
+--## Reactor B RedStone Input   ##
+--################################
 
 function ReactorBRSInput()
---	RSRA     = "right"
-term.clear()
-            box()
-            term.setCursorPos (15, 1)
-            write ("Reactor B RS Input")
-            term.setCursorPos (5, 3)
-            write ("Current Comm port is: "..ReactorB[8])
-            term.setCursorPos (5, 5)
-            write ("Would you like to change it? y/n")
-            sleep(0.3)
-            while true do
-                            keypress = 0
-                    event, keypress = os.pullEvent("key")
-                    if keypress == 49 then
-                            SettingsMenuReactorB()
-                            break
-                    elseif keypress == 21 then
-                            term.setCursorPos (5, 5)
-                            write ("RS input left/right? :             ")
-                            term.setCursorPos (5, 6)
-                            sleep(0.3)
-                            ReactorB[8] = read ()
-                            Save(ReactorB, "BR-RTB.cfg")
-                            sleep(1.5)
-                            SettingsMenuReactorB()
-                            end
-                        end
+COMMPB = {"Reactor B RS Input V2", "Current Comm port is: ", "Would you like to change it? y/n", "RS input left/right? :             "}
+COMMFB = {SettingsMenuReactorB}
+COMMSB = {ReactorB, 8, "BR-RTB.cfg"}
+BRAPI.UniversalSettingT(COMMPB, COMMFB, COMMSB)
 end
 
+--######################################################################################################
+--## Reactor B Monitor On/Off   ##
+--################################
 function ReactorBDisplayOn()
---	RAWarn   = true
-term.clear()
-            box()
-            term.setCursorPos (15, 1)
-            write (" Display On/Off ")
-            term.setCursorPos (3, 3)
-            write ("Last used setting : "..ReactorB[9])
-            term.setCursorPos (3, 5)
-            write ("Switch Monitor On/Off? y/n")
-            sleep(0.3)
-            while true do
-                    keypress = 0
-                    event, keypress = os.pullEvent("key")
-                    if keypress == 49 then
-                    		nOption = 7
-                            SettingsMenuReactorB()
-                            break
-                    elseif keypress == 21 then
-                            term.setCursorPos (3, 5)
-                            write ("On (1) / Off (0)                ")
-                            term.setCursorPos (3, 6)
-                            sleep(0.3)
-                            RADWnewSet = read ()
-                            liltest = tonumber ( RADWnewSet )
-                            if type( liltest ) ~= "number" then
-                                    term.setCursorPos (15, 10)
-                                    write ("I was expecting a number")
-                                    sleep(1.5)
-                                    term.setCursorPos (15, 10)
-                                    write ("                        ")
-                                    GeneralSleep()
-                                    return
-                            else
-                                    ReactorB[9] = tonumber(RADWnewSet)
-                            end
-                            Save(ReactorB, "BR-RTB.cfg")
-                            sleep(1.5)
-                            SettingsMenuReactorB()
-                            break
-                    elseif keypress == 30 then
-                            SettingsMenuReactorB()
-                            break
-                    end
-            end
+MONPB = {" Display 2 On/Off V2", "Last used setting : ", "Switch Monitor On/Off? y/n", "On (1) / Off (0)                "}
+MONFB = {SettingsMenuReactorB, ReactorBDisplayOn}
+MONSB = {ReactorB, 9, "BR-RTB.cfg"}
+BRAPI.UniversalSettingN(MONPB, MONFB, MONSB)
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--############################################################################################################################################################################################################
+--## MENUS FOR SETTINGS ABOVE ################################################################################################################################################################################                                                                         
+--############################################################################################################################################################################################################
 
 
 --######################################################################################################
@@ -2734,7 +2228,7 @@ function MMEXT()
 
 
 function BackupCheck()
-	if fs.exists ("BR-BCK.wan") then 
+		if fs.exists ("BR-BCK.wan") then 
     		term.setCursorPos(1,19)
     		write("Backup : ") 
     		term.setTextColor( (TXTCOL[16]) ) 
@@ -2826,8 +2320,8 @@ function SplashUpdate() -- Adds status notifications for Password on / update av
 	if BRUDA == 1 then
 	term.setCursorPos(35,2)
 	write("  New Update!")
-	term.setCursorPos(37,3)
-	write("Ver : ") write(VERU[2])
+	--term.setCursorPos(37,3)
+	--write("Ver : ") write(VERU[2])
 	term.setCursorPos(34,3)
 	else
 		if Error[1] == 1 then
@@ -2846,18 +2340,20 @@ function SplashUpdate() -- Adds status notifications for Password on / update av
 			write("")
 			term.setCursorPos(34,3)
 			write("  FTBUKLW - BR")
-			if DBLD == 1 then term.setCursorPos(37,4) write(BIDVER) else term.setCursorPos(34,4) write("") end
+			if DBLD == 1 then term.setCursorPos(36,4) write(MVER[2]) else term.setCursorPos(34,4) write("") end -- Displays Build Ver
 			term.setCursorPos(34,5)
 			write("")
 		end
     end
 
-    if PasConfig[2] == 1 then term.setCursorPos(22,19) term.setTextColor((TXTCOL[15])) write("[Locked]") term.setTextColor((TXTCOL[1])) end
-    if COMUPDATE == 1 then term.setCursorPos(35,5) term.setTextColor((TXTCOL[15])) write("COM") term.setTextColor((TXTCOL[1])) end
-    if RTAUPDATE == 1 then term.setCursorPos(39,5) term.setTextColor((TXTCOL[15])) write("RTA") term.setTextColor((TXTCOL[1])) end
-    if RTBUPDATE == 1 then term.setCursorPos(43,5) term.setTextColor((TXTCOL[15])) write("RTB") term.setTextColor((TXTCOL[1])) end
-    if ERRUPDATE == 1 then term.setCursorPos(47,5) term.setTextColor((TXTCOL[15])) write("ERR") term.setTextColor((TXTCOL[1])) end
-
+    if DEV          == 1 then term.setCursorPos(35,1)  term.setTextColor((TXTCOL[15])) write('[ DEV MODE ON ]') term.setTextColor((TXTCOL[1])) end
+    if PasConfig[2] == 1 then term.setCursorPos(22,19) term.setTextColor((TXTCOL[15])) write("[Locked]")        term.setTextColor((TXTCOL[1])) end
+    if BRUDA        == 1 then term.setCursorPos(35,4)  term.setTextColor((TXTCOL[15])) write("PRG")             term.setTextColor((TXTCOL[1])) end
+    if APIUPDATE    == 1 then term.setCursorPos(39,4)  term.setTextColor((TXTCOL[15])) write("API")             term.setTextColor((TXTCOL[1])) end
+    if COMUPDATE    == 1 then term.setCursorPos(35,5)  term.setTextColor((TXTCOL[15])) write("COM")             term.setTextColor((TXTCOL[1])) end
+    if RTAUPDATE    == 1 then term.setCursorPos(39,5)  term.setTextColor((TXTCOL[15])) write("RTA")             term.setTextColor((TXTCOL[1])) end
+    if RTBUPDATE    == 1 then term.setCursorPos(43,5)  term.setTextColor((TXTCOL[15])) write("RTB")             term.setTextColor((TXTCOL[1])) end
+    if ERRUPDATE    == 1 then term.setCursorPos(47,5)  term.setTextColor((TXTCOL[15])) write("ERR")             term.setTextColor((TXTCOL[1])) end
 end
 
 
@@ -2894,7 +2390,7 @@ function SplashProgInfo()
 	term.setCursorPos(3,3)
 	write('Program : BR Reactor Control') --31
 	term.setCursorPos(3,4)
-	write('Ver     : '..VER..'-'..BRAPI.APIVER[2])
+	write('Ver     : '..MVER[1]..'-'..BRAPI.APIVER[2])
 	term.setCursorPos(3,5)
 	write('By      : UK_Lone_Wolf')
 end
@@ -2963,6 +2459,17 @@ function CL()
 	shell.run("clear")
 end
 
+function AutoReboot()
+DEVCOMM = Load("BR-DEV.cfg")
+	
+	if DEVCOMM[1] == 1 then
+		DEVCOMM[1] = 0
+		Save(DEVCOMM, "BR-DEV.cfg")
+		os.reboot()
+	end
+end
+
+
 --######################################################################################################
 goodNight = function()
 	imdone = false
@@ -2999,7 +2506,7 @@ function nowISleep() -- sets up for sleeping and inturrupting the sleep for the 
 	if SetMenu == true then
 		sleep(0.4)
 
-		if PasConfig[2] == 1 then  BRAPI.Secure("FTBUKLW-BR", PasConfig[1], PasConfig[3],SettingsMenuBR, 1) else SettingsMenuBR() end
+		if PasConfig[2] == 1 then  BRAPI.Secure("FTBUKLW-BR", PasConfig[1], PasConfig[3],SettingsMenuBR, 0) else SettingsMenuBR() end
 	end
 	if imdone == false then
 	nowISleep()
@@ -3029,6 +2536,7 @@ if ComConfig[2] == 1 then mon2.clear() end
 StatusMonitor()
 if running == false then break end
 ReactorMainRun()
+AutoReboot() -- Able to let me make a sys reboot from the editor program I use.
 resetsleep = 1
 nowISleep()
 if running == false then break end
