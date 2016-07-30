@@ -10,6 +10,7 @@ Build: 01.16.01.482
 			Auto Reboot
 
 		Changed
+			How update check is done
 
 		Removed
 
@@ -353,7 +354,7 @@ Ver: 0.0.0
 --###################################################################################################
 --               Prog Ver         Prog Bld            API Digital Ver
 --               |                |                   |
-local MVER = {"0.5.0", "01.16.01.482", 050, "1.5.0", 100}
+local MVER = {"0.5.0", "01.16.01.482", 050, "1.5.0", 150}
 --                                      |       |
 --                       Prog Digital Ver       API Ver
 
@@ -1791,11 +1792,10 @@ end
                 
 function Download()
                 if fs.exists ("BR-UPD.upd") then
-                  BRAPI.LoadBarGen("Deleting Old Update File", 20, TXTCOL[6])
                   DeleteDBRVerU()
                   shell.run("clear")
-                  shell.run (DBRVerUGet) 
-	                   if fs.exists ("BR-UPD.upd") then
+                  BRAPI.getServer("6Qmw5YF5", "BR-UPD.upd")
+                        if fs.exists ("BR-UPD.upd") then
                    	      BRAPI.LoadBarGen("Checking and Loading", 20, colors.lime)
                    	   else
                    	      Error[1] = 1
