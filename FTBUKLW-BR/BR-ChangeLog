@@ -1,0 +1,349 @@
+--#####################
+--## Version History ###################################################################################
+--#####################
+
+--[[
+Ver  : 0.5.0
+Build: 01.16.01.482
+
+		Added
+			Auto Reboot
+
+		Changed
+			How update check is done
+
+		Removed
+
+	    Alterations
+
+	    Bug Fixes
+
+
+
+Ver  : 0.4.1 - 0.4.5
+Build: 12.15.45.DE - 08.15.10.76
+
+		Added
+			-- Universal menu to API
+			-- Universal Load Bar to API
+
+		Changed
+			-- How the menus are delt with from internally and moved it to the API
+			-- How the Loadbar is delt with from internally and moved it to the API
+
+		Removed
+			-- Old outdated and not used code
+
+
+
+Ver  : 0.4.0
+Build: 08.15.10.25
+
+		Added
+			-- Added API to move some of the universal functions to it.
+
+
+Ver  : 0.3.9
+Build: 01.15.0.5
+		
+		Fixed
+			-- A bug which would not allow Auto Check to call remote file.
+
+Grammar Fixes:
+			--  Noticed some spelling mistakes in the Ver notes. :)
+
+
+Ver  : 0.3.8
+Build: 01.15.0.3
+		Fixed
+			-- A error where the temp on reactor 2 external display
+			   would show on wrong line.
+
+Build: 01.15.0.4
+		
+		Fixed
+			-- A typo which selected a color for reactor A but displayed it on Reactor B
+			-- A bug which would not allow Auto Check to call remote file.
+
+		Added
+			-- A few things for Expandable settings
+
+
+Ver  : 0.3.7
+Build: 01.15.0.1
+
+		Fixed
+			-- A error when accessing the settings menu.
+
+Build: 01.15.0.2
+
+		Added
+			-- API loading area within code.
+
+
+Ver  : 0.3.6 
+Build: 11.14.1.35 - 11.14.1.46
+
+		Changed
+			-- Display
+					-- Menus now have a boarder around.
+
+			-- Added
+					-- function writeError() to make programing compact
+					-- Backup present indicator.
+					-- Program installed is latest ver if update 
+					    program is selected when current version is installed
+					-- Improved a number of things within the program
+					-- Loading and Saving settings now have Lime for loading and red for saving.
+					-- Moved Refresh rate over by 2 on display
+					-- Put menu options in a table ready for menu update
+					-- Added Expansion settings table so others can use this to add API's / Addons.
+					-- 
+            
+            -- Changed
+            		-- How Fuel, Waste and Rod depth is displayed on the computer screen
+                       has been changed.
+
+                    -- How text color is handled within the program to allow easy additions
+                       by using a modular programming style.
+
+Ver: 0.3.0- 0.3.5
+		Added
+			-- Error Catcher
+					-- Status Monitor now protected (0.3.1)
+					-- Reactor A Monitor now protected (0.3.2)
+					-- Reactor A Comms now protected (0.3.2)
+					-- Reactor B Monitor now protected (0.3.3)
+					-- Reactor B Comms now protected (0.3.3)
+					-- Notification icon as a "#" on menus (0.3.5)
+
+			-- New Options
+		    		-- Added Backup Settings (0.3.4)
+		    		-- Added Restore Backup  (0.3.4)
+
+Ver: 0.2.9
+	    Added
+            -- ReactorA GUI to bring inline with Computer display
+            -- ReactorB GUI to bring inline with Computer display
+            -- Password Config
+            -- Ver config updated (Removed)
+            -- Password Screen for settings (Can be turned On/Off in options)
+            -- If the Update makes changes to the .cfg files then a COM, RTA, RTB, ERR
+               will be displayed along with the new version number.
+
+		Compatibility Test
+			-- Tested with CraftOS 1.6 and works as expected.
+
+	    Bugs Fixed
+	        -- Names don't change when changed in options
+	        -- FTBUKLW-BR 1871 Error
+	        -- Computer label not setting
+	        -- Issue with Update Config warning not displaying when it should
+
+	    Alterations
+            -- Altered where Ver is displayed on Status Monitor
+            -- Program now can't be stopped by ctrl+T
+            -- Got rid of flashing status due to frame rate and cosmetic reasons
+            -- Refining how the update and ver config is delt within program.
+            -- Changed the format of how BR-UPD.upd is read.
+            -- Changed how Status is displayed on status monitor.
+            -- Changed First startup to take you to the set Reactor 1 Comm port first.
+            -- Removed BR-Ver.cfg from program due to it only being used for something
+               that can be stated within the program.
+
+Ver: 0.2.8
+	GitHub: Testing and Development #2
+		 
+		Suggestions Added:
+			-- Make it so the program restarts when you exit the settings menu.
+		
+		Bug(s) Fixed:
+			-- Values do not load for Monitor's or Reactor's from config files.
+			-- Program does not like running with one reactor.
+			-- Computer menu text moves by one to right when selected.
+
+		Grammer Fixes:
+			--  Noticed some spelling mistakes in the Ver notes. :)
+
+		Working on:
+			-- Add password screen for settings
+			-- Make it so you don't need levers either side of the computer instead use RedNet.
+
+Ver: 0.2.7
+	Enhancment
+		-- Altered how reactor 1 info is displayed on Monitor 1
+		-- Altered how reactor 2 info is displayed on Monitor 2
+		-- Solved problem of decimal point being displayed on monitors
+
+	In a future update
+        -- Add password screen for settings
+        -- Bring the displays inline so they match the computers slic display
+
+Ver: 0.2.6
+	
+	GitHub Issue #1 Fixes and Enhancement
+
+	Enhancement:
+    	-- Get rid of the delay when you select a item to change.
+    	-- Combine all loading bars to one on boot up.
+    	-- Change current update name to "Fetch Update"
+
+	Bug(s) Fixed:
+		-- Some of the Reactor 1 and 2 don't go back to their respected menus instead go to main menu.
+		-- Some of the Reactor 1 and 2 have # in their settings adjustment "are you sure" screen.
+		-- Clear typos in some menus
+
+	Things todo:
+		-- Test program after these have been implemented.
+
+Ver: 0.2.5
+	Changes
+		-- Changed how the Updater works.
+        -- Got rid of the Decimal point on Temperature on the Computer display.
+        -- Tidy up of code
+    Added
+        -- Added Update Aviliable screen in the top right of the computer's display
+           this will when a new version display New Version! 0.2.
+        -- Added change log to GitHub.com
+
+    Working On
+        -- I am currently working on a solution to the Decimal point being displayed
+           on Reactor 1 and Reactor 2 monitors.
+    
+    Bugs
+        -- Fixed the ones I caused.
+
+    In a future update
+        -- Add password screen for settings
+        -- Bring the displays inline so they match the computers slic display
+
+    Deducted functions
+        -- Rebuilt the Updater function (some old functions within were deducted)
+
+    Improvements
+	    --Added an option to switch off Update Check for when HTTP is not enabled on the server
+	      or if you want to decrease the network load of the server.
+          (FTBUKLW-BR will only download DBRVerU when the server
+          reboots and will not ask for it again until another reboot)
+
+Ver: 0.2.4
+
+	Added
+		-- Default Setting which returns all values to default.
+		-- Auto config update. (checks to see if there are new values added to all .cfg file(s))
+		-- VerInfo to "Computer" Menu
+
+	Bugs
+		-- General bug fixes caused by new feature additions
+
+	Deducted functions
+		-- None to report
+
+	Improvements
+		-- Altered computer display ready for Update function
+
+Ver: 0.2.3
+	Added Reactor stats to computer display
+
+	Added Color to computer diplay
+		-- Fix an issue where "F12 : Settings and Refresh Rate" would keep changing color.
+		-- Fix an issue where reactor info on computer display was displaying wrong color. 
+
+Ver: 0.2.0 - 0.2.2
+	Changed In computer Display
+	Changed Config files and .cfg files into seperate ones.
+		This should allow this to be more server friendly
+		--BR-VerConfig.cfg deals with version numbers and decides if the configs need updating
+		--BR-ComConfig.cfg deals with the main computer settings
+		--BR-ReactorAConfig.cfg deals with Reactor A configs
+		--BR-ReactorBConfig.cfg deals with Reactor B configs
+
+	Improvments to UI and General bug fixes
+
+	Added loading bar for when either Save or a Load is exercuted.
+
+Ver: 0.1.9 - 0.1.9-4
+	Added Redstone switch side to reactor settings
+
+	Added Settings functions
+		 -- Added Reactor A Settings menu
+		 -- Added Reactor B Settings menu         
+		 -- Settings Menu function 
+		 -- Save Settings function 
+		 -- Load Settings function 
+
+Ver: 0.1.8
+	Added functions
+		 -- ReactorALogic()
+		 -- ReactorBLogic()
+
+	Changed local variable FuelMon to StatMon
+
+	Improved one reactor compatibility
+
+	Removed unused functions
+		 -- RodLevelReactorA() on reactor 1 monitor
+		 -- RodLevelReactorB() on reactor 2 monitor
+
+	Tided up dispalys for R1 and R2
+	     -- Moved Warnings from 11 to 12
+	     -- Changed how Temp is displayed
+	     -- Changed how Flux is displayed
+	     -- Centered Reactor name for both displays
+	     -- Changed how RF/t is displayed
+
+Ver: 0.1.7
+	Bug fixes - General debugging
+
+Ver: 0.1.6
+	Added warning messages to Status Display
+
+Ver: 0.1.5
+	Seperated Control Rod into Reactor 1 + 2
+
+Ver: 0.1.4
+	Added Splash Screen
+
+Ver: 0.1.3
+	Made it so you can idividually switch off the reactors
+
+Ver: 0.1.2
+	Bug Fixes -- Gobal display showing incorrect date
+
+Ver: 0.1.1
+	Added Global Display AKA Fuel Mon or Status Display
+
+Ver: 0.1.0
+	Bug fixes -- Corrected a typo
+
+Ver: 0.0.9
+	Added ReactorBWarn to Reactor B display
+
+Ver: 0.0.8
+	Added ReactorAWarn to Reactor A display
+
+Ver: 0.0.7
+	Bug Fixes -- Displays showing worng info
+
+Ver: 0.0.6
+	Added Reactor B Display
+	Added ReactorBFunctions()
+
+Ver: 0.0.5
+	Added local values for Reactor 2 Settings
+
+Ver: 0.0.4
+	Added Reactor A Display
+	Added ReactorAFunctions()
+
+Ver: 0.0.3
+	Added local values for Reactor 1 Settings
+
+Ver: 0.0.2
+	Split tasks into functions
+
+Ver: 0.0.1
+	Tidied code ready for next part of project
+
+Ver: 0.0.0
+	First Draft Build (Very Basic functionality)
