@@ -689,3 +689,45 @@ MON.write("|                           |")
 MON.setCursorPos(1,11)
 MON.write("O---------------------------O")
 end
+
+
+
+
+
+
+local function get(paste)
+    LoadBarGen("Connecting to pastebin.com...", 2, colors.red)--write( "Connecting to pastebin.com... " )
+    local response = http.get(
+        "http://pastebin.com/raw.php?i="..textutils.urlEncode( paste )
+    )
+        
+    if response then
+        --print( "Success." )
+        
+        local sResponse = response.readAll()
+        response.close()
+        return sResponse
+    else
+        --printError( "Failed." )
+    end
+end
+
+function getServer(GCode, GFile)
+        -- Determine file to download
+    local sCode = GCode
+    local sFile = GFile
+    if fs.exists( GFile ) then
+        --print( "File already exists" )
+        return
+    end
+    
+    -- GET the contents from pastebin
+    local res = get(sCode)
+    if res then        
+        local file = fs.open( GFile, "w" )
+        file.write( res )
+        file.close()
+        
+        --print( "Downloaded as "..sFile )
+    end
+end
