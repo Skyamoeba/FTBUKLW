@@ -1,16 +1,3 @@
---#####################
---## Version History ###################################################################################
---#####################
-
---[[
-
-Ver :	0.0.1
-Bld	:	85.IE.14.48
-
-
-
---]]
-
 --#############################
 --[[   API Checker & Loader  ]]--#######################################################################
 --#############################
@@ -50,14 +37,9 @@ DefVERU      = {000, "0.0.0", 0, 0, 0, 0}
 DefPasConfig = {"1234", 0, 0} --password, on/off, counter
 
 
-DefComConfig = {10, -- Tunnel Length
-				 1, -- 3x3 On/Off
-				 1, -- Torches
-				10, -- Number of blocks before the turtle emptys.
-				 0, -- Not Used
-				 0} -- Not Used
+DefComConfig = {10, 0, 0, 0, 0, 0, 0, 0, 0, 0} -- Number of blocks before the turtle emptys.
 
-DefTnnConfig = {10, 1, 1, 10, 0, 0, 0, 0, 0, 0}
+DefTnnConfig = {10, 1, 1, 4, 0, 0, 0, 0, 0, 10}
 
 
 
@@ -67,7 +49,7 @@ DefTnnConfig = {10, 1, 1, 10, 0, 0, 0, 0, 0, 0}
 DefQrrConfig = {3, 3, 0 ,0 ,0 ,0 ,0 ,0 ,0 ,0}
 
 DefLogData   = {0, 0, 20} -- Tot num col, Torch Placement Counter, Empty Ratio Counter
-DefLocation  = {0, 0, 0, 1, 0} -- X, Y, Z, Facing, Mining/ Quarry
+DefLocation  = {0, 0, 0, 1, 0} -- X, Y, Z, Facing, Mining 1/ Quarry 2
 --###########################
 --##  SAVE/LOAD COMMANDS   #############################################################################
 --###########################
@@ -111,9 +93,9 @@ while not fs.exists ("MI-LOG.dat") do
 --##############################
 --## Main Version Information  #
 --###################################################################################################
---               Prog Ver         Prog Bld            API Digital Ver
---               |                |                   |
-local MVER = {"0.0.1", "85.IE.14.48", 000, MIAPI.APIVER[2], 000}
+--               Prog Ver         Prog Bld                  API Digital Ver
+--               |                |                          |
+local MVER = {"0.0.1", "00.00.00.23", 001, MIAPI.APIVER[2], 003}
 --                                      |       |
 --                       Prog Digital Ver       API Ver
 
@@ -188,19 +170,19 @@ local MIProgFetc = "pastebin get GyF1FJSH FTBUKLW-MI"
 --#######################
 function tryRight()
 	turtle.turnRight()
-	if Location[4] == 1 then Location[4] = 2 elseif Location[4] == 2 then Location[4] = 3 elseif Location[4] == 3 then Location[4] = 4 elseif Location[4] == 4 then Location[4] = 1 end LocSav() GPSLOCK()
+	if Location[4] == 1 then Location[4] = 2 elseif Location[4] == 2 then Location[4] = 3 elseif Location[4] == 3 then Location[4] = 4 elseif Location[4] == 4 then Location[4] = 1 end LocSav() InMenuDisplayMove()
 end
 
 function tryLeft()
 	turtle.turnLeft()
-	if Location[4] == 1 then Location[4] = 4 elseif Location[4] == 4 then Location[4] = 3 elseif Location[4] == 3 then Location[4] = 2 elseif Location[4] == 2 then Location[4] = 1 end LocSav() GPSLOCK()
+	if Location[4] == 1 then Location[4] = 4 elseif Location[4] == 4 then Location[4] = 3 elseif Location[4] == 3 then Location[4] = 2 elseif Location[4] == 2 then Location[4] = 1 end LocSav() InMenuDisplayMove()
 end
 
 --#######################
 --##    Info Codes     #################################################################################
 --#######################
 
-INFOCODE = {"[ MI-FUEL ]", "[ MI-MIPR ]"}
+INFOCODE = {"[FUEL]", "[MIPR]", "[DEV]"}
 
 
 
@@ -364,7 +346,7 @@ local function tryUp()
 	end
 	Location[2] = Location[2] + 1
 	LocSav()
-	GPSLOCK()
+	InMenuDisplayMove()
 	return true
 end
 
@@ -383,7 +365,7 @@ local function tryDown()
 	end
 	Location[2] = Location[2] - 1
 	LocSav()
-	GPSLOCK()
+	InMenuDisplayMove()
 	return true
 end
 
@@ -405,11 +387,11 @@ elseif Location[4] == 2 then Location[3] = Location[3] + 1
 elseif Location[4] == 3 then Location[1] = Location[1] - 1
 elseif Location[4] == 4 then Location[3] = Location[3] - 1
 end
-if ComConfig[3] == 1 then LogData[2] = LogData[2] + 1 MIAPI.Save(LogData, "MI-LOG.dat") end
+if TnnConfig[3] == 1 then LogData[2] = LogData[2] + 1 MIAPI.Save(LogData, "MI-LOG.dat") end
 LogData[3] = LogData[3] + 1
 MIAPI.Save(LogData, "MI-LOG.dat")
 LocSav()
-GPSLOCK()
+InMenuDisplayMove()
 	return true
 end
 
@@ -532,18 +514,19 @@ end
 
 
 function DIGTUNNEL()
-	for n = 1, ComConfig[1] do
-		if ComConfig[2] == 1 then
-			MIAPI.SplashBox()
-			MIAPI.FuelGaugeMainMenu(22,12)
-            CollectedTot()
-            GPSLOCK(22,11)
+	for n = 1, TnnConfig[1] do
+		if TnnConfig[2] == 1 then
+			InMenuDisplayMove()
+			--MIAPI.SplashBox()
+			--MIAPI.FuelGaugeMainMenu(22,12)
+            --CollectedTot()
+            --GPSLOCK(22,11)
 			TRFWD()
 			TBThree()
-			if LogData[3] > ComConfig[4] then EMPTY() LogData[3] = 0 MIAPI.Save(LogData, "MI-LOG.dat") end
+			if LogData[3] > ComConfig[1] then EMPTY() LogData[3] = 0 MIAPI.Save(LogData, "MI-LOG.dat") end
 			
-			if ComConfig[3] == 1 then 
-				if LogData[2] == 4 then
+			if TnnConfig[3] == 1 then 
+				if LogData[2] == TnnConfig[4] then
 					TourchesPlacment()
 					LogData[2] = 0
 					MIAPI.Save(LogData, "MI-LOG.dat")
@@ -552,7 +535,7 @@ function DIGTUNNEL()
 		else
 			TRFWD()
 			TBTwo()
-			if LogData[3] == ComConfig[4] then EMPTY() end
+			if LogData[3] == ComConfig[1] then EMPTY() end
 
 		end
 	end
@@ -634,11 +617,15 @@ end
 
 function Tunnel()
 -- Mine in a tunnel pattern until we hit something we can't dig
+
+--TODO Add MI-Location here ( 0 = Default 1 = Mining 2 = Quarry)
+
 DIGTUNNEL()
 
 term.setCursorPos(22, 7)
 write("Returning")
-RETURN()
+ZeroReset()
+--RETURN()
 
 --print( "Tunnel complete." )
 --print( "Mined "..collected.." items total." )
@@ -646,7 +633,7 @@ LogData[1] = collected + LogData[1]
 MIAPI.Save(LogData, "MI-LOG.dat")
 EMPTY()
 
-FinishPos()
+--FinishPos()
 LogData[2] = 0 MIAPI.Save(LogData, "MI-LOG.dat")
 BOOTUP()
 
@@ -846,7 +833,7 @@ function QRPlate()
 --MIAPI.FuelGaugeMainMenu(22,12)
 --CollectedTot()
 --GPSLOCK(22,11)
-if LogData[3] > ComConfig[4] then EMPTY() LogData[3] = 0 MIAPI.Save(LogData, "MI-LOG.dat") end
+if LogData[3] > ComConfig[1] then EMPTY() LogData[3] = 0 MIAPI.Save(LogData, "MI-LOG.dat") end
 end
 
 function Quarry()
@@ -1023,26 +1010,109 @@ end
 --##[ SETTINGS MENU ]################################################################################################
 --#####################
 
-function TSAVE()
-	LogData[4] = ComConfig[1]
-	MIAPI.Save(LogData, "MI-LOG.dat")
+function Blank()
+	term.clear()
+	print("Option not used")
+	print("Reserve for future functions")
+	sleep(3)
+	Settings()
 end
 
 
+--#######################
+--##[ Tunnel Settings ]##############################################################################################
+--#######################
 function TunnelLength()
-TUNNLHP = {"Tunnel Length", "Last used length : ", "Change Tunnel Length? y/n", "New tunnel length               "}
-TUNNLHF = {BOOTUP, TunnelLength, TSAVE}
-TUNNLHS = {ComConfig, 1, "MI-COM.cfg", 1}
-MIAPI.UniversalSettingN(TUNNLHP, TUNNLHF, TUNNLHS)
+	TUNNLHP = {"Tunnel Length", "Last used length : ", "Change Tunnel Length? y/n", "New tunnel length               "}
+	TUNNLHF = {TunnelSettings, TunnelLength}
+	TUNNLHS = {TnnConfig, 1, "MI-TNN.cfg", 0}
+	MIAPI.UniversalSettingN(TUNNLHP, TUNNLHF, TUNNLHS)
 end
 
+function PTorchYN()
+	PTSNLHP = {"Place Torches", "Last used setting : ", "Change Place Torches? y/n", "New Torch Setting               "}
+	PTSNLHF = {TunnelSettings, PTorchYN}
+	PTSNLHS = {TnnConfig, 3, "MI-TNN.cfg", 0}
+	MIAPI.UniversalSettingN( PTSNLHP, PTSNLHF, PTSNLHS)
+end
+
+function XbyXT()
+	PTSNLHP = {"3 x 3 Tunnel", "Last used setting : ", "Change Tunnel Height? y/n", "New Setting               "}
+	PTSNLHF = {TunnelSettings, XbyXT}
+	PTSNLHS = {TnnConfig, 2, "MI-TNN.cfg", 1}
+	MIAPI.UniversalSettingN( PTSNLHP, PTSNLHF, PTSNLHS)
+end
+
+function TRatio()
+	TRatLHP = {"Torch Ratio", "Last used setting : ", "Change Torch Ratio? y/n", "New Setting               "}
+	TRatLHF = {TunnelSettings, PTorchYN}
+	TRatLHS = {TnnConfig, 4, "MI-TNN.cfg", 1}
+	MIAPI.UniversalSettingN( TRatLHP, TRatLHF, TRatLHS)
+end
 
 function TunnelSettings()
-	TSSE = {"Tunnel Settings", "Tunnel Length", "P Torch", "3x3 tunnel", "Not Used", "Back"}
-	TSFL = {TunnelLength, PTorchYN, XbyXT, Blank , Settings}
+	TSSE = {"Tunnel Settings", "Tunnel Length", "Place Torches", "3x3 tunnel", "Torch Ratio", "Back"}
+	TSFL = {TunnelLength, PTorchYN, XbyXT, TRatio , Settings}
 	TSID = {}
 	MIAPI.MENU(3,1, 3,3, TSSE, TSFL, 5, TSID, 0)
 end
+
+
+--#######################
+--##[ Quarry Settings ]##############################################################################################
+--#######################
+
+function QSAVE()
+	QryConfig[10] = QryConfig[1]
+	MIAPI.Save(QryConfig, "MI-QRY.cfg")
+	QryConfig = MIAPI.Load("MI-QRY.cfg")
+end
+
+function QuarrySize()
+		QUARLHP = {"Quarry Size", "Last used length : ", "Change Quarry Size? y/n", "New Quarry Size             "}
+		QUARLHF = {BOOTUP, QuarrySize, QSAVE}
+		QUARLHS = {QryConfig, 1, "MI-QRY.cfg", 1}
+		MIAPI.UniversalSettingN(QUARLHP, QUARLHF, QUARLHS)
+
+end
+
+function QuarrySettings()
+	QSSE = {"Quarry Settings", "Quarry Size", "Not Used", "Not Used", "Not Used", "Back"}
+	QSFL = {QuarrySize, Blank, Blank, Blank , Settings}
+	QSID = {}
+	MIAPI.MENU(3,1, 3,3, QSSE, QSFL, 5, QSID, 0)
+end
+
+--#########################
+--##[ Computer Settings ]##############################################################################################
+--#########################
+
+function EmptyRate()
+		EMRTLHP = {"Empty Rate", "Last Setting : ", "Change Empty Rate? y/n", "New Empty Rate :                 "}
+		EMRTLHF = {BOOTUP, QuarrySize, QSAVE}
+		EMRTLHS = {ComConfig, 1, "MI-COM.cfg", 1}
+		MIAPI.UniversalSettingN(EMRTLHP, EMRTLHF, EMRTLHS)
+end
+
+
+function CompSettings()
+	CSSE = {"Computer Settings", "Empty Rate (".. ComConfig[1]..")", "Not Used", "Not Used", "Not Used", "Back"}
+	CSFL = {EmptyRate, Blank, Blank, Blank , Settings}
+	CSID = {}
+	MIAPI.MENU(3,1, 3,3, CSSE, CSFL, 5, CSID, 0)
+end
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1061,8 +1131,8 @@ function ResetErr()
 end
 
 function Settings()
-	MMSE = {"Settings Menu V2", "Tunnel Settings", "Quarry Size", "Comp Settings", "Reset Errors", "Back"}
-	MMFL = {TunnelSettings, QuarrySize, CompSettings, Blank , BOOTUP}
+	MMSE = {"Settings Menu V2", "Tunnel Settings", "Quarry Settings", "Comp Settings", "Reset Errors", "Back"}
+	MMFL = {TunnelSettings, QuarrySettings, CompSettings, Blank , BOOTUP}
 	MMID = {}
 	MIAPI.MENU(3,1, 3,3, MMSE, MMFL, 5, MMID, 0)
 end
@@ -1204,8 +1274,25 @@ function CollectedTot()
 end
 
 function StatusDisplay()
-	if FuelStatus == 1 then term.setCursorPos(21,5) write(INFOCODE[1]) end
+	if FuelStatus == 1 then term.setCursorPos(21,5) term.setTextColor(colors.red) write(INFOCODE[1]) term.setTextColor(colors.white)end
+	if DEV == 1 then term.setCursorPos(33,1) term.setTextColor(colors.red) write(INFOCODE[3]) term.setTextColor(colors.white) end
 end
+
+function InMenuDisplayMove()
+	MIAPI.SplashBox()
+	SplashProgInfo()
+  	SplashUpdate()
+  	MIAPI.FuelGaugeMainMenu(22,12)
+  	GPSLOCK(22,11)
+  	StatusDisplay()
+  	CollectedTot()
+end
+
+
+
+
+
+
 
 function InMenuDisplay()
   SplashProgInfo()
@@ -1227,22 +1314,22 @@ end
 --MIAPI.Boot()
 
 function BOOTUP()
-MMSE = {"Main Menu V2", "Tunnel ("..ComConfig[1]..")", "Quarry ("..QryConfig[1]..")", "Settings", "Help", 'Refuel', "Shut Down"}
+MMSE = {"Main Menu V2", "Tunnel ("..TnnConfig[1]..")", "Quarry ("..QryConfig[1]..")", "Settings", "Help", 'Refuel', "Shut Down"}
 MMFL = {Tunnel, Quarry, Settings, Help, FillFuel, ExitProg}
 MMID = {InMenuDisplay}
 MIAPI.MENU(3,1, 3,7, MMSE, MMFL, 6, MMID, 2)
 end
 
 TestArea = 0
-
+FuelStatus = 0
 
 
 
 
 function ResumeMining()
 	if Location[5] == 1 then
-	ComConfig[1] = ComConfig[1] - Location[1]
-	MIAPI.Save(ComConfig, "MI-COM.cfg")
+	TnnConfig[1] = TnnConfig[1] - Location[1]
+	MIAPI.Save(TnnConfig, "MI-TNN.cfg")
 	sleep(2)
 	Tunnel()
 	end
@@ -1273,7 +1360,10 @@ if TestArea == 1 then
 
 else
 	if Location[5] == 0 then locationReset() end
+	if Location[5] == 1 then ResumeMining()	end
+
+
+
 	BOOTUP()
 end
-
 
