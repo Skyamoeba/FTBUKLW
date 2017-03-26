@@ -731,3 +731,686 @@ function getServer(GCode, GFile)
         --print( "Downloaded as "..sFile )
     end
 end
+end
+
+function APISplashBox()
+	local SBX,SBY = 1,1
+	term.setCursorPos(1,1)
+	write("O-[ BRAPI ]-------------OO------------------------O")
+	term.setCursorPos(1,2)
+	write("|                       ||                        |")
+	term.setCursorPos(1,3)
+	write("|                       ||                        |")
+	term.setCursorPos(1,4)
+	write("|                       ||                        |")
+	term.setCursorPos(1,5)
+	write("|                       ||                        |")
+	term.setCursorPos(1,6)
+	write("|                       ||                        |")
+	term.setCursorPos(1,7)
+	write("|                       ||                        |")
+	term.setCursorPos(1,8)
+	write("|                       ||                        |")
+	term.setCursorPos(1,9)
+	write("|                       ||                        |")
+	term.setCursorPos(1,10)
+	write("|                       ||                        |")
+	term.setCursorPos(1,11)
+	write("|                       ||                        |")
+	term.setCursorPos(1,12)
+	write("|                       ||                        |")
+	term.setCursorPos(1,13)
+	write("|                       ||                        |")
+	term.setCursorPos(1,14)
+	write("|                       ||                        |")
+	term.setCursorPos(1,15)
+	write("|                       ||                        |")
+	term.setCursorPos(1,16)
+	write("|                       ||                        |")
+	term.setCursorPos(1,17)
+	write("|                       ||                        |")
+	term.setCursorPos(1,18)
+	write("O-----------------------OO------------------------O")
+
+	--term.setCursorPos(SBX,SBY)
+	--write("O- BRAPI ----------O------------------O")
+	--term.setCursorPos(SBX,SBY+1)
+	--write("|                  |                  |")
+	--term.setCursorPos(SBX,SBY+2)
+	--write("|                  |                  |")
+	--term.setCursorPos(SBX,SBY+3)
+	--write("|                  |                  |")
+	--term.setCursorPos(SBX,SBY+4)
+	--write("|                  |                  |")
+	--term.setCursorPos(SBX,SBY+5)
+	--write("|                  |                  |")
+	--term.setCursorPos(SBX,SBY+6)
+	--write("|                  |                  |")
+	--term.setCursorPos(SBX,SBY+7)
+	--write("|                  |                  |")
+	--term.setCursorPos(SBX,SBY+8)
+	--write("|                  |                  |")
+	--term.setCursorPos(SBX,SBY+9)
+	--write("|                  |                  |")
+	--term.setCursorPos(SBX,SBY+10)
+	--write("|                  |                  |")
+	--term.setCursorPos(SBX,SBY+11)
+	--write("|                  |                  |")
+	--term.setCursorPos(SBX,SBY+12)
+	--write("O-------------------------------------O")
+	end
+
+--####################################################################################################
+--## Monitor Colors ## 
+--####################
+
+TXTCOL = {
+          colors.white, colors.orange, colors.magenta  , colors.lightBlue, colors.yellow, colors.lime, 	
+          colors.pink , colors.gray  , colors.lightGray, colors.cyan     , colors.purple, colors.blue, 	
+          colors.brown, colors.green , colors.red      , colors.black
+         }
+
+
+
+
+--################
+--[[   Secure   ]]--####################################################################################
+--################
+
+function Secure(EXName, EXAdmin, EXAtt, EXFun, EXWrg)
+
+local Name = EXName
+Admin = EXAdmin
+Exit = "exit"
+Attempts = EXAtt
+CallFun = EXFun
+CallWrg = EXWrg
+term.clear()
+os.pullEvent = os.pullEventRaw
+term.setCursorPos(1,1)
+write (Name)
+term.setCursorPos(1,3)
+write ("Admin Logon: ")write ("")
+
+local Input = read("*")
+if Input == (Admin) then
+CallFun()
+elseif Input == (Exit) then
+	os.reboot()
+else
+print("Wrong Password")
+sleep(1)
+end
+	
+	if CallWrg == 0 then 
+		os.reboot()
+	end
+
+end
+
+
+
+--#####################################################################################################
+--## Error Writer ##
+--##################
+
+function writeError(X, Y, ErrorNum )
+	COMMONCOL(TXTCOL[15])
+	term.setCursorPos(X, Y)
+	write(ErrorNum)
+	COMMONCOL(TXTCOL[1])
+end
+
+ErrPrint = {"[CO-87494-4]", "[CO-45164-4]", "[CO-48965-1]", "[CO-12554-5]", "[CO-89741-2]", "[CE-08422-8]", "[CO-30733-6]", "[SU-30733-6]"}
+
+--[CO-87494-4] = Problem with Status Monitor
+--[CO-45164-4] = Problem with Reactor A Display
+--[CO-12554-5] = Problem with Reactor B Display
+
+--[CO-48965-1] = Problem with Reactor A Comunication
+--[CO-89741-2] = Problem with Reactor B Comunication
+--[CO-30733-6] = Problem connecting to internet
+
+--[CE-08422-8] = Ooooops Unknown Error Occured
+--[SU-30733-6] = Software Version already upto date
+
+-- SU = Software Update
+-- CO = Communication Error
+-- CE = Other / Unknown Error
+
+
+--#######################
+--[[   Universal Menu   ]]--#############################################################################
+--#######################
+function UMSP()
+	term.setCursorPos(1,1)
+	write("O-------------------------------------------------O")
+	term.setCursorPos(1,2)
+	write("|                                                 |")
+	term.setCursorPos(1,3)
+	write("|                                                 |")
+	term.setCursorPos(1,4)
+	write("|                                                 |")
+	term.setCursorPos(1,5)
+	write("|                                                 |")
+	term.setCursorPos(1,6)
+	write("|                                                 |")
+	term.setCursorPos(1,7)
+	write("|                                                 |")
+	term.setCursorPos(1,8)
+	write("|                                                 |")
+	term.setCursorPos(1,9)
+	write("|                                                 |")
+	term.setCursorPos(1,10)
+	write("|                                                 |")
+	term.setCursorPos(1,11)
+	write("|                                                 |")
+	term.setCursorPos(1,12)
+	write("|                                                 |")
+	term.setCursorPos(1,13)
+	write("|                                                 |")
+	term.setCursorPos(1,14)
+	write("|                                                 |")
+	term.setCursorPos(1,15)
+	write("|                                                 |")
+	term.setCursorPos(1,16)
+	write("|                                                 |")
+	term.setCursorPos(1,17)
+	write("|                                                 |")
+	term.setCursorPos(1,18)
+	write("O-------------------------------------------------O")
+	end
+
+function MENU(TIX, TIY, MMX, MMY, TMS, OPS, NOO, IMD) -- Title Location, Menu Location, Table with text, Table with function list, Number of options, In Menu Display
+
+local TX,TY   = TIX, TIY
+local XL,YL   = MMX, MMY
+local XL2,YL2 = 0,0
+
+local nOption = 1
+
+-- Menu Text
+local TITLE = TMS[1]
+local OP1   = TMS[2]
+local OP2   = TMS[3]
+local OP3   = TMS[4]
+local OP4   = TMS[5]
+local OP5   = TMS[6]
+local OP6   = TMS[7]
+local OP7   = TMS[8]
+local OP8   = TMS[9]
+local OP9   = TMS[10]
+local OP10  = TMS[11]
+local OP11  = TMS[12]
+local OP12  = TMS[13]
+local OP13  = TMS[14]
+local OP14  = TMS[15]
+
+-- Function Options
+local RF1   = OPS[1]
+local RF2   = OPS[2]
+local RF3   = OPS[3]
+local RF4   = OPS[4]
+local RF5   = OPS[5]
+local RF6   = OPS[6]
+local RF7   = OPS[7]
+local RF8   = OPS[8]
+local RF9   = OPS[9]
+local RF10  = OPS[10]
+local RF11  = OPS[11]
+local RF12  = OPS[12]
+local RF13  = OPS[13]
+local RF14  = OPS[14]
+
+-- In Menu Display
+local IMD1 = IMD[1]
+
+-- Display the frontend
+term.clear()
+
+local function smdrawFrontend()
+UMSP()
+
+term.setCursorPos(TX,TY)
+write( (TITLE))
+
+if OP1  == NIL then else term.setCursorPos(XL,YL    ) write( ((nOption == 1)  and ('>> '..OP1))  or ('   '..OP1))  end
+if OP2  == NIL then else term.setCursorPos(XL,YL +1 ) write( ((nOption == 2)  and ('>> '..OP2))  or ('   '..OP2))  end
+if OP3  == NIL then else term.setCursorPos(XL,YL +2 ) write( ((nOption == 3)  and ('>> '..OP3))  or ('   '..OP3))  end
+if OP4  == NIL then else term.setCursorPos(XL,YL +3 ) write( ((nOption == 4)  and ('>> '..OP4))  or ('   '..OP4))  end
+if OP5  == NIL then else term.setCursorPos(XL,YL +4 ) write( ((nOption == 5)  and ('>> '..OP5))  or ('   '..OP5))  end
+if OP6  == NIL then else term.setCursorPos(XL,YL +5 ) write( ((nOption == 6)  and ('>> '..OP6))  or ('   '..OP6))  end
+if OP7  == NIL then else term.setCursorPos(XL,YL +6 ) write( ((nOption == 7)  and ('>> '..OP7))  or ('   '..OP7))  end
+if OP8  == NIL then else term.setCursorPos(XL,YL +7 ) write( ((nOption == 8)  and ('>> '..OP8))  or ('   '..OP8))  end
+if OP9  == NIL then else term.setCursorPos(XL,YL +8 ) write( ((nOption == 9)  and ('>> '..OP9))  or ('   '..OP9))  end
+if OP10 == NIL then else term.setCursorPos(XL,YL +9 ) write( ((nOption == 10) and ('>> '..OP10)) or ('   '..OP10)) end
+if OP11 == NIL then else term.setCursorPos(XL,YL +10) write( ((nOption == 11) and ('>> '..OP11)) or ('   '..OP11)) end
+if OP12 == NIL then else term.setCursorPos(XL,YL +11) write( ((nOption == 12) and ('>> '..OP12)) or ('   '..OP12)) end
+if OP13 == NIL then else term.setCursorPos(XL,YL +12) write( ((nOption == 13) and ('>> '..OP13)) or ('   '..OP13)) end
+if OP14 == NIL then else term.setCursorPos(XL,YL +13) write( ((nOption == 14) and ('>> '..OP14)) or ('   '..OP14)) end
+
+if IMD1 == NIL then else IMD1() end
+
+end
+
+-- Call functions for display menu
+
+
+smdrawFrontend()
+
+while true do
+local e,p = os.pullEvent()
+if e == "key" then
+local key = p
+if key == 17 or key == 200 then
+            
+-- Up
+          
+if nOption > 1 then
+nOption = nOption - 1
+--smdrawMenu()
+smdrawFrontend()
+end
+
+elseif key == 31 or key == 208 then
+            -- Down
+if nOption < NOO then -- Change 4 by the number of option.
+nOption = nOption + 1
+--smdrawMenu()
+smdrawFrontend()
+end
+elseif key == 28 then
+            -- Enter
+break
+end
+end
+end
+
+term.clear()
+-- Conditions
+if nOption == 1 then          
+return RF1()
+
+elseif nOption == 2 then
+return RF2()
+
+elseif nOption == 3 then      
+return RF3()
+
+elseif nOption == 4 then      
+return RF4()
+
+elseif nOption == 5 then      
+return RF5()
+
+elseif nOption == 6 then      
+return RF6()
+
+elseif nOption == 7 then      
+return RF7()
+
+elseif nOption == 8 then      
+return RF8()
+
+elseif nOption == 9 then      
+return RF9()
+
+elseif nOption == 10 then      
+return RF10()
+
+elseif nOption == 11 then      
+return RF11()
+
+elseif nOption == 12 then      
+return RF12()
+
+elseif nOption == 13 then      
+return RF13()
+
+else 
+return RF14()
+end
+end
+
+--#######################################################################################################
+--#######################################################################################################
+
+
+
+--###################################
+--[[   Universal Setting Manager   ]]--#############################################################################
+--###################################
+
+--[[   USM CHANGE LOG   ]]--
+--	Ver 1.0.0
+--			Added Universal Setting Manager to BRAPI
+--			Added UniversalSettingT to BRAPI under Universal Setting Manager
+--
+--  Ver 1.0.1
+--			Added UniversalSettingN to BRAPI under Universal Setting Manager
+
+--[[   USM CHANGE LOG END   ]]--
+
+--Examples...
+
+--function ReactorBRSInput()
+--COMMP = {"Reactor B RS Input", "Current Comm port is: ", "Would you like to change it? y/n", "RS input left/right? :             "}
+--COMMF = {SettingsMenuReactorB, SettingsMenuReactorB}
+--COMMS = {ReactorB, 8, "BR-RTB.cfg"}
+--BRAPI.UniversalSettingT(COMMP, COMMF, COMMS)
+--end
+
+--function ReactorBDisplayOn()
+--MONPB = {" Display 2 On/Off V2", "Last used setting : ", "Switch Monitor On/Off? y/n", "On (1) / Off (0)                "}
+--MONFB = {SettingsMenuReactorB, ReactorBDisplayOn}
+--MONSB = {ReactorB, 9, "BR-RTB.cfg"}
+--BRAPI.UniversalSettingN(MONPB, MONFB, MONSB)
+--end
+
+function UniversalSettingT(TEXT, FUN, SAVESET)
+local OP1   = FUN[1]
+local OP2   = FUN[2]
+local ITEM  = SAVESET[1]
+local X     = SAVESET[2]
+local SNAM  = SAVESET[3]
+term.clear()
+            UMSP()
+            term.setCursorPos (3, 1)
+            write (TEXT[1]) --TEXT 1
+            term.setCursorPos (5, 3)
+            write (TEXT[2]..ITEM[X]) -- TEXT 2
+            term.setCursorPos (5, 5)
+            write (TEXT[3]) --TEXT 3
+            sleep(0.3)
+            while true do
+                            keypress = 0
+                    event, keypress = os.pullEvent("key")
+                    if keypress == 49 then
+                            OP1()
+                            break
+                    elseif keypress == 21 then
+                            term.setCursorPos (5, 5)
+                            write (TEXT[4]) --TEXT 4
+                            term.setCursorPos (5, 6)
+                            sleep(0.3)
+                            ITEM[X] = read ()
+                            if FUN[2] == nil then else OP2() end
+                            Save(ITEM, SNAM)
+                            sleep(1.5)
+                            OP1()
+                            end
+                        end
+end
+
+
+
+function UniversalSettingN(TEXT, FUN, SAVESET)
+local OP1   = FUN[1]
+local OP2   = FUN[2]
+local ITEM  = SAVESET[1]
+local X     = SAVESET[2]
+local SNAM  = SAVESET[3]
+term.clear()
+            UMSP()
+            term.setCursorPos (3, 1)
+            write (TEXT[1])                                                   --T1
+            term.setCursorPos (3, 3)
+            write (TEXT[2]..ITEM[X])                                      --T2/ Save
+            term.setCursorPos (3, 5)
+            write (TEXT[3])                                                   --T3
+            term.setCursorPos (3, 19)
+            write ("Help : 1 = On / Yes & 0 = Off / No")
+            sleep(0.3)
+            while true do
+                    keypress = 0
+                    event, keypress = os.pullEvent("key")
+                    if keypress == 49 then
+                    		nOption = 7
+                            OP1()                                             --F1
+                            break
+                    elseif keypress == 21 then
+                            term.setCursorPos (3, 5)
+                            write (TEXT[4])                                   --T4
+                            term.setCursorPos (3, 6)
+                            sleep(0.3)
+                            RADWnewSet = read ()
+                            liltest = tonumber ( RADWnewSet )
+                            if type( liltest ) ~= "number" then
+                                    term.setCursorPos (15, 10)
+                                    write ("I was expecting a number")
+                                    sleep(1.5)
+                                    term.setCursorPos (15, 10)
+                                    write ("                        ")
+                                    OP2()                                     --F2
+                                    return
+                            else
+                                    ITEM[X] = tonumber(RADWnewSet)
+                            end
+                            Save(ITEM, SNAM)
+                            sleep(1.5)
+                            OP1()                                             --F1
+                            break
+                    elseif keypress == 30 then
+                            OP1()                                             --F1
+                            break
+                    end
+            end
+end
+
+--#######################################################################################################
+--## Universal Load Bar #################################################################################
+--#######################################################################################################
+local COL = term.isColor()
+
+function LoadBar(Time)
+local TextX = 13
+local TextY = 10
+local MainX = TextX + 0 -- Loading Bar X (left to right location) Default = TextX + 0
+local MainY = TextY + 1 -- Loading Bar Y (up and down location) Default = TextY + 1
+local NXTX = MainX + 0 -- change this number to change hoe far accross the new line will start (Default = 0)
+local NXTY = MainY + 1 -- change this number to change how far down the new line will be (Default = 1)
+--local Text = "" -- Tells the user what the loading bar is for
+local Clear = true -- If false and using for Pastebin set TextY to 4
+local LoadTime = 0.1
+--local LDPE     = 20 --20 Default
+local LDPE = Time
+
+--Everything below here is auto setup by the values entered above
+local MainX2 = MainX + 21
+local MainY2 = MainY + 0
+local TextPX = MainX2 + 1
+local TextPY = MainY + 0
+local LBX= MainX + 1
+local LBY= MainY + 0
+local PER = 5
+
+
+
+function LoadClear()
+  if Clear == false then
+    return
+  else
+    term.setCursorPos(1,1)
+	write("                                                   ")
+	term.setCursorPos(1,2)
+	write("                                                   ")
+	term.setCursorPos(1,3)
+	write("                                                   ")
+	term.setCursorPos(1,4)
+	write("                                                   ")
+	term.setCursorPos(1,5)
+	write("                                                   ")
+	term.setCursorPos(1,6)
+	write("                                                   ")
+	term.setCursorPos(1,7)
+	write("                                                   ")
+	term.setCursorPos(1,8)
+	write("                                                   ")
+	term.setCursorPos(1,9)
+	write("                                                   ")
+	term.setCursorPos(1,10)
+	write("                                                   ")
+	term.setCursorPos(1,11)
+	write("                                                   ")
+	term.setCursorPos(1,12)
+	write("                                                   ")
+	term.setCursorPos(1,13)
+	write("                                                   ")
+	term.setCursorPos(1,14)
+	write("                                                   ")
+	term.setCursorPos(1,15)
+	write("                                                   ")
+	term.setCursorPos(1,16)
+	write("                                                   ")
+	term.setCursorPos(1,17)
+	write("                                                   ")
+	term.setCursorPos(1,18)
+	write("                                                   ")
+  end
+end
+
+function LoadingBarBW()
+  LoadClear()
+  term.setCursorPos (TextX,TextY)
+  write(Text)
+  term.setCursorPos (MainX,MainY)
+  write ("[")
+  term.setCursorPos (MainX2,MainY2)
+  write ("]")
+  
+  for i = LDPE, 1, - 1 do
+  term.setCursorPos (LBX,LBY)
+  write ("=")
+  sleep(LoadTime)
+  LBX = LBX + 1
+  term.setCursorPos (TextPX,TextPY)
+  write (PER) write("%")
+  PER = PER + 5
+  term.setCursorPos (NXTX,NXTY)
+end
+
+end
+
+function LoadingBarCL()
+  LoadClear()
+  
+  term.setCursorPos (TextX,TextY)
+  term.setTextColor (Tile)
+  write(Text)
+  term.setTextColor (colors.white)
+  term.setCursorPos (MainX,MainY)
+  write ("[")
+  term.setCursorPos (MainX2,MainY2)
+  write ("]")
+  
+  for i = LDPE, 1, - 1 do
+  term.setTextColor (8192)
+  term.setBackgroundColor (8192)
+  term.setCursorPos (LBX,LBY)
+  write ("#")
+  sleep(LoadTime)
+  LBX = LBX + 1 
+  term.setCursorPos (TextPX,TextPY)
+  term.setTextColor (1)
+  term.setBackgroundColor (32768)
+  write (PER) write("%") 
+  PER = PER + 5
+  term.setCursorPos (NXTX,NXTY)
+end
+
+end
+
+
+if COL == true then
+  LoadingBarCL()
+else
+  LoadingBarBW()
+end
+
+end
+
+function LoadBarGen(LBR, Time, Color)
+	Text = (LBR)
+	if Color == false then Color = colors.white end
+	Tile = (Color)
+	LoadBar(Time)
+end
+
+
+
+--########################################################################
+
+function verInfoStat(X,Y,DATA,MON,TXTCOL)
+	MON.setTextColor((TXTCOL))
+	MON.setCursorPos(X,Y)
+	MON.write("Ver:") MON.write((DATA))
+end
+
+
+-- Reactor Information Functions
+function ReactorGUIF(MON, TXTCOL)
+--MON.clear()
+MON.setTextColor((TXTCOL))
+MON.setCursorPos(1,2)
+MON.write("O------------------O--------O")
+MON.setCursorPos(1,3)
+MON.write("|                  |        |")
+MON.setCursorPos(1,4)
+MON.write("|                  |        |")
+MON.setCursorPos(1,5)
+MON.write("|                  |        |")
+MON.setCursorPos(1,6)
+MON.write("O------------------O--------O")
+MON.setCursorPos(1,7)
+MON.write("|                           |")
+MON.setCursorPos(1,8)
+MON.write("|                           |")
+MON.setCursorPos(1,9)
+MON.write("|                           |")
+MON.setCursorPos(1,10)
+MON.write("|                           |")
+MON.setCursorPos(1,11)
+MON.write("O---------------------------O")
+end
+
+
+
+
+
+
+local function get(paste)
+    LoadBarGen("Connecting to pastebin.com...", 2, colors.red)--write( "Connecting to pastebin.com... " )
+    local response = http.get(
+        "http://pastebin.com/raw.php?i="..textutils.urlEncode( paste )
+    )
+        
+    if response then
+        --print( "Success." )
+        
+        local sResponse = response.readAll()
+        response.close()
+        return sResponse
+    else
+        --printError( "Failed." )
+    end
+end
+
+function getServer(GCode, GFile)
+        -- Determine file to download
+    local sCode = GCode
+    local sFile = GFile
+    if fs.exists( GFile ) then
+        --print( "File already exists" )
+        return
+    end
+    
+    -- GET the contents from pastebin
+    local res = get(sCode)
+    if res then        
+        local file = fs.open( GFile, "w" )
+        file.write( res )
+        file.close()
+        
+        --print( "Downloaded as "..sFile )
+    end
+end
