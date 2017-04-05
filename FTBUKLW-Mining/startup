@@ -1,0 +1,12 @@
+local Prog1 = "FTBUKLW-BR"
+local Prog2 = "FTBUKLW-MI"
+local NoPro = "Nothing to run"
+
+
+if fs.exists(Prog1) then
+	shell.run(Prog1)
+	elseif fs.exists(Prog2) then
+	shell.run(Prog2)
+	else
+	print(NoPro)
+end
