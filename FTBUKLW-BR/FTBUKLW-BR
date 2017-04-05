@@ -6,9 +6,14 @@
 local MVER = {"0.5.0", "01.16.01.482", 050, "1.5.0", 150}
 --                                      |       |
 --                       Prog Digital Ver       API Ver
+<<<<<<< HEAD
 
 local DEV = 0
 
+=======
+
+local DEV = 0
+>>>>>>> origin/master
 
 --############################
 --## API Loader/ Downloader  #
@@ -470,7 +475,11 @@ end
 function ReactorAFunctions()
 function ReactorAGUIFrame()
 if ReactorA[9] == 1 then
+<<<<<<< HEAD
 BRAPI.ReactorGUIF(mon1, TXTCOL[1],1,2)
+=======
+BRAPI.ReactorGUIF(mon1, TXTCOL[1])
+>>>>>>> origin/master
 end
 end
 
@@ -815,7 +824,11 @@ end
 function ReactorBFunctions()
 function ReactorBGUIFrame()
 if ReactorB[9] == 1 then
+<<<<<<< HEAD
 BRAPI.ReactorGUIF(mon2, TXTCOL[1], 1, 2)
+=======
+BRAPI.ReactorGUIF(mon2, TXTCOL[1])
+>>>>>>> origin/master
 end
 end
 
@@ -1002,6 +1015,7 @@ mon2.setCursorPos(23,8)
 RTRBMONCOL(TXTCOL[14])
 mon2.write("]")
 mon2.setBackgroundColor(TXTCOL[16])
+<<<<<<< HEAD
 end
 
 if ReactorB[9] == 1 then
@@ -1025,6 +1039,31 @@ mon2.write("]")
 mon2.setBackgroundColor(TXTCOL[16])
 end
 
+=======
+end
+
+if ReactorB[9] == 1 then
+mon2.setCursorPos(3,9)
+RTRBMONCOL(TXTCOL[14])
+mon2.write('RF/t     [') 
+if RFATB == 0     then mon2.setCursorPos(13,9) mon2.setTextColor(TXTCOL[15]) mon2.write(" ") end
+if RFATB >= 3200  then mon2.setCursorPos(13,9) mon2.setTextColor(TXTCOL[15]) mon2.write(CHAR) end
+if RFATB >= 6400  then mon2.setCursorPos(14,9) mon2.setTextColor(TXTCOL[15]) mon2.write(CHAR) end
+if RFATB >= 9600  then mon2.setCursorPos(15,9) mon2.setTextColor(TXTCOL[15]) mon2.write(CHAR) end
+if RFATB >= 12800 then mon2.setCursorPos(16,9) mon2.setTextColor(TXTCOL[2] ) mon2.write(CHAR) end
+if RFATB >= 16000 then mon2.setCursorPos(17,9) mon2.setTextColor(TXTCOL[2] ) mon2.write(CHAR) end
+if RFATB >= 19200 then mon2.setCursorPos(18,9) mon2.setTextColor(TXTCOL[2] ) mon2.write(CHAR) end
+if RFATB >= 22400 then mon2.setCursorPos(19,9) mon2.setTextColor(TXTCOL[14]) mon2.write(CHAR) end
+if RFATB >= 25600 then mon2.setCursorPos(20,9) mon2.setTextColor(TXTCOL[14]) mon2.write(CHAR) end
+if RFATB >= 28800 then mon2.setCursorPos(21,9) mon2.setTextColor(TXTCOL[14]) mon2.write(CHAR) end
+if RFATB >= 32000 then mon2.setCursorPos(22,9) mon2.setTextColor(TXTCOL[14]) mon2.write(CHAR) end
+mon2.setCursorPos(23,9)
+RTRBMONCOL(TXTCOL[14])
+mon2.write("]")
+mon2.setBackgroundColor(TXTCOL[16])
+end
+
+>>>>>>> origin/master
 
 
 --######################
